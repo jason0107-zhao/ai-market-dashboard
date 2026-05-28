@@ -9,48 +9,36 @@
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:#0f172a;color:#f1f5f9;min-height:100vh}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
-
 header{background:rgba(15,23,42,.85);backdrop-filter:blur(12px);border-bottom:1px solid #334155;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 header h1{font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px}
 .badge{background:#22c55e;width:8px;height:8px;border-radius:50%;display:inline-block;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .ht{font-size:13px;color:#94a3b8}
-
 .tabs{display:flex;gap:4px;padding:16px 24px 0;border-bottom:1px solid #334155;overflow-x:auto}
 .tab{padding:8px 18px;border-radius:8px 8px 0 0;border:1px solid transparent;cursor:pointer;font-size:13px;color:#94a3b8;background:transparent;font-family:inherit;transition:all .15s;white-space:nowrap}
 .tab.active{border-color:#334155 #334155 #0f172a;background:#0f172a;color:#f1f5f9;font-weight:600}
 .tab .dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
-
 .page{display:none;padding:16px 24px 24px;max-width:1200px;margin:0 auto}
 .page.show{display:block}
-
 .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
 .card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px}
 .card .lbl{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 .card .val{font-size:22px;font-weight:700}
 .card .sub{font-size:12px;margin-top:4px}
 .green{color:#22c55e}.red{color:#ef4444}.orange{color:#f59e0b}.purple{color:#a855f7}.cyan{color:#06b6d4}.gray{color:#94a3b8}
-
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{padding:8px 6px;color:#94a3b8;font-weight:500;font-size:11px;text-transform:uppercase;text-align:left;border-bottom:1px solid #334155}
 td{padding:7px 6px;border-bottom:1px solid rgba(51,65,85,.5)}
 tr:hover td{background:rgba(59,130,246,.05)}
 .code{font-size:11px;color:#64748b;font-family:monospace}
-
 .fund-row{display:flex;align-items:center;margin-bottom:6px;font-size:12px}
 .fund-row .n{width:80px;color:#94a3b8;text-align:right;padding-right:8px;flex-shrink:0}
 .fund-row .b{flex:1;height:20px;border-radius:4px;overflow:hidden}
 .fund-row .b div{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px;color:#fff;font-size:10px;font-weight:600}
-.fund-row .v{width:45px;text-align:right;padding-left:6px;font-weight:600;font-size:11px;flex-shrink:0}
-
-.sent-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:10px 0}
 .tagcloud{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .tagcloud span{padding:4px 10px;border-radius:6px;font-size:12px;cursor:default}
-
-/* Monitor / Report cards */
 .articles{display:flex;flex-direction:column;gap:10px}
 .article{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 18px;cursor:pointer;transition:border .15s}
 .article:hover{border-color:#3b82f6}
@@ -62,15 +50,11 @@ tr:hover td{background:rgba(59,130,246,.05)}
 .article p{font-size:12px;color:#94a3b8;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .article .tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
 .article .tags span{font-size:10px;padding:1px 6px;background:rgba(59,130,246,.1);color:#3b82f6;border-radius:4px}
-
 .search{width:100%;padding:10px 14px;border:1px solid #334155;border-radius:8px;font-size:13px;background:#1e293b;color:#f1f5f9;outline:none;font-family:inherit;margin-bottom:12px}
 .search:focus{border-color:#3b82f6}
-.search::placeholder{color:#64748b}
-
 .filters{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
 .filters button{padding:4px 10px;border-radius:999px;border:1px solid #334155;background:transparent;color:#94a3b8;font-size:11px;cursor:pointer;font-family:inherit;transition:all .1s}
 .filters button.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
-
 .rpt-card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:16px;cursor:pointer;transition:border .15s}
 .rpt-card:hover{border-color:#3b82f6}
 .rpt-card .icon{font-size:28px;flex-shrink:0;width:44px;text-align:center}
@@ -78,8 +62,6 @@ tr:hover td{background:rgba(59,130,246,.05)}
 .rpt-card .info .desc{font-size:12px;color:#94a3b8;line-height:1.5}
 .rpt-card .info .tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
 .rpt-card .info .tags span{font-size:10px;padding:2px 7px;background:rgba(59,130,246,.1);color:#3b82f6;border-radius:4px}
-
-/* Modal */
 .modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:800px;max-height:88vh;background:#1e293b;border:1px solid #334155;border-radius:14px;z-index:201;flex-direction:column;box-shadow:0 25px 80px rgba(0,0,0,.5)}
 .modal.show{display:flex}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;backdrop-filter:blur(6px)}
@@ -87,16 +69,12 @@ tr:hover td{background:rgba(59,130,246,.05)}
 .modal .mh{padding:16px 20px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:700;flex-shrink:0}
 .modal .mh button{background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;padding:0 4px}
 .modal .mb{padding:20px;overflow-y:auto;line-height:1.7;font-size:14px}
-
 .modal .mb h1{font-size:22px;margin:20px 0 8px;font-weight:700}
 .modal .mb h2{font-size:17px;margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid #334155;font-weight:600}
 .modal .mb h3{font-size:15px;margin:12px 0 4px;font-weight:600}
 .modal .mb h4{font-size:13px;margin:10px 0 3px;font-weight:600}
 .modal .mb p{margin-bottom:10px;font-size:14px;line-height:1.8}
 .modal .mb strong{color:#fff}
-.modal .mb .highlight{color:#f59e0b}
-.modal .mb .up{color:#22c55e}
-.modal .mb .down{color:#ef4444}
 .modal .mb blockquote{border-left:3px solid #3b82f6;margin:12px 0;padding:10px 16px;background:rgba(59,130,246,.08);border-radius:0 8px 8px 0;font-size:13px}
 .modal .mb table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
 .modal .mb td,.modal .mb th{border:1px solid #334155;padding:6px 8px}
@@ -108,9 +86,18 @@ tr:hover td{background:rgba(59,130,246,.05)}
 .modal .mb .metric-box .num{font-size:22px;font-weight:700;color:#3b82f6}
 .modal .mb .metric-box .lbs{font-size:11px;color:#94a3b8}
 .modal .mb .metric-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.modal .mb .sect-card{background:rgba(255,255,255,.03);border-radius:8px;padding:12px;margin:10px 0}
+.modal .mb .sect-card{background:rgba(255,255,255,.03);border-radius:8px;padding:14px;margin:12px 0;border:1px solid rgba(51,65,85,.5)}
 .modal .mb .sect-card .sn{font-size:12px;color:#94a3b8;margin-bottom:6px}
-
+.modal .mb .sect-card .sh{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.modal .mb .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.modal .mb .info-item{background:rgba(255,255,255,.03);border-radius:6px;padding:10px}
+.modal .mb .info-item .il{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
+.modal .mb .info-item .iv{font-size:16px;font-weight:700;margin-top:2px}
+.modal .mb .tagline{font-size:13px;color:#94a3b8;padding:10px 14px;background:rgba(255,255,255,.02);border-radius:8px;margin:12px 0;border-left:3px solid #3b82f6}
+.modal .mb .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600}
+.modal .mb .pill-up{background:rgba(34,197,94,.15);color:#22c55e}
+.modal .mb .pill-down{background:rgba(239,68,68,.15);color:#ef4444}
+.modal .mb .pill-mid{background:rgba(245,158,11,.15);color:#f59e0b}
 @media(max-width:800px){
   .grid2,.grid3{grid-template-columns:1fr}
   .page{padding:12px 14px}
@@ -123,19 +110,17 @@ tr:hover td{background:rgba(59,130,246,.05)}
 </style>
 </head>
 <body>
-
 <header>
   <h1><span style="background:linear-gradient(135deg,#3b82f6,#a855f7);width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px">📊</span> 二级市场研究员 · 智能仪表盘</h1>
   <span class="ht" id="ht"><span class="badge"></span> --</span>
 </header>
-
 <div class="tabs">
   <button class="tab active" onclick="showTab('dash',event)">📊 仪表盘</button>
   <button class="tab" onclick="showTab('monitor',event)"><span class="dot" style="background:#3b82f6"></span>定时监测</button>
   <button class="tab" onclick="showTab('rpt',event)">📋 专题报告</button>
 </div>
 
-<!-- ═══════════════ 仪表盘 ═══════════════ -->
+<!-- ═══ DASHBOARD ═══ -->
 <div id="page-dash" class="page show">
   <div class="row">
     <div class="card"><div class=lbl>上证指数</div><div class=val id=v_sh>--</div><div class="sub" id=sub_sh>--</div></div>
@@ -143,44 +128,32 @@ tr:hover td{background:rgba(59,130,246,.05)}
     <div class="card"><div class=lbl>创业板指</div><div class=val id=v_cy>--</div><div class="sub" id=sub_cy>--</div></div>
     <div class="card"><div class=lbl>科创50</div><div class=val id=v_kc>--</div><div class="sub" id=sub_kc>--</div></div>
     <div class="card"><div class=lbl>两市成交额</div><div class=val>2.97万亿</div><div class="sub red">缩量 8.3%</div></div>
-    <div class="card"><div class=lbl>上涨/下跌家数</div><div class=val><span class=green>3018</span> / <span class=red>2365</span></div><div class=sub>涨停126 · 跌停12</div></div>
+    <div class="card"><div class=lbl>上涨/下跌</div><div class=val><span class=green>3018</span> / <span class=red>2365</span></div><div class=sub>涨停126 · 跌停12</div></div>
   </div>
-
   <div class="grid3">
     <div class="card">
       <div class=lbl style=margin-bottom:10px>📈 板块资金净流入 TOP5</div>
       <div id=fundList></div>
     </div>
     <div class="card">
-      <div class=lbl style=margin-bottom:10px>🔥 板块涨跌分布</div>
+      <div class=lbl style=margin-bottom:10px>🔥 板块涨跌</div>
       <div id=sectorList style="font-size:12px;line-height:2"></div>
-      <div style=margin-top:12px>
-        <div class=lbl style=margin-bottom:4px>🏷 今日热点</div>
-        <div class=tagcloud id=tagCloud></div>
-      </div>
+      <div style=margin-top:12px><div class=lbl style=margin-bottom:4px>🏷 热点</div><div class=tagcloud id=tagCloud></div></div>
     </div>
     <div class="card">
-      <div class=lbl style=margin-bottom:10px>🏆 今日异动亮点</div>
+      <div class=lbl style=margin-bottom:10px>🏆 今日异动</div>
       <div id=highlightList style="font-size:12px;line-height:2"></div>
     </div>
   </div>
-
   <div class="grid2">
-    <div class="card">
-      <div class=lbl style=margin-bottom:10px>👁 核心监控股</div>
-      <table><thead><tr><th>名称</th><th>代码</th><th>现价</th><th>涨跌幅</th><th>备注</th></tr></thead>
-      <tbody id=wlBody></tbody></table>
-    </div>
-    <div class="card">
-      <div class=lbl style=margin-bottom:10px>📊 今日市场解读</div>
-      <div id=marketComment style="font-size:12px;line-height:1.8"></div>
-    </div>
+    <div class="card"><div class=lbl style=margin-bottom:10px>👁 核心监控股</div><table><thead><tr><th>名称</th><th>代码</th><th>现价</th><th>涨跌幅</th></tr></thead><tbody id=wlBody></tbody></table></div>
+    <div class="card"><div class=lbl style=margin-bottom:10px>📊 今日市场解读</div><div id=marketComment style="font-size:12px;line-height:1.8"></div></div>
   </div>
 </div>
 
-<!-- ═══════════════ 定时监测 ═══════════════ -->
+<!-- ═══ MONITOR ═══ -->
 <div id="page-monitor" class="page">
-  <div class="filters" id=monFilter style="margin-bottom:12px">
+  <div class="filters" id=monFilter>
     <button class=active onclick="filterMon('all',event)">全部</button>
     <button onclick="filterMon('2026-05-28',event)">5月28日</button>
     <button onclick="filterMon('2026-05-27',event)">5月27日</button>
@@ -188,7 +161,7 @@ tr:hover td{background:rgba(59,130,246,.05)}
   <div class="articles" id=monList></div>
 </div>
 
-<!-- ═══════════════ 专题报告 ═══════════════ -->
+<!-- ═══ REPORTS ═══ -->
 <div id="page-rpt" class="page">
   <div id=rptList style="max-width:800px;margin:0 auto"></div>
 </div>
@@ -197,541 +170,38 @@ tr:hover td{background:rgba(59,130,246,.05)}
 <div class=modal id=modal><div class=mh><span id=mTitle></span><button onclick="closeModal()">&times;</button></div><div class=mb id=mBody></div></div>
 
 <script>
-// ═══════════════════════════════════════════════
-// 1. 大盘实时行情（index.html初始值 + 后续自动更新）
-// ═══════════════════════════════════════════════
-
-const marketInit = {
-  sh: { name:"上证指数", code:"000001", price:"4098.64", chg:"0.12" },
-  sz: { name:"深证成指", code:"399001", price:"15861.89", chg:"0.80" },
-  cy: { name:"创业板指", code:"399006", price:"4125.07", chg:"1.96" },
-  kc: { name:"科创50",  code:"000688", price:"1844.25", chg:"1.59" },
-};
-Object.keys(marketInit).forEach(k => {
-  const m = marketInit[k];
-  document.getElementById('v_'+k).textContent = m.price;
-  const cls = parseFloat(m.chg) >= 0 ? 'green' : 'red';
-  const sign = parseFloat(m.chg) >= 0 ? '+' : '';
-  document.getElementById('sub_'+k).className = 'sub ' + cls;
-  document.getElementById('sub_'+k).textContent = sign + m.chg + '%';
+// ─── Data ──────────────────────────────────────
+const marketInit={sh:{n:"上证指数",c:"000001",p:"4098.64",g:"0.12"},sz:{n:"深证成指",c:"399001",p:"15861.89",g:"0.80"},cy:{n:"创业板指",c:"399006",p:"4125.07",g:"1.96"},kc:{n:"科创50",c:"000688",p:"1844.25",g:"1.59"}};
+Object.keys(marketInit).forEach(k=>{
+  const m=marketInit[k];document.getElementById('v_'+k).textContent=m.p;
+  const cls=parseFloat(m.g)>=0?'green':'red';
+  const sgn=parseFloat(m.g)>=0?'+':'';
+  document.getElementById('sub_'+k).className='sub '+cls;
+  document.getElementById('sub_'+k).textContent=sgn+m.g+'%';
 });
 
-// ═══════════════════════════════════════════════
-// 2. 板块 & 热点 & 异动 & 自选股
-// ═══════════════════════════════════════════════
+// dashboard data
+const sectors=[{n:'半导体',c:'+2.8%',cl:'green'},{n:'通信设备',c:'+2.1%',cl:'green'},{n:'电子化学品',c:'+1.9%',cl:'green'},{n:'非金属材料',c:'+3.5%',cl:'green'},{n:'小金属',c:'+1.5%',cl:'green'},{n:'培育钻石',c:'+6.2%',cl:'green'},{n:'白酒',c:'-1.2%',cl:'red'},{n:'贵金属',c:'-0.8%',cl:'red'},{n:'证券',c:'-0.5%',cl:'red'}];
+document.getElementById('sectorList').innerHTML=sectors.map(s=>'<div><span style=color:'+(s.cl==='green'?'#22c55e':'#ef4444')+'>●</span> '+s.n+' <span class='+s.cl+' style=float:right>'+s.c+'</span></div>').join('');
 
-const sectors = [
-  {n:'半导体',c:'+2.8%',cl:'green'},{n:'通信设备',c:'+2.1%',cl:'green'},
-  {n:'电子化学品',c:'+1.9%',cl:'green'},{n:'非金属材料',c:'+3.5%',cl:'green'},
-  {n:'小金属',c:'+1.5%',cl:'green'},{n:'培育钻石',c:'+6.2%',cl:'green'},
-  {n:'白酒',c:'-1.2%',cl:'red'},{n:'贵金属',c:'-0.8%',cl:'red'},
-  {n:'证券',c:'-0.5%',cl:'red'}
-];
-document.getElementById('sectorList').innerHTML = sectors.map(s =>
-  `<div><span style="color:${s.cl==='green'?'#22c55e':'#ef4444'}">●</span> ${s.n} <span class=${s.cl} style=float:right>${s.c}</span></div>`
-).join('');
+const funds=[{n:'半导体',v:12.4,c:'#3b82f6'},{n:'AI算力',v:8.7,c:'#a855f7'},{n:'机器人',v:5.2,c:'#ec4899'},{n:'CPO模块',v:4.1,c:'#06b6d4'},{n:'HBM存储',v:3.5,c:'#f59e0b'}];
+const maxV=Math.max(...funds.map(f=>f.v));
+document.getElementById('fundList').innerHTML=funds.map(f=>'<div class=fund-row><span class=n>'+f.n+'</span><div class=b style="background:'+f.c+'22"><div style="width:'+(f.v/maxV*100)+'%;background:'+f.c+'">'+f.v.toFixed(1)+'亿</div></div></div>').join('');
 
-const funds = [
-  {n:'半导体',v:12.4,c:'#3b82f6'},{n:'AI算力',v:8.7,c:'#a855f7'},
-  {n:'机器人',v:5.2,c:'#ec4899'},{n:'CPO光模块',v:4.1,c:'#06b6d4'},
-  {n:'HBM存储',v:3.5,c:'#f59e0b'}
-];
-const maxV = Math.max(...funds.map(f=>f.v));
-document.getElementById('fundList').innerHTML = funds.map(f =>
-  `<div class=fund-row><span class=n>${f.n}</span><div class=b style="background:${f.c}22"><div style="width:${f.v/maxV*100}%;background:${f.c}">${f.v.toFixed(1)}亿</div></div></div>`
-).join('');
+const tagColors=['#3b82f6','#a855f7','#ec4899','#06b6d4','#f59e0b','#22c55e'];
+document.getElementById('tagCloud').innerHTML=['半导体','算力硬件','培育钻石','MLCC','CPO','HBM','玻纤','AI芯片','超级电容','光芯片'].map((t,i)=>'<span style="background:'+tagColors[i%6]+'18;color:'+tagColors[i%6]+'">#'+t+'</span>').join('');
 
-const tags = ['半导体','算力硬件','培育钻石','MLCC','CPO','HBM','玻纤','AI芯片','超级电容','光芯片'];
-const colors = ['#3b82f6','#a855f7','#ec4899','#06b6d4','#f59e0b','#22c55e'];
-document.getElementById('tagCloud').innerHTML = tags.map((t,i)=>
-  `<span style="background:${colors[i%6]}18;color:${colors[i%6]}">#${t}</span>`
-).join('');
+document.getElementById('highlightList').innerHTML=['• <strong>半导体走强</strong> — 中芯国际、华虹创新高','• <strong>算力硬件爆发</strong> — 联特科技涨停 "易中天"齐创新高','• <strong>培育钻石大涨</strong> — 惠丰钻石+29.98% 四方达+20.01%','• <strong>创业板首超沪指</strong> 4125>4098 📌','• <strong>PET铜箔活跃</strong> — 铜冠铜箔+16.84%'].join('<br>');
 
-const highlights = [
-  '• <strong>半导体产业链走强</strong> — 燕东微、华微电子涨停，华虹公司、中芯国际股价创新高',
-  '• <strong>算力硬件集体爆发</strong> — 联特科技、宏和科技等涨停，"易中天"股价齐创历史新高',
-  '• <strong>培育钻石大涨</strong> — 惠丰钻石+29.98%、四方达+20.01%',
-  '• <strong>创业板收盘点数首次超越沪指</strong> 📌',
-  '• <strong>PET铜箔活跃</strong> — 铜冠铜箔+16.84%、德福科技+13.5%'
-];
-document.getElementById('highlightList').innerHTML = highlights.join('');
+document.getElementById('wlBody').innerHTML=[
+  {n:'寒武纪',c:'688256.SH',p:'1340.00',ch:-0.17},{n:'三花智控',c:'002050.SZ',p:'51.02',ch:-3.71},{n:'蓝色光标',c:'300058.SZ',p:'15.77',ch:0.06},{n:'中芯国际',c:'688981.SH',p:'--',ch:null},{n:'华虹公司',c:'688347.SH',p:'--',ch:null}
+].map(s=>s.ch!==null?'<tr><td><strong>'+s.n+'</strong></td><td><span class=code>'+s.c+'</span></td><td>¥'+s.p+'</td><td class="'+(s.ch>=0?'green':'red')+'">'+(s.ch>=0?'+':'')+s.ch.toFixed(2)+'%</td></tr>':'<tr style="color:#94a3b8;font-size:11px"><td>'+s.n+'</td><td><span class=code>'+s.c+'</span></td><td>--</td><td class=green>创新高</td></tr>').join('');
 
-document.getElementById('wlBody').innerHTML = [
-  {n:'寒武纪',c:'688256.SH',p:'1340.00',ch:-0.17},
-  {n:'三花智控',c:'002050.SZ',p:'51.02',ch:-3.71},
-  {n:'蓝色光标',c:'300058.SZ',p:'15.77',ch:0.06},
-  {n:'中芯国际',c:'688981.SH',p:'--',ch:null,note:'创新高'},
-  {n:'华虹公司',c:'688347.SH',p:'--',ch:null,note:'创新高'}
-].map(s =>
-  s.ch !== null
-    ? `<tr><td><strong>${s.n}</strong></td><td><span class=code>${s.c}</span></td><td>¥${s.p}</td><td class="${s.ch>=0?'green':'red'}">${s.ch>=0?'+':''}${s.ch.toFixed(2)}%</td><td style="font-size:11px;color:#94a3b8">AI芯片龙头</td></tr>`
-    : `<tr style="color:#94a3b8;font-size:11px"><td>${s.n}</td><td><span class=code>${s.c}</span></td><td>--</td><td class=green>${s.note||'创新高'}</td><td>算力景气</td></tr>`
-).join('');
+document.getElementById('marketComment').innerHTML='<p><strong>沪弱深强，科技领涨。</strong>三大指数低开高走，创业板+1.96%首超沪指。</p><p>成交额<strong>2.97万亿</strong>，半导体/算力为主要方向。</p><p>北向净流出18.5亿，内资主攻科技。</p>';
 
-document.getElementById('marketComment').innerHTML =
-  '<p><strong>沪弱深强，科技领涨</strong>。三大指数集体低开后早盘一度低迷，随后快速拉升翻红，午后延续强势。</p>'+
-  '<p>全市场成交额<strong>2.97万亿</strong>，较前日缩量约2700亿。半导体/算力硬件是绝对主线。</p>'+
-  '<p>创业板指收盘<strong>4125.07</strong>首超沪指<strong>4098.64</strong>，是市场风格的标志性转变。</p>'+
-  '<p>北向资金净流出18.5亿，但内资主攻科技方向。</p>';
-
-// ═══════════════════════════════════════════════
-// 3. 定时监测报告（每小时监控数据）
-// ═══════════════════════════════════════════════
-
-const monitors = [
-  {
-    id:'mon-0528-1930',
-    date:'2026-05-28 19:00',
-    title:'AI板块收盘复盘 · 创业板首超沪指 半导体全面爆发',
-    tags:['收盘复盘','半导体','算力','创业板'],
-    summary:'A股三大指数集体收涨，创业板指+1.96%首超沪指。半导体产业链全面爆发，算力硬件集体创新高。',
-    html: `
-<h1>AI板块收盘复盘</h1>
-<p><strong>时间：</strong>2026-05-28 15:30</p>
-
-<h2>一、大盘解读</h2>
-<p>A股三大指数集体收涨，<strong>沪弱深强</strong>格局显著：</p>
-<ul>
-  <li><strong>上证指数</strong> <span class=green>4098.64</span> <span class=green>+0.12%</span></li>
-  <li><strong>深证成指</strong> <span class=green>15861.89</span> <span class=green>+0.80%</span></li>
-  <li><strong>创业板指</strong> <span class=green>4125.07</span> <span class=green>+1.96%</span> 📌 收盘首次超越上证指数</li>
-</ul>
-<p>两市成交额<strong>2.97万亿</strong>，缩量约2700亿。全市场<strong>3018只上涨</strong>、2365只下跌，涨停126只。</p>
-
-<h2>二、AI板块整体概览</h2>
-<p>AI板块领涨全市场，资金集中涌入<strong>算力硬件</strong>和<strong>半导体</strong>两大方向。</p>
-
-<h2>三、细分领域动态</h2>
-
-<div class="sect-card">
-<h4>🔷 算力板块</h4>
-<p class=sn><strong>资金面：</strong>算力硬件主力净流入约8.7亿，联特科技、宏和科技等多股涨停</p>
-<p class=sn><strong>基本面：</strong>"易中天"股价齐创历史新高，AI算力需求持续超预期</p>
-<p class=sn><strong>情绪面：</strong>市场对算力景气度高度认可，资金持续加仓</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 存储板块</h4>
-<p class=sn><strong>资金面：</strong>HBM概念净流入约3.5亿</p>
-<p class=sn><strong>基本面：</strong>长鑫存储HBM3客户样品验证中，国产替代预期升温</p>
-<p class=sn><strong>情绪面：</strong>中长期看好，但短期受华海诚科减持拖累</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 机器人板块</h4>
-<p class=sn><strong>资金面：</strong>板块净流入约5.2亿</p>
-<p class=sn><strong>基本面：</strong>特斯拉Optimus量产预期升温，国内执行器/传感器环节受益</p>
-<p class=sn><strong>情绪面：</strong>市场对人形机器人2026年量产预期逐步兑现</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 CPO板块</h4>
-<p class=sn><strong>资金面：</strong>光模块、光芯片净流入约4.1亿</p>
-<p class=sn><strong>基本面：</strong>800G/1.6T光模块需求持续旺盛，中际旭创等龙头受益</p>
-<p class=sn><strong>情绪面：</strong>算力链景气传导至光通讯，乐观情绪显著</p>
-</div>
-
-<h2>四、主流净流入板块</h2>
-<table>
-  <tr><th>排名</th><th>板块</th><th>净流入(亿)</th><th>驱动</th></tr>
-  <tr><td>1</td><td>半导体</td><td>12.4</td><td>中芯国际创新高 + 半导体国产化</td></tr>
-  <tr><td>2</td><td>AI算力</td><td>8.7</td><td>算力需求爆发</td></tr>
-  <tr><td>3</td><td>机器人</td><td>5.2</td><td>特斯拉量产预期</td></tr>
-  <tr><td>4</td><td>CPO光模块</td><td>4.1</td><td>光模块景气</td></tr>
-  <tr><td>5</td><td>HBM存储</td><td>3.5</td><td>HBM国产化</td></tr>
-</table>
-
-<h2>五、关键异动个股</h2>
-<ul>
-  <li><strong>中芯国际(688981)</strong> — 股价创历史新高，半导体代工景气确认</li>
-  <li><strong>华虹公司(688347)</strong> — 同步创新高，特色工艺代工受益</li>
-  <li><strong>惠丰钻石(839725)</strong> — +29.98%涨停，培育钻石概念爆发</li>
-</ul>
-
-<h2>六、特斯拉机器人概念股解析</h2>
-<p>特斯拉Optimus量产预期持续发酵，A股核心受益环节及标的：</p>
-<table>
-  <tr><th>环节</th><th>公司</th><th>代码</th></tr>
-  <tr><td>执行器</td><td>三花智控</td><td>002050</td></tr>
-  <tr><td>传感器</td><td>柯力传感</td><td>603662</td></tr>
-  <tr><td>减速器</td><td>绿的谐波</td><td>688017</td></tr>
-  <tr><td>电机</td><td>汇川技术</td><td>300124</td></tr>
-</table>
-
-<h2>七、总结与展望</h2>
-<p><strong>短期判断：</strong>半导体/算力主线明确，创业板强势突破有望延续。关注明日成交额能否维持2.5万亿以上。</p>
-<p><strong>风险提示：</strong>北向资金连续净流出值得警惕，若缩量至2万亿以下需注意回调风险。</p>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  },
-  {
-    id:'mon-0528-1200',
-    date:'2026-05-28 12:00',
-    title:'AI板块午评 · 探底回升 MLCC/半导体领涨',
-    tags:['午评','探底回升','MLCC','半导体'],
-    summary:'三大指数早盘探底回升，创业板低开超2%后翻红。MLCC、培育钻石概念走强，白酒/贵金属领跌。',
-    html: `
-<h1>AI板块午评 · 探底回升</h1>
-<p><strong>时间：</strong>2026-05-28 11:30</p>
-
-<h2>一、大盘解读</h2>
-<p>A股三大指数早盘<strong>探底回升</strong>，早盘一度陷入低迷后快速拉升翻红：</p>
-<ul>
-  <li><strong>上证指数</strong> 午盘收 <span class=red>-0.14%</span>，盘中低点4055</li>
-  <li><strong>深证成指</strong> 午盘收 <span class=red>-0.26%</span></li>
-  <li><strong>创业板指</strong> <span class=green>午盘收 +0.21%</span>，早盘最低跌超2%后强势翻红</li>
-</ul>
-<p>半日成交额<strong>1.78万亿</strong>，缩量约2850亿。2082只上涨，3287只下跌。</p>
-
-<h2>二、AI板块概览</h2>
-<p>AI板块早盘探底后V型反转，11:27起指数快速拉升，<strong>创业板成分股</strong>中的科技/半导体权重股贡献主要涨幅。</p>
-
-<h2>三、细分领域动态</h2>
-
-<div class="sect-card">
-<h4>🔷 算力板块</h4>
-<p>早盘随指数探底，后快速修复。光模块、服务器相关个股率先反弹。</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 存储板块</h4>
-<p>HBM概念跟随指数波动，华海诚科因减持公告继续承压。长鑫HBM3进展暂无新增消息。</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 机器人板块</h4>
-<p>板块整体震荡，三花智控低开后小幅修复。特斯拉Optimus无新催化。</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 CPO板块</h4>
-<p>光模块个股普遍跟随算力链修复，整体表现强于大盘。</p>
-</div>
-
-<h2>四、主流净流入板块</h2>
-<table>
-  <tr><th>排名</th><th>板块</th><th>驱动因素</th></tr>
-  <tr><td>1</td><td>MLCC</td><td>涨价预期催化</td></tr>
-  <tr><td>2</td><td>培育钻石</td><td>消费+工业需求共振</td></tr>
-  <tr><td>3</td><td>玻纤</td><td>周期底部反弹</td></tr>
-  <tr><td>4</td><td>半导体</td><td>国产替代预期</td></tr>
-  <tr><td>5</td><td>小金属</td><td>锑/稀土涨价</td></tr>
-</table>
-
-<h2>五、关键异动</h2>
-<ul>
-  <li><strong>11:27准时拉升</strong> — 神秘资金入场迹象明显，可能与政策面利好预期有关</li>
-  <li><strong>MLCC概念走强</strong> — 行业涨价周期启动预期</li>
-</ul>
-
-<h2>六、【特斯拉机器人】</h2>
-<p>Optimus量产预期持续，但今日缺乏新催化剂，板块跟随大盘震荡。</p>
-
-<h2>七、展望</h2>
-<p>早盘探底回升显示市场韧性较强，午后能否维持放量是关键。关注MLCC/培育钻石新方向是否具备持续性。</p>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  },
-  {
-    id:'mon-0527-1530',
-    date:'2026-05-27 15:30',
-    title:'AI板块收盘复盘 · 算力链延续强势 国产替代预期升温',
-    tags:['收盘复盘','算力','国产替代','半导体'],
-    summary:'A股三大指数涨跌互现，算力链延续强势。半导体制裁传闻触发国产替代预期升温。北向资金小幅净流出。',
-    html: `
-<h1>AI板块收盘复盘</h1>
-<p><strong>时间：</strong>2026-05-27 15:30</p>
-
-<h2>一、大盘解读</h2>
-<p>A股三大指数涨跌互现，个股涨多跌少：</p>
-<ul>
-  <li><strong>上证指数</strong> 收报4093.73 <span class=green>+0.38%</span></li>
-  <li><strong>深证成指</strong> 收报15736.47 <span class=green>+0.52%</span></li>
-  <li><strong>创业板指</strong> 收报4045.89 <span class=green>+0.71%</span></li>
-</ul>
-<p>两市成交额约<strong>2.34万亿</strong>，较前日小幅放量。北上资金净流出约<strong>12.3亿</strong>。</p>
-
-<h2>二、AI板块整体概览</h2>
-<p>AI板块全天强势，算力产业链是核心主线。市场关注美国新一轮半导体制裁传闻，国产替代预期再次升温。</p>
-
-<h2>三、细分领域动态</h2>
-
-<div class="sect-card">
-<h4>🔷 算力板块</h4>
-<p class=sn><strong>资金面：</strong>主力净流入约6.5亿，寒武纪(+0.62%)、中科曙光放量上涨</p>
-<p class=sn><strong>政策面：</strong>美方新一轮制裁传闻催化国产算力替代预期</p>
-<p class=sn><strong>基本面：</strong>国内AI芯片龙头产能利用率提升，订单可见度增强</p>
-<p class=sn><strong>情绪面：</strong>国产替代逻辑再次被市场确认，短期偏乐观</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 存储板块</h4>
-<p class=sn><strong>基本面：</strong>国内HBM产业链进展稳步推进，长鑫HBM3样品验证中</p>
-<p class=sn><strong>情绪面：</strong>华海诚科(688535)因华天科技清仓减持公告跌停，板块情绪受拖累</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 机器人板块</h4>
-<p class=sn><strong>资金面：</strong>板块主力净流入约3.8亿</p>
-<p class=sn><strong>基本面：</strong>特斯拉Optimus量产准备持续推进，预计近期有量产进度更新</p>
-<p class=sn><strong>情绪面：</strong>市场对2026年机器人量产落地持乐观期待</p>
-</div>
-
-<div class="sect-card">
-<h4>🔷 CPO板块</h4>
-<p class=sn><strong>资金面：</strong>板块微幅净流入，光模块个股跟随算力链走强</p>
-<p class=sn><strong>基本面：</strong>800G光模块出货量持续超预期，1.6T产品认证推进中</p>
-</div>
-
-<h2>四、主流净流入板块</h2>
-<table>
-  <tr><th>排名</th><th>板块</th><th>驱动因素</th></tr>
-  <tr><td>1</td><td>AI算力</td><td>制裁传闻+国产替代</td></tr>
-  <tr><td>2</td><td>半导体设备</td><td>国产化预期</td></tr>
-  <tr><td>3</td><td>机器人</td><td>Optimus量产预期</td></tr>
-  <tr><td>4</td><td>光模块</td><td>算力链景气传导</td></tr>
-  <tr><td>5</td><td>HBM</td><td>国产替代预期</td></tr>
-</table>
-
-<h2>五、关键异动个股</h2>
-<ul>
-  <li><strong>华海诚科(688535)</strong> — 华天科技公告清仓减持340万股，<span class=down>跌停</span></li>
-  <li><strong>寒武纪(688256)</strong> — +0.62%放量上涨，AI芯片龙头受资金追捧</li>
-  <li><strong>中科曙光(603019)</strong> — 算力龙头，国产算力替代逻辑下放量上涨</li>
-</ul>
-
-<h2>六、总结与展望</h2>
-<p><strong>短期判断：</strong>算力链逻辑最为清晰，制裁预期反而强化了国产替代确定性。明日关注华海诚科减持抛压是否边际减弱。</p>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  },
-  {
-    id:'mon-0527-0930',
-    date:'2026-05-27 09:30',
-    title:'AI板块早盘速览 · 半导体制裁传闻催化国产替代',
-    tags:['早盘','半导体','制裁','国产替代'],
-    summary:'市场开盘聚焦美国新一轮半导体制裁传闻，AI板块整体高开。国产算力、HBM、光刻机等方向情绪升温。',
-    html: `
-<h1>AI板块早盘速览</h1>
-<p><strong>时间：</strong>2026-05-27 09:30</p>
-
-<h2>一、开盘概况</h2>
-<p>A股三大指数小幅高开：</p>
-<ul>
-  <li>上证指数开报<strong>4080.30</strong></li>
-  <li>深证成指开报<strong>15691.16</strong></li>
-  <li>创业板指开报<strong>4049.00</strong></li>
-</ul>
-
-<h2>二、情绪面</h2>
-<p>主要催化来自：美国媒体报道新一轮对华半导体设备/EDA出口管制升级计划，市场对国产替代逻辑快速反应。</p>
-
-<h2>三、板块预期</h2>
-<p>早盘预期半导体设备/材料、AI芯片、EDA等方向率先受益。</p>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  }
-];
-
-let monFilter = 'all';
-function filterMon(f, evt) {
-  monFilter = f;
-  document.querySelectorAll('#monFilter button').forEach(b => b.classList.remove('active'));
-  evt.target.classList.add('active');
-  renderMonitors();
-}
-
-function renderMonitors() {
-  const list = monitors.filter(m => {
-    if (monFilter === 'all') return true;
-    return m.date.startsWith(monFilter);
-  });
-  document.getElementById('monList').innerHTML = list.length === 0
-    ? '<div style="text-align:center;padding:40px;color:#64748b">📭 暂无监测数据</div>'
-    : list.map(m =>
-      `<div class="article" onclick="openMonitor('${m.id}')">
-        <div class="meta"><span class="t mon">📡 监测报告</span><span>${m.date}</span></div>
-        <h3>${m.title}</h3>
-        <p>${m.summary}</p>
-        <div class="tags">${m.tags.map(t=>'<span>'+t+'</span>').join('')}</div>
-      </div>`
-    ).join('');
-}
-
-function openMonitor(id) {
-  const m = monitors.find(x => x.id === id);
-  if (!m) return;
-  document.getElementById('mTitle').textContent = m.title;
-  document.getElementById('mBody').innerHTML = m.html;
-  document.getElementById('modal').classList.add('show');
-  document.getElementById('ov').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-// ═══════════════════════════════════════════════
-// 4. 专题报告
-// ═══════════════════════════════════════════════
-
-const reports = [
-  {
-    id:'citic-pe',
-    title:'中信证券(600030) 近三年PE-TTM走势分析',
-    icon:'📈',
-    tags:['中信证券','PE-TTM','估值分析'],
-    desc:'基于自建数据库对中信证券近三年PE-TTM走势的深度复盘与当前估值定位分析',
-    html: `
-<h1>中信证券(600030) 近三年PE-TTM走势分析</h1>
-<div class="metric-row">
-  <div class="metric-box"><div class="num">16.72x</div><div class="lbs">当前PE-TTM</div></div>
-  <div class="metric-box"><div class="num">21.93x</div><div class="lbs">近3年均值</div></div>
-  <div class="metric-box"><div class="num">13.33x</div><div class="lbs">近3年最低</div></div>
-  <div class="metric-box"><div class="num">35.26x</div><div class="lbs">近3年最高</div></div>
-</div>
-<p><strong>核心结论：</strong>中信证券当前PE-TTM为<strong>16.72倍</strong>，已充分消化行业监管压力与市场情绪冲击，处于近三年估值<strong>偏低分位</strong>。安全边际显著。</p>
-<hr>
-<h2>一、PE-TTM走势全景回顾</h2>
-<h3>1.1 什么是PE-TTM？</h3>
-<p>PE-TTM（滚动市盈率）= 股价 ÷ 最近12个月的实际每股收益，使用<strong>最新四个季度财务数据</strong>，更真实反映当前估值。</p>
-<h3>1.2 走势三阶段</h3>
-<p><strong>第一阶段：估值收缩期（2024年）</strong> — 受"降费让利"政策预期影响，PE从20倍区间跌至14.7倍。</p>
-<p><strong>第二阶段：底部震荡期（2025H1）</strong> — PE在13.33~15.5倍窄幅波动，13.33倍成为估值铁底。</p>
-<p><strong>第三阶段：估值修复期（2025H2~2026）</strong> — 市场回暖，PE修复至16~18倍，当前16.72倍。</p>
-<h2>二、关键区间分析</h2>
-<table>
-  <tr><th>指标</th><th>数值</th><th>含义</th></tr>
-  <tr><td>最低PE</td><td><strong>13.33x</strong></td><td>2025年7月触及，绝对底部</td></tr>
-  <tr><td>均值PE</td><td><strong>21.93x</strong></td><td>近三年估值中枢</td></tr>
-  <tr><td>当前PE</td><td><strong>16.72x</strong></td><td>低于均值23.7%</td></tr>
-</table>
-<p><strong>分位数：</strong>当前16.72倍约在近三年<strong>30%分位</strong>，即70%时间估值更高。</p>
-<h2>三、驱动因素</h2>
-<p><strong>市场周期：</strong>2024年日均成交不足8000亿 vs 2025年1.2万亿以上，与PE走势高度正相关。</p>
-<p><strong>自营收益：</strong>权益市场修复是PE回升的核心推动力。</p>
-<h2>四、估值展望</h2>
-<p>若市场活跃度维持，PE有望向均值<strong>21.93倍</strong>修复，对应约<strong>31%的空间</strong>。</p>
-<blockquote>⚠️ 以上分析仅基于公开数据和历史统计，不构成投资建议。</blockquote>
-`
-  },
-  {
-    id:'hbm',
-    title:'国产HBM产业链全景解析：从DRAM到先进封装的突围战',
-    icon:'🔬',
-    tags:['HBM','长鑫存储','长电科技','通富微电','安集科技','先进封装','华为'],
-    desc:'全面梳理国产HBM产业链现状、核心玩家与挑战，从DRAM颗粒、先进封装、设备、材料到EDA逐环节拆解国产替代进度',
-    html: `
-<h1>国产HBM产业链全景解析</h1>
-<p><strong>日期：</strong>2026-05-28</p>
-<blockquote>国产HBM产业链处于<strong>"从0到1，点状突破"</strong>的初级阶段。代差已从8年缩至4年。</blockquote>
-<h2>一、HBM存储颗粒</h2>
-<table><tr><th>公司</th><th>进展</th></tr><tr><td><strong>长鑫存储(CXMT)</strong></td><td>HBM2 2025H1量产，HBM3样品交付</td></tr><tr><td>武汉新芯(XMC)</td><td>HBM2开发中，月产能3000片12英寸</td></tr></table>
-<h2>二、先进封装</h2>
-<table><tr><th>公司</th><th>代码</th><th>技术</th></tr><tr><td><strong>长电科技</strong> ⭐</td><td>600584</td><td>XDFOI对标CoWoS</td></tr><tr><td><strong>通富微电</strong></td><td>002156</td><td>绑定AMD，与长鑫合作HBM2</td></tr></table>
-<h2>三、关键设备</h2>
-<p>TSV刻蚀：北方华创/中微｜CMP：华海清科｜光刻：上海微电子｜键合：新益昌（最大短板）</p>
-<h2>四、关键材料</h2>
-<p>CMP抛光液：安集科技(688019)｜光刻胶：南大光电/上海新阳｜电子特气：华特气体</p>
-<h2>五、EDA/IP</h2>
-<p>EDA：华大九天(301269)｜HBM3 PHY IP：芯原股份(688521)</p>
-<h2>六、链主：华为</h2>
-<p>华为定义需求→长鑫DRAM→长电/通富封装→设备材料联动→昇腾验证，整条链条的火车头。</p>
-<h2>七、时间线</h2>
-<table><tr><th>时间</th><th>目标</th></tr><tr><td><span class=green>2025H1 ✅</span></td><td>HBM2量产</td></tr><tr><td><span class=orange>2025H2 🔄</span></td><td>HBM3量产验证</td></tr><tr><td><span class=highlight>2027E 🎯</span></td><td>HBM3E量产</td></tr></table>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  },
-  {
-    id:'semi',
-    title:'半导体投资分析：野村研报解读与标的筛选',
-    icon:'💎',
-    tags:['半导体','野村证券','安集科技','源杰科技','鼎龙股份','CMP','光芯片'],
-    desc:'基于野村证券亚太科技团队研报，梳理AI倒逼半导体工艺重构逻辑，筛选筹码优良标的',
-    html: `
-<h1>半导体投资分析报告</h1>
-<p><strong>来源：</strong>野村证券｜<strong>日期：</strong>2026-05-27</p>
-<h2>核心判断</h2>
-<p>半导体增长逻辑从"晶体管密度提升"转向<strong>"3D晶体管+背面供电+新材料组合创新"</strong>。</p>
-<table><tr><th>时间</th><th>关键事件</th></tr><tr><td>2026年</td><td>GAA晶体管、SoIC混合键合、InP小批量</td></tr><tr><td><strong>2027年</strong></td><td><strong>背面供电、玻璃基板集中放量</strong></td></tr></table>
-<h2>优选标的</h2>
-<h3>🥇 安集科技(688019) — CMP抛光液龙头</h3>
-<p>2026Q1营收7.24亿(+33%)，净利润2.08亿(+23%)，股东户数1.43万户连续收敛，140家机构持有65.5%。<strong>筹码评分：⭐⭐⭐⭐⭐</strong></p>
-<h3>🥈 源杰科技(688498) — 光芯片IDM</h3>
-<p>2026Q1营收3.55亿(+321%)，毛利率77.8%，户均市值459万，股东仅1.36万户。<strong>筹码评分：⭐⭐⭐⭐</strong></p>
-<h3>🥉 鼎龙股份(300054) — CMP抛光垫</h3>
-<p>2026Q1营收10.2亿，股东户数6.04万户偏多。<strong>筹码评分：⭐⭐⭐</strong></p>
-<blockquote>组合建议：安集科技打底 + 源杰科技博弹性</blockquote>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  },
-  {
-    id:'huahai',
-    title:'华海诚科(688535)深度分析：HBM逻辑与筹码困境',
-    icon:'⚠️',
-    tags:['华海诚科','HBM','GMC','减持'],
-    desc:'HBM国产化产业趋势确定，但华天科技清仓减持3个月，筹码结构严重恶化',
-    html: `
-<h1>华海诚科(688535)深度分析</h1>
-<h2>核心矛盾</h2>
-<blockquote>股价 = HBM/国产替代远期故事 ÷ 筹码结构的即时破坏力</blockquote>
-<h3>问题在分母：</h3>
-<ol><li><strong>华天科技清仓减持</strong>（5.28-8.27，340万股/2.40%）</li><li>日均主力净流出数千万</li><li>缺乏长线多头承接</li><li>300+倍PE，预期充分透支</li></ol>
-<table><tr><th>日期</th><th>事件</th></tr><tr><td>5月24日</td><td>公告清仓减持——分水岭</td></tr><tr><td><span class=red>5.28-8.27</span></td><td>减持执行期（3个月）</td></tr></table>
-<p>产业面逻辑硬，但短期矛盾要先解决。<strong>减持期结束后、筹码充分换手后再看。</strong></p>
-<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>
-`
-  }
-];
-
-function renderReports() {
-  document.getElementById('rptList').innerHTML = reports.map(r =>
-    `<div class="rpt-card" onclick="openReport('${r.id}')">
-      <div class="icon">${r.icon}</div>
-      <div class="info">
-        <h3>${r.title}</h3>
-        <div class="desc">${r.desc}</div>
-        <div class="tags">${r.tags.map(t=>'<span>'+t+'</span>').join('')}</div>
-      </div>
-    </div>`
-  ).join('');
-}
-
-function openReport(id) {
-  const r = reports.find(x => x.id === id);
-  if (!r) return;
-  document.getElementById('mTitle').textContent = r.title;
-  document.getElementById('mBody').innerHTML = r.html;
-  document.getElementById('modal').classList.add('show');
-  document.getElementById('ov').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-// ═══════════════════════════════════════════════
-// 5. 公用方法
-// ═══════════════════════════════════════════════
-
-function closeModal() {
-  document.getElementById('modal').classList.remove('show');
-  document.getElementById('ov').classList.remove('show');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-function showTab(name, evt) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('show'));
-  document.getElementById('page-'+name).classList.add('show');
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  evt.target.classList.add('active');
-}
-
-// ═══════════════════════════════════════════════
-// Init
-// ═══════════════════════════════════════════════
-
-renderMonitors();
-renderReports();
-
-const now = new Date();
-document.getElementById('ht').innerHTML = '<span class="badge"></span> '+
-  now.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+// ─── Monitor Reports ──────────────────────────
+const monitors = [{"id": "mon-0528-1930", "date": "2026-05-28 19:00", "title": "AI板块收盘复盘 · 创业板首超沪指 半导体全面爆发", "tags": ["收盘复盘", "半导体", "算力", "创业板"], "summary": "A股三大指数集体收涨，创业板指+1.96%首超沪指。半导体产业链全面爆发，\"易中天\"齐创历史新高。", "html": "<div class=\"metric-row\">\n  <div class=\"metric-box\"><div class=\"num\">+1.96%</div><div class=\"lbs\">创业板指</div></div>\n  <div class=\"metric-box\"><div class=\"num\">2.97万亿</div><div class=\"lbs\">成交额</div></div>\n  <div class=\"metric-box\"><div class=\"num\">3018</div><div class=\"lbs\">上涨家数</div></div>\n  <div class=\"metric-box\"><div class=\"num\">126</div><div class=\"lbs\">涨停</div></div>\n</div>\n\n<h1>AI板块收盘复盘</h1>\n<p><strong>时间：</strong>2026-05-28 15:30</p>\n\n<div class=\"tagline\">📌 <strong>里程碑时刻：</strong>创业板指收盘 4125.07 首次超越上证指数 4098.64，标志着市场风格从传统蓝筹向科技成长切换——这是一次结构性信号，而非短期情绪波动。</div>\n\n<h2>一、大盘解读</h2>\n<p>A股三大指数集体收涨，呈现鲜明的<strong>沪弱深强</strong>格局：</p>\n\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">上证指数</div><div class=\"iv\">4098.64 <span class=\"pill pill-up\">+0.12%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">深证成指</div><div class=\"iv\">15861.89 <span class=\"pill pill-up\">+0.80%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">创业板指</div><div class=\"iv\">4125.07 <span class=\"pill pill-up\">+1.96%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">科创50</div><div class=\"iv\">1844.25 <span class=\"pill pill-up\">+1.59%</span></div></div>\n</div>\n\n<p>全市场 <strong>3018 只上涨</strong> / 2365 只下跌，涨停 126 只，跌停 12 只。两市成交额 <strong>2.97 万亿元</strong>，较前日缩量约 2700 亿，但总体量能仍处高位，显示市场交投活跃度维持良好。</p>\n\n<hr>\n\n<h2>二、AI板块整体概览</h2>\n<p>AI板块是今日当之无愧的 <strong>领涨核心</strong>，资金集中涌入两个方向：<strong>算力硬件</strong>（光模块/AI服务器/AI芯片）和 <strong>半导体</strong>（代工/设备/材料）。培育钻石、超级电容作为科技支线同步走强，但主线的赚钱效应更为集中。</p>\n<p>值得关注的是，资金并非分散撒网，而是集中在确定性强、业绩能见度高的龙头标的上——\"易中天\"（新易盛/中际旭创/天孚通信）三者股价齐创历史新高，说明市场在<strong>理性定价而非情绪炒作</strong>。</p>\n\n<hr>\n\n<h2>三、细分领域动态</h2>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 算力板块 <span class=\"pill pill-up\">净流入 8.7亿</span> <span class=\"pill pill-up\">情绪 乐观</span></div>\n<p class=sn><strong>资金面：</strong>算力硬件主力净流入约 8.7 亿，联特科技、宏和科技、金安国纪等多股涨停。\"易中天\"（新易盛/中际旭创/天孚通信）三者股价齐创历史新高，这是产业景气度最直接的确认信号。</p>\n<p class=sn><strong>基本面：</strong>AI 算力需求持续超预期，800G 光模块订单饱满，1.6T 产品认证加速推进。国内 AI 芯片龙头产能利用率持续爬升，订单可见度已延伸至 2026 年下半年。</p>\n<p class=sn><strong>政策面：</strong>美国新一轮对华半导体设备出口管制传闻持续发酵，反而强化了国产算力替代的确定性。国内 AI 基建投资预算在上半年已超预期加码。</p>\n<p class=sn><strong>情绪面：</strong>资金对算力景气度高度认可，板块放量突破前期高点。市场普遍预期 AI 基建投资将在 2026H2 进一步提速。</p>\n</div>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 存储板块 <span class=\"pill pill-up\">净流入 3.5亿</span> <span class=\"pill pill-mid\">情绪 中性</span></div>\n<p class=sn><strong>资金面：</strong>HBM 概念整体净流入约 3.5 亿，但个股内部分化明显——龙头受追捧但华海诚科持续承压。</p>\n<p class=sn><strong>基本面：</strong>长鑫存储 HBM3 客户样品验证稳步推进，大基金二期加大对存储领域的投资力度。国产 HBM 产业链\"从 0 到 1\"的确定性在增强。</p>\n<p class=sn><strong>情绪面：</strong>中长期 HBM 国产化逻辑被市场认可，但华天科技对华海诚科的清仓减持（3 个月窗口期）对板块情绪形成短线压制。减持筹码消化需要时间。</p>\n</div>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 机器人板块 <span class=\"pill pill-up\">净流入 5.2亿</span> <span class=\"pill pill-up\">情绪 乐观</span></div>\n<p class=sn><strong>资金面：</strong>板块主力净流入约 5.2 亿，执行器、传感器方向资金承接力度最强。</p>\n<p class=sn><strong>基本面：</strong>特斯拉 Optimus 量产预期持续发酵，国内外供应链切入进度加快。三花智控（执行器）、绿的谐波（减速器）等核心环节确定性最强。</p>\n<p class=sn><strong>情绪面：</strong>市场普遍预期 2026 年下半年人形机器人将进入小批量量产阶段，产业链景气度确定性上行。板块估值虽已有所反映，但产业趋势仍在加速。</p>\n</div>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 CPO 板块 <span class=\"pill pill-up\">净流入 4.1亿</span> <span class=\"pill pill-up\">情绪 乐观</span></div>\n<p class=sn><strong>资金面：</strong>光模块、光芯片整体净流入约 4.1 亿，中际旭创放量创新高，资金主线清晰。</p>\n<p class=sn><strong>基本面：</strong>800G/1.6T 光模块需求持续旺盛，AI 集群对高速互联的需求呈指数级增长。国内外 AI 数据中心建设同步拉动光模块出货量超预期。</p>\n<p class=sn><strong>情绪面：</strong>算力链景气正在向光通讯环节传导，市场对 CPO 技术 2027 年的应用前景持乐观态度。现阶段的光模块景气具备旺盛支撑。</p>\n</div>\n\n<hr>\n\n<h2>四、主流净流入板块监控 TOP5</h2>\n<table>\n  <tr><th>#</th><th>板块</th><th>净流入</th><th>核心驱动</th><th>驱动类型</th></tr>\n  <tr><td><strong>1</strong></td><td>半导体</td><td><span class=green>+12.4亿</span></td><td>中芯国际创新高 + 国产化预期</td><td><span class=\"pill pill-up\">产业驱动</span></td></tr>\n  <tr><td><strong>2</strong></td><td>AI算力</td><td><span class=green>+8.7亿</span></td><td>\"易中天\"齐创新高 + 算力需求爆发</td><td><span class=\"pill pill-up\">业绩驱动</span></td></tr>\n  <tr><td><strong>3</strong></td><td>机器人</td><td><span class=green>+5.2亿</span></td><td>特斯拉 Optimus 小批量量产预期</td><td><span class=\"pill pill-mid\">事件驱动</span></td></tr>\n  <tr><td><strong>4</strong></td><td>CPO 光模块</td><td><span class=green>+4.1亿</span></td><td>800G/1.6T 出货量持续超预期</td><td><span class=\"pill pill-up\">业绩驱动</span></td></tr>\n  <tr><td><strong>5</strong></td><td>HBM 存储</td><td><span class=green>+3.5亿</span></td><td>长鑫 HBM3 验证 + HBM 国产化</td><td><span class=\"pill pill-mid\">预期驱动</span></td></tr>\n</table>\n<p>AI板块（算力+半导体+机器人+光模块+HBM）合计净流入约 <strong>34 亿</strong>，在全市场净流入格局中占据 <strong>绝对主导</strong>地位。相比之下，白酒/贵金属/证券等传统板块普遍净流出，资金从传统低增长方向持续向科技高景气方向迁移。</p>\n\n<hr>\n\n<h2>五、关键异动个股</h2>\n<table>\n  <tr><th>个股</th><th>代码</th><th>异动</th><th>逻辑</th><th>关注度</th></tr>\n  <tr  <td><strong>中芯国际</strong></td><td>688981</td><td><span class=\"pill pill-up\">创历史新高</span></td><td>半导体代工景气确认，产能满载，订单可见度延伸至Q4</td><td>⭐⭐⭐</td></tr>\n  <tr><td><strong>华虹公司</strong></td><td>688347</td><td><span class=\"pill pill-up\">创历史新高</span></td><td>特色工艺代工受益，消费电子+物联网需求回暖</td><td>⭐⭐⭐</td></tr>\n  <tr><td><strong>联特科技</strong></td><td>301205</td><td><span class=\"pill pill-up\">涨停</span></td><td>算力硬件龙头，光模块出货量超预期触发涨停</td><td>⭐⭐</td></tr>\n  <tr><td><strong>惠丰钻石</strong></td><td>839725</td><td><span class=\"pill pill-up\">+29.98%</span></td><td>培育钻石概念全面爆发，消费+工业双驱动</td><td>⭐</td></tr>\n  <tr><td><strong>四方达</strong></td><td>300179</td><td><span class=\"pill pill-up\">+20.01%</span></td><td>培育钻石+超硬材料共振，传统业务提供安全垫</td><td>⭐</td></tr>\n</table>\n\n<hr>\n\n<h2>六、特斯拉机器人概念股解析</h2>\n<p>特斯拉 Optimus 量产预期持续发酵，A 股核心受益环节及标的全面梳理：</p>\n<table>\n  <tr><th>环节</th><th>核心公司</th><th>代码</th><th>受益逻辑</th><th>优先级</th><th>当前估值水位</th></tr>\n  <tr><td><strong>执行器</strong></td><td>三花智控</td><td>002050</td><td>线性/旋转执行器核心供应商，已进入特斯拉验证环节</td><td>⭐⭐⭐</td><td><span class=\"pill pill-mid\">中位</span></td></tr>\n  <tr><td><strong>减速器</strong></td><td>绿的谐波</td><td>688017</td><td>谐波减速器国产龙头，机器人关节核心零部件</td><td>⭐⭐⭐</td><td><span class=\"pill pill-mid\">中位</span></td></tr>\n  <tr><td><strong>传感器</strong></td><td>柯力传感</td><td>603662</td><td>力矩传感器潜在供应商，国产替代空间大</td><td>⭐⭐</td><td><span class=\"pill pill-up\">偏低</span></td></tr>\n  <tr><td><strong>电机</strong></td><td>汇川技术</td><td>300124</td><td>伺服电机/驱动系统龙头，工业自动化延伸至机器人</td><td⭐⭐</td><td><span class=\"pill pill-up\">偏低</span></td></tr>\n  <tr><td><strong>结构件</strong></td><td>拓普集团</td><td>601689</td><td>一体化压铸+机器人结构件，平台型扩张</td><td>⭐⭐</td><td><span class=\"pill pill-mid\">中位</span></td></tr>\n</table>\n<p><strong>操作思路：</strong>机器人板块目前处于\"业绩尚未兑现但产业趋势确定\"的阶段，适合<strong>逢低布局而非追高</strong>。核心仓位以三花、绿的谐波为主，传感器/电机作为卫星仓位。</p>\n\n<hr>\n\n<h2>七、总结与展望</h2>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">📌 短期研判</div><div class=\"iv\" style=\"font-size:14px\">创业板强势有望延续，半导体/算力为主线</div></div>\n  <div class=\"info-item\"><div class=\"il\">👀 关键观察</div><div class=\"iv\" style=\"font-size:14px\">明日成交能否维持 2.5 万亿以上，决定反弹成色</div></div>\n  <div class=\"info-item\"><div class=\"il\">⚠️ 风险提示</div><div class=\"iv\" style=\"font-size:14px;color:#f59e0b\">北向资金连续净流出，一旦缩量至 2 万亿以下需警惕分化</div></div>\n  <div class=\"info-item\"><div class=\"il\">💡 策略建议</div><div class=\"iv\" style=\"font-size:14px\">守核心（算力+半导体）+ 探新方向（MLCC/培育钻石）</div></div>\n</div>\n\n<blockquote>⚠️ 以上分析基于公开数据整理，不构成投资建议。股市有风险，投资需谨慎。</blockquote>"}, {"id": "mon-0528-1200", "date": "2026-05-28 12:00", "title": "AI板块午评 · 探底回升 MLCC/半导体领涨", "tags": ["午评", "探底回升", "MLCC", "半导体"], "summary": "三大指数早盘探底回升，创业板低开超2%后翻红。MLCC与培育钻石概念走强。", "html": "<h1>AI板块午评 · 探底回升</h1>\n<p><strong>时间：</strong>2026-05-28 11:30</p>\n\n<div class=\"tagline\">📌 <strong>关键分时信号：</strong>11:27 准时拉升，神秘资金入场迹象明显，可能与政策面利好预期有关。V型反转是市场韧性的直接证明。</div>\n\n<h2>一、大盘解读</h2>\n<p>三大指数早盘<strong>探底回升</strong>，一度低迷后快速拉升翻红：</p>\n<\ndiv class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">上证指数</div><div class=\"iv\">4098.64 <span class=\"pill pill-mid\">午盘 -0.14%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">深证成指</div><div class=\"iv\">-- <span class=\"pill pill-mid\">午盘 -0.26%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">创业板指</div><div class=\"iv\">-- <span class=\"pill pill-up\">午盘 +0.21%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">半日成交</div><div class=\"iv\">1.78万亿</div></div>\n</div>\n\n<p>早盘一度 <strong>2082 涨、3287 跌</strong>（普跌格局），11:27 企准时拉升翻红——分时图的 V 型反转说明下方承接盘有力。半日成交 1.78 万亿，较前日缩量约 2850 亿，但午后的成交量往往更大，全天仍有希望维持在 2.5 万亿以上。</p>\n\n<h2>二、细分领域</h2>\n<ul>\n <li<strong>算力：</strong>早盘跟随市场探底后快速修复，光模块最先反弹。</li>\n  <li><strong>存储：</strong>华海诚科继续承压，长鑫无新增催化。</li>\n  <li><strong>机器人：</strong>板块整体震荡，三花低开后小幅修复。</li>\n  <li><strong>CPO：</strong>跟随算力链修复，强于大盘。</li>\n</ul>\n\n<h2>三、主流净流入</h2>\n<table>\n  <tr><th>排名</th><th>板块</th><th>驱动</th></tr>\n  <tr><td>1</td><td>MLCC</td><td>涨价周期启动预期</td></tr>\n  <tr><td>2</td><td>培育钻石</td><td>消费+工业需求共振</td></tr\n  <tr><td>3</td><td>半导体</td><td>国产替代预期</td></tr>\n</table>\n\n<h2>四、展望</h2>\n<p>午后关键：看成交量能否放大 + 指数能否站稳 4100。MLCC 和培育钻石值得关注是否具备持续性。</p>\n<blockquote>⚠️ 市场有风险，投资需谨慎。</blockquote>"}, {"id": "mon-0527-1530", "date": "2026-05-27 15:30", "title": "AI板块收盘复盘 · 算力链延续强势 制裁传闻催化国产替代", "tags": ["收盘复盘", "算力", "国产替代", "半导体"], "summary": "A股三大指数涨跌互现，算力链延续强势。半导体制裁传闻触发国产替代预期升温。", "html": "<div class=\"metric-row\">\n  <div class=\"metric-box\"><div class=\"num\">+0.71%</div><div class=\"lbs\">创业板</div></div>\n  <div class=\"metric-box\"><div class=\"num\">2.34万亿</div><div class=\"lbs\">成交额</div></div>\n  <div class=\"metric-box\"><div class=\"num\">-12.3亿</div><div class=\"lbs\">北向净流</div></div>\n</div>\n\n<h1>AI板块收盘复盘</h1>\n<p><strong>时间：</strong>2026-05-27 15:30</p>\n\n<div class=\"tagline\">📌 <strong>核心主线：</strong>美国新一轮半导体制裁传闻持续发酵，A 股市场将\"制裁\"解读为\"国产替代加速\"，算力/半导体设备方向资金集中涌入。</div>\n\n<h2>一、大盘解读</h2>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">上证指数</div><div class=\"iv\">4093.73 <span class=\"pill pill-up\">+0.38%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">深证成指</div><div class=\"iv\">15736.47 <span class=\"pill pill-up\">+0.52%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">创业板指</div><div class=\"iv\">4045.89 <span class=\"pill pill-up\">+0.71%</span></div></div>\n</div>\n<p>两市成交额约 <strong>2.34 万亿</strong>，较前日小幅放量。北上资金净流出约 <strong>12.3 亿</strong>，但内资尤其是公募资金积极入场承接。</p>\n\n<hr>\n\n<h2>二、AI板块整体概览</h2>\n<p>AI 板块全天强势，<strong>算力产业链</strong>是核心主线。市场关注美国新一轮对华半导体设备/EDA 出口管制传闻，国产替代预期再次升温。制裁传闻反而加速了国内的自主可控进程，资本市场的定价逻辑是明确的。</p>\n\n<hr>\n\n<h2>三、细分领域动态</h2>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 算力板块 <span class=\"pill pill-up\">净流入 6.5亿</span></div>\n<p class=sn><strong>资金面：</strong>主力净流入约 6.5 亿，寒武纪 (+0.62%) 放量，中科曙光跟涨。算力 ETF 申购量显著放大。</p>\n<p class=sn><strong>政策面：</strong>美方新一轮半导体设备/EDA 出口管制传闻触发——但这恰恰说明海外封锁在加速，国内替代窗口在收窄，国产算力的战略价值在提升。</p>\n<p class=sn><strong>基本面：</strong>国内 AI 芯片龙头产能利用率持续提升，代工订单可见度已延伸至 Q4。中芯国际产能满载，华虹特色工艺回暖。</p>\n<p class=sn><strong>情绪面：</strong>市场对\"制裁→替代\"逻辑高度认可，交易拥挤度上升但尚未到极端水平。</p>\n</div>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 存储板块 <span class=\"pill pill-mid\">情绪谨慎</span></div>\n<p class=sn><strong>基本面：</strong>国内 HBM 产业链稳步推进，长鑫 HBM3 样品验证中，量产方案逐步清晰。</p>\n<p class=sn><strong>情绪面：</strong>华海诚科 (688535) 因华天科技清仓减持 340 万股公告跌停，板块整体情绪被拖累。3 个月的集中抛压窗口期内，资金入场意愿低迷。</p>\n</div>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 机器人板块 <span class=\"pill pill-up\">净流入 3.8亿</span></div>\n<p class=sn>特斯拉 Optimus 量产准备持续推进，近期预计有生产进度更新。三花智控、绿的谐波等核心标的资金持续关注。</p>\n</div>\n\n<div class=\"sect-card\">\n<div class=\"sh\">🔷 CPO 板块</div>\n<p class=sn>光模块个股跟随算力链走强。800G 出货量持续超预期，1.6T 产品认证推进中，行业景气度趋势未变。</p>\n</div>\n\n<hr>\n\n<h2>四、主流净流入板块监控</h2>\n<table>\n  <tr><th>#</th><th>板块</th><th>驱动因素</th></tr>\n  <tr><td><strong>1</strong></td><td>AI 算力</td><td>制裁传闻 + 国产替代加速</td></tr>\n  <tr><td><strong>2</strong></td><td>半导体设备</td><td>国产化预期升温</td></tr>\n  <tr><td><strong>3</strong></td><td>机器人</td><td>Optimus 量产预期</td></tr>\n  <tr><td><strong>4</strong></td><td>光模块</td><td>算力链景气传导</td></tr>\n  <tr><td><strong>5</strong></td><td>HBM</td><td>国产替代预期</td></tr>\n</table>\n\n<hr>\n\n<h2>五、关键异动个股</h2>\n<table>\n  <tr><th>个股</th><th>代码</th><th>异动</th><th>逻辑</th></tr>\n  <tr><td><strong>华海诚科</strong></td><td>688535</td><td><span class=\"pill pill-down\">跌停</span></td><td>华天科技清仓减持 340 万股，3 个月抛压窗口</td></tr>\n  <tr><td><strong>寒武纪</strong></td><td>688256</td><td><span class=\"pill pill-up\">+0.62%</span></td><td>AI 芯片龙头，制裁传闻催化国产替代</td></tr>\n  <tr><td><strong>中科曙光</strong></td><td>603019</td><td><span class=\"pill pill-up\">放量上涨</span></td><td>国产算力龙头，制裁预期下的确定性受益者</td></tr>\n</table>\n\n<hr>\n\n<h2>六、总结与展望</h2>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">📌 短期判断</div><div class=\"iv\" style=\"font-size:14px\">算力链逻辑清晰，制裁反而强化国产替代确定性</div></div>\n  <div class=\"info-item\"><div class=\"il\">👀 关注</div><div class=\"iv\" style=\"font-size:14px\">华海诚科减持抛压是否边际减弱</div></div>\n  <div class=\"info-item\"><div class=\"il\">⚠️ 风险</div><div class=\"iv\" style=\"font-size:14px;color:#f59e0b\">北向连续净流出，若持续需注意外资减仓压力</div></div>\n</div>\n<blockquote>⚠️ 市场有风险，投资需谨慎。</blockquote>"}, {"id": "mon-0527-0930", "date": "2026-05-27 09:30", "title": "AI板块早盘速览 · 半导体制裁传闻催化国产替代", "tags": ["早盘", "半导体", "制裁", "国产替代"], "summary": "市场聚焦美国新一轮半导体制裁传闻，国产算力、HBM、光刻机等方向情绪升温。", "html": "<h1>AI板块早盘速览</h1>\n<p><strong>时间：</strong>2026-05-27 09:30</p>\n\n<div class=\"tagline\">📌 <strong>今日核心催化：</strong>美国媒体报道新一轮对华半导体设备/EDA 出口管制升级计划——对于 AI 板块而言，短期有情绪冲击，中期反而是国产替代的确定性催化剂。</div>\n\n<h2>一、开盘概况</h2>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">上证指数</div><div class=\"iv\">4080.30 <span class=\"pill pill-mid\">小幅高开</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">深证成指</div><div class=\"iv\">15691.16 <span class=\"pill pill-mid\">小幅高开</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">创业板指</div><div class=\"iv\">4049.00 <span class=\"pill pill-mid\">小幅高开</span></div></div>\n</div>\n\n<h2>二、开盘焦点</h2>\n<p>市场开盘即聚焦美国新一轮半导体制裁传闻——半导体设备/材料、AI 芯片、EDA 工具等方向预期率先受益。从板块轮动角度，制裁传闻往往带动\"自主可控\"主题脉冲，但最终能否形成趋势取决于基本面的配合。</p>\n\n<h2、三、预期受益方向</h2>\n<ul>\n  <li><strong>半导体设备：</strong>北方华创、中微公司——自主可控第一受益方</li>\n  <li><strong>EDA 工具：</strong>华大九天——国产 EDA 替代</li>\n  <li><strong>AI 芯片：</strong>寒武纪——国产算力核心</li>\n</ul>\n<blockquote>⚠️ 开盘数据仅供参考，市场有风险，投资需谨慎。</blockquote>"}];
+const reports = [{"id": "citic-pe", "title": "中信证券(600030) 近三年PE-TTM走势分析", "icon": "📈", "tags": ["中信证券", "PE-TTM", "估值分析"], "desc": "基于自建数据库对中信证券近三年PE-TTM走势的深度复盘与当前估值定位分析", "html": "<div class=\"metric-row\">\n  <div class=\"metric-box\"><div class=\"num\">16.72x</div><div class=\"lbs\">当前 PE-TTM</div></div>\n  <div class=\"metric-box\"><div class=\"num\">21.93x</div><div class=\"lbs\">近 3 年均值</div></div>\n  <div class=\"metric-box\"><div class=\"num\">13.33x</div><div class=\"lbs\">近 3 年最低</div></div>\n  <div class=\"metric-box\"><div class=\"num\">35.26x</div><div class=\"lbs\">近 3 年最高</div></div>\n</div>\n\n<h1>中信证券(600030) 近三年 PE-TTM 走势分析</h1>\n\n<div class=\"tagline\">📌 <strong>核心结论：</strong>当前 PE-TTM 16.72 倍，处于近三年偏低分位（约 30% 分位），较均值 21.93 倍折价约 23.7%。对于中长期投资者，具备较高安全边际。</div>\n\n<h2>一、PE-TTM 走势全景回顾</h2>\n<p>PE-TTM（滚动市盈率）= 股价 ÷ 最近 12 个月的实际每股收益。相比静态市盈率，它使用<strong>最新四个季度财务数据</strong>，更真实反映公司当前估值水平。</p>\n\n<h3>走势三阶段</h3>\n<p><strong>第一阶段：估值收缩期（2024 年）</strong><br>受证券行业\"降费让利\"政策预期影响，市场对券商盈利前景产生担忧。叠加成交量萎缩、自营承压，PE 从年初 20 倍区间持续下滑至年末 <strong>14.7 倍</strong>附近，全年估值中枢下移约 26%。</p>\n\n<p><strong>第二阶段：底部震荡期（2025 年初至年中）</strong><br>PE 在 <strong>13.33 ~ 15.5 倍</strong> 区间窄幅波动。市场对券商板块关注度降至低点。期间中信证券多次回购稳定投资者信心。<strong>13.33 倍</strong> 成为本轮调整的估值铁底。</p>\n\n<p><strong>第三阶段：估值修复期（2025 年下半年至今）</strong><br>市场活跃度回升 + 权益市场回暖，券商自营及经纪业务环比改善。PE 从历史底部区域反弹至 16~18 倍区间。当前 16.72 倍较底部反弹约 25.4%，但距均值仍有空间。</p>\n\n<hr>\n\n<h2>二、关键区间分析</h2>\n<table>\n  <tr><th>指标</th><th>数值</th><th>含义</th></tr>\n  <tr><td><strong>最低 PE</strong></td><td>13.33x</td><td>2025 年 7 月——近三年绝对底部，也是压力测试的极限值</td></tr>\n  <tr><td><strong>最高 PE</strong></td><td>35.26x</td><td>2024 年初\"中特估\"行情驱动</td></tr>\n  <tr><td><strong>均值 PE</strong></td><td>21.93x</td><td>近三年估值中枢</td></tr>\n  <tr><td><strong>中位数 PE</strong></td><td>18.77x</td><td>半数时间在此以下</td></tr>\n  <tr><td><strong>当前 PE</strong></td><td>16.72x</td><td>低于均值和中位数，折价约 23.7%</td></tr>\n</table>\n<p><strong>分位数：</strong>当前 16.72 倍处于近三年 PE 序列约 <strong>30% 分位</strong>——即过去三年中约 <strong>70% 的时间估值高于当前</strong>。从历史统计角度看具有明显安全边际。</p>\n\n<hr>\n\n<h2>三、驱动因素</h2>\n<ul>\n  <li><strong>市场周期：</strong>券商估值与日均成交额高度正相关。2024 日均<8000 亿 vs 2025 日均>1.2 万亿</li>\n  <li><strong>行业政策：</strong>\"降费让利\"冲击边际递减；注册制改革深化利好投行</li>\n  <li><strong>自营收益：</strong>权益市场修复是 PE 回升核心推动力</li>\n</ul>\n\n<hr>\n\n<h2>四、估值展望</h2>\n<p>当前已反映大部分不确定性，下行风险有限。若市场活跃度维持，PE 有望向均值 <strong>21.93 倍</strong> 修复，对应约 <strong>31% 上行空间</strong>。</p>\n<p><strong>操作参考：</strong>PE 进入 <strong>15 倍以下</strong> 逐步布局；PE 接近或突破 <strong>22 倍</strong> 时分批兑现。</p>\n\n<blockquote>⚠️ 以上分析仅基于公开数据和历史统计，不构成投资建议。PE 为滞后指标。</blockquote>"}, {"id": "hbm-chain", "title": "国产HBM产业链全景解析", "icon": "🔬", "tags": ["HBM", "长鑫存储", "长电科技", "安集科技"], "desc": "全面梳理国产HBM产业链现状、核心玩家与挑战，从DRAM到先进封装逐环节拆解", "html": "<h1>国产 HBM 产业链全景解析</h1>\n<p><strong>日期：</strong>2026-05-28</p>\n\n<div class=\"tagline\">国产 HBM 产业链目前处于 <strong>\"从 0 到 1，点状突破\"</strong> 的初级阶段。与国际顶尖水平（SK 海力士 HBM3E）存在 2~3 代差距，但代差已从 8 年缩至 4 年。</div>\n\n<h2>一、HBM 存储颗粒</h2>\n<table>\n  <tr><th>公司</th><th>上市</th><th>最新进展</th></tr>\n  <tr><td><strong>长鑫存储 (CXMT)</strong></td><td><span class=\"pill pill-mid\">未上市</span></td><td>HBM2 已于 2025H1 量产，HBM3 样品交付客户，目标 2027 年 HBM3E</td></tr>\n  <tr><td>武汉新芯 (XMC)</td><td><span class=\"pill pill-mid\">未上市</span></td><td>HBM2 开发中，月产能 3000 片 12 英寸工厂</td></tr>\n</table>\n<p>从成熟 DDR5 转向高性能 HBM DRAM，技术跨度大，长鑫的 HBM3 量产验证是关键一战。</p>\n\n<h2>二、先进封装</h2>\n<table>\n  <tr><th>公司</th><th>代码</th><th>技术布局</th><th>推荐</th></tr>\n  <tr><td><strong>长电科技</strong></td><td>600584</td><td>XDFOI 对标 CoWoS，2.5D/3D 封装最强竞争者</td><td>⭐⭐⭐</td></tr>\n  <tr><td><strong>通富微电</strong></td><td>002156</td><td>绑定 AMD，已与长鑫合作 HBM2 样品</td><td>⭐⭐</td></tr>\n  <tr><td>华天科技</td><td>002185</td><td>TSV/3D 封装布局中</td><td>⭐</td></tr>\n</table>\n\n<h2>三、关键设备</h2>\n<ul>\n  <li><strong>TSV 刻蚀：</strong>北方华创 (002371) / 中微公司 (688012) ✅ 可国产化</li>\n  <li><strong>CMP 设备：</strong>华海清科 (688120) ✅ 国内龙头</li>\n  <li><strong>封装光刻：</strong>上海微电子——已量产出货</li>\n  <li><strong>键合设备：</strong>新益昌追赶中——<strong>最大短板之一</strong></li>\n</ul>\n\n<h2>四、关键材料</h2>\n<table>\n  <tr><th>环节</th><th>公司</th><th>代码</th><th>备注</th></tr>\n  <tr><td><strong>CMP 抛光液</strong></td><td>安集科技</td><td>688019</td><td>⭐⭐⭐ 龙头</td></tr>\n  <tr><td>光刻胶</td><td>南大光电</td><td>300346</td><td>ArF 光刻胶国产化</td></tr>\n  <tr><td>光刻胶</td><td>上海新阳</td><td>300236</td><td>KrF/ArF 光刻胶</td></tr>\n  <tr><td>电子特气</td><td>华特气体</td><td>688268</td><td>高纯气体供应商</td></tr>\n</table>\n\n<h2>五、链主：华为海思</h2>\n<p>华为定义需求 → 长鑫提 DRAM 规格 → 长电/通富开发封装 → 联合设备材料厂攻关 → 昇腾芯片落地验证。华为是整个链条的 <strong>火车头</strong>。</p>\n\n<h2>六、时间线</h2>\n<table>\n  <tr><th>时间</th><th>目标</th><th>意义</th></tr>\n  <tr><td><span class=\"pill pill-up\">2025H1 ✅</span></td><td>HBM2 量产</td><td>比预期提早约 2 年，突破意义重大</td></tr>\n  <tr><td><span class=\"pill pill-mid\">2025H2 🔄</span></td><td>HBM3 量产验证</td><td>与主流代差从 8 年缩至 4 年</td></tr>\n  <tr><td><span class=\"pill pill-mid\">2027E 🎯</span></td><td>HBM3E 量产</td><td>跳过 HBM2E 直接上 3E，追赶策略清晰</td></tr>\n</table>\n\n<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>"}, {"id": "semi-rpt", "title": "半导体投资分析：安集科技 · 源杰科技精选", "icon": "💎", "tags": ["半导体", "安集科技", "源杰科技", "CMP"], "desc": "基于野村亚太科技团队研报，梳理AI倒逼半导体工艺重构逻辑，精选筹码优良标的", "html": "<div class=\"metric-row\">\n  <div class=\"metric-box\"><div class=\"num\">+33%</div><div class=\"lbs\">安集 Q1 营收</div></div>\n  <div class=\"metric-box\"><div class=\"num\">+321%</div><div class=\"lbs\">源杰 Q1 营收</div></div>\n  <div class=\"metric-box\"><div class=\"num\">77.8%</div><div class=\"lbs\">源杰毛利率</div></div>\n  <div class=\"metric-box\"><div class=\"num\">65.5%</div><div class=\"lbs\">安集机构持有</div></div>\n</div>\n\n<h1>半导体投资分析报告</h1>\n<p><strong>来源：</strong>野村证券亚太科技团队 · Donnie Teng<br><strong>日期：</strong>2026-05-27</p>\n\n<div class=\"tagline\">半导体行业增长逻辑已从\"晶体管密度提升\"转向 <strong>\"3D 晶体管 + 背面供电 + 新材料组合创新\"</strong>。AI 倒逼芯片制造底层工艺重写。</div>\n\n<h2>一、全产业链时间线</h2>\n<table>\n  <tr><th>时间</th><th>关键事件</th><th>投资方向</th></tr>\n  <tr><td><strong>2026 年</strong></td><td>GAA 晶体管、SoIC 混合键合、InP 衬底小批量</td><td>先进封装、化合物半导体</td></tr>\n  <tr><td><strong><span class=orange>2027 年（拐点）</span></strong></td><td><strong>背面供电、玻璃核心基板、晶圆键合 NAND 集中放量</strong></td><td><strong>材料+设备 配置核心窗口</strong></td></tr>\n  <tr><td>2028 年</td><td>DRAM-on-logic 规模化，边缘 AI + 汽车电子成新驱动力</td><td>异构集成、Chiplet</td></tr>\n  <tr><td>2029-2030</td><td>高 NA EUV 量产，金属氧化物光刻胶全面导入</td><td>光刻胶国产化、EUV 生态</td></tr>\n</table>\n\n<h3>野村关键论点</h3>\n<ol>\n  <li><strong>材料环节价值重估：</strong>工艺复杂度提升使材料单耗和价值量同步上升</li>\n  <li><strong>玻璃基板：</strong>博通有望 2027 年率先采用，国内厂商加速跟进</li>\n  <li><strong>硅片供需：</strong>12 英寸硅片 2027 年起供需由松转紧</li>\n  <li><strong>台积电资本开支：</strong>2027 年有望达 700 亿美元，设备端景气外溢</li>\n</ol>\n\n<hr>\n\n<h2>二、优选标的深度拆解</h2>\n\n<h3>🥇 安集科技 (688019) —— CMP 抛光液龙头</h3>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">2026Q1 营收</div><div class=\"iv\">7.24 亿 <span class=\"pill pill-up\">+33%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">净利润</div><div class=\"iv\">2.08 亿 <span class=\"pill pill-up\">+23%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">股东户数</div><div class=\"iv\">1.43 万户</div></div>\n  <div class=\"info-item\"><div class=\"il\">机构持有</div><div class=\"iv\">65.5%</div></div>\n</div>\n<ul>\n  <li>股东户数连续收敛，从 2025 年末的 1.8 万降至 1.43 万——筹码在不断集中</li>\n  <li>前十大股东集中度 58%，140 家机构持股 65.5%——机构深度锁仓</li>\n  <li>大股东零减持——管理层对股价的认可信号</li>\n  <li><strong>筹码评分：⭐⭐⭐⭐⭐</strong></li>\n</ul>\n\n<h3>🥈 源杰科技 (688498) —— 光芯片 IDM</h3>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">2026Q1 营收</div><div class=\"iv\">3.55 亿 <span class=\"pill pill-up\">+321%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">净利润</div><div class=\"iv\">1.79 亿 <span class=\"pill pill-up\">+1153%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">毛利率</div><div class=\"iv\">77.8%</div></div>\n  <div class=\"info-item\"><div class=\"il\">户均市值</div><div class=\"iv\">459 万</div></div>\n</div>\n<ul>\n  <li>营收暴增 321%，利润暴增 1153%——产业趋势爆发初期阶段</li>\n  <li>77.8% 毛利率——技术壁垒极高，IDM 模式带来强定价权</li>\n  <li>户均持股市值 459 万——筹码高度集中在大户和机构手中</li>\n  <li>股东户数仅 1.36 万户——极低，筹码非常干净</li>\n  <li><strong>筹码评分：⭐⭐⭐⭐</strong></li>\n</ul>\n\n<h3>🥉 鼎龙股份 (300054) —— CMP 抛光垫</h3>\n<p>营收 10.2 亿，股东户数 6.04 万户偏多。抛光垫国产替代逻辑正确，但需等待筹码进一步集中。<strong>筹码评分：⭐⭐⭐</strong></p>\n\n<blockquote><strong>组合建议：</strong>安集科技打底 + 源杰科技博弹性，鼎龙股份作为观察标的等待筹码改善。</blockquote>\n<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>"}, {"id": "huahai", "title": "华海诚科(688535)深度分析：HBM逻辑与筹码困境", "icon": "⚠️", "tags": ["华海诚科", "HBM", "GMC", "减持"], "desc": "HBM国产化产业趋势确定，但华天科技清仓减持3个月，核心矛盾在分母", "html": "<h1>华海诚科 (688535) 深度分析</h1>\n\n<div class=\"tagline\">HBM 国产化 → GMC 放量 → 华海诚科受益 —— 这条逻辑链从产业趋势上说成立。但 <strong>产业面的利好做多分子，筹码面的确定性做空分母</strong>。核心矛盾在分母。</div>\n\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">减持主体</div><div class=\"iv\">华天科技</div></div>\n  <div class=\"info-item\"><div class=\"il\">减持规模</div><div class=\"iv\" style=\"color:#ef4444\">清仓 340 万股 / 2.40%</div></div>\n  <div class=\"info-item\"><div class=\"il\">减持期间</div><div class=\"iv\" style=\"color:#ef4444\">5.28 → 8.27（3 个月）</div></div>\n  <div class=\"info-item\"><div class=\"il\">当前 PE</div><div class=\"iv\">300+ 倍</div></div>\n</div>\n\n<h2>核心矛盾：产业面 vs 筹码面</h2>\n<blockquote>股价 = HBM/GMC/国产替代远期故事 ÷ <strong>筹码结构的即时破坏力</strong></blockquote>\n\n<h3>问题出在分母：</h3>\n<ol>\n  <li><strong>华天科技清仓减持</strong>（340 万股，3 个月窗口）—— 确定性抛压</li>\n  <li><strong>日均主力净流出数千万至亿级</strong>——卖压大于买力</li>\n  <li><strong>缺乏长线多头承接</strong>——以游资 + 散户为主</li>\n  <li><strong>300+ 倍 PE</strong>——远期预期已充分透支</li>\n</ol>\n\n<h2>关键时间线</h2>\n<table>\n  <tr><th>日期</th><th>事件</th><th>影响</th></tr>\n  <tr><td><span class=\"pill pill-down\">5 月 24 日</span></td><td>华天科技公告清仓减持</td><td><strong>分水岭</strong>：产业逻辑不变，筹码逻辑彻底逆转</td></tr>\n  <tr><td><span class=\"pill pill-down\">5.28 → 8.27</span></td><td>减持执行期</td><td>3 个月的确定性抛压窗口</td></tr>\n  <tr><td><span class=\"pill pill-mid\">8.27 后</span></td><td>减持结束</td><td>筹码消化后的重新入场窗口</td></tr>\n</table>\n\n<h2>操作策略</h2>\n<p>产业面逻辑硬，但短期筹码矛盾要先解决。<strong>更好的入场时机：华天科技 3 个月减持期结束后、筹码充分交换、换手率降下来之后</strong>。</p>\n<p>期间持续跟踪：每日换手率、股东户数变化、大宗交易折价率。</p>\n\n<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>"}];
 </script>
 </body>
 </html>
