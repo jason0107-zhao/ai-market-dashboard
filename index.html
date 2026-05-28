@@ -1,1247 +1,364 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI 二级市场 · 智能仪表盘</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 二级市场 · 智能仪表盘</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:#0f172a;color:#f1f5f9;min-height:100vh}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
 
-    :root {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --card-hover: #334155;
-      --border: #334155;
-      --text: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --accent: #3b82f6;
-      --accent-glow: rgba(59,130,246,0.25);
-      --green: #22c55e;
-      --red: #ef4444;
-      --orange: #f59e0b;
-      --purple: #a855f7;
-      --cyan: #06b6d4;
-      --pink: #ec4899;
-    }
+header{background:rgba(15,23,42,.85);backdrop-filter:blur(12px);border-bottom:1px solid #334155;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+header h1{font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px}
+header .badge{background:#22c55e;width:8px;height:8px;border-radius:50%;display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.headertime{font-size:13px;color:#94a3b8}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
+.tabs{display:flex;gap:4px;padding:16px 24px 0;border-bottom:1px solid #334155}
+.tab{padding:8px 18px;border-radius:8px 8px 0 0;border:1px solid transparent;cursor:pointer;font-size:13px;color:#94a3b8;background:transparent;font-family:inherit;transition:all .15s}
+.tab.active{border-color:#334155 #334155 #0f172a;background:#0f172a;color:#f1f5f9;font-weight:600}
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+.page{display:none;padding:16px 24px 24px;max-width:1200px;margin:0 auto}
+.page.show{display:block}
 
-    /* ── Header ── */
-    header {
-      background: rgba(15,23,42,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    header .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    header .logo .icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--accent), var(--purple));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.125rem;
-    }
-    header .logo h1 {
-      font-size: 1.125rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    header .logo h1 small {
-      font-size: 0.6875rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-      display: block;
-      margin-top: -1px;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .header-time {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      font-variant-numeric: tabular-nums;
-    }
-    .live-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    .nav-btn {
-      padding: 0.4rem 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-secondary);
-      font-size: 0.8125rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-    .nav-btn:hover, .nav-btn.active {
-      border-color: var(--accent);
-      color: var(--text);
-      background: rgba(59,130,246,0.1);
-    }
-    .nav-btn.active { border-color: var(--accent); color: var(--accent); }
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
 
-    /* ── Layout ── */
-    .container { max-width: 1440px; margin: 0 auto; padding: 1.25rem 1.5rem; }
-    .dashboard { display: none; }
-    .dashboard.active { display: block; }
-    .dashboard.articles { display: block; }
+.card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px}
+.card .label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.card .val{font-size:22px;font-weight:700}
+.card .sub{font-size:12px;margin-top:4px}
+.green{color:#22c55e}
+.red{color:#ef4444}
+.orange{color:#f59e0b}
+.purple{color:#a855f7}
+.cyan{color:#06b6d4}
+.gray{color:#94a3b8}
 
-    /* ── Stat Cards ── */
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.125rem;
-      transition: border-color 0.2s;
-    }
-    .stat-card:hover { border-color: var(--accent); }
-    .stat-card .label {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.375rem;
-    }
-    .stat-card .value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-    .stat-card .change {
-      font-size: 0.8125rem;
-      margin-top: 0.25rem;
-    }
-    .change.up { color: var(--green); }
-    .change.down { color: var(--red); }
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 
-    /* ── Card Row ── */
-    .card-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .card-row.three { grid-template-columns: 1fr 1fr 1fr; }
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:8px 6px;color:#94a3b8;font-weight:500;font-size:11px;text-transform:uppercase;text-align:left;border-bottom:1px solid #334155}
+td{padding:7px 6px;border-bottom:1px solid rgba(51,65,85,.5)}
+tr:hover td{background:rgba(59,130,246,.05)}
+.code{font-size:11px;color:#64748b;font-family:monospace}
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-    }
-    .card h3 {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .card .chart-container {
-      position: relative;
-      height: 200px;
-    }
-    .card .chart-container.tall { height: 280px; }
+.bar-wrap{display:flex;align-items:center;gap:8px}
+.bar-bg{flex:1;height:8px;background:#334155;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s}
 
-    /* ── Stock Ticker ── */
-    .ticker-scroll {
-      overflow: hidden;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      padding: 0.625rem 0;
-    }
-    .ticker-track {
-      display: flex;
-      gap: 2rem;
-      animation: scrollLeft 60s linear infinite;
-      width: max-content;
-    }
-    @keyframes scrollLeft {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .ticker-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      font-size: 0.875rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .ticker-item .name { color: var(--text); font-weight: 600; }
-    .ticker-item .price { color: var(--text-secondary); }
-    .ticker-item .pct { font-weight: 600; padding: 1px 6px; border-radius: 4px; font-size: 0.8125rem; }
-    .ticker-item .pct.up { color: var(--green); background: rgba(34,197,94,0.12); }
-    .ticker-item .pct.down { color: var(--red); background: rgba(239,68,68,0.12); }
+.tagcloud{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tagcloud span{padding:4px 10px;border-radius:6px;font-size:12px;cursor:default}
 
-    /* ── Stock List Table ── */
-    .stock-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.875rem;
-    }
-    .stock-table th {
-      text-align: left;
-      padding: 0.625rem 0.625rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      border-bottom: 1px solid var(--border);
-    }
-    .stock-table td {
-      padding: 0.5rem 0.625rem;
-      border-bottom: 1px solid rgba(51,65,85,0.5);
-    }
-    .stock-table tr:hover td { background: rgba(59,130,246,0.04); }
-    .stock-table .code { font-size: 0.75rem; color: var(--text-secondary); font-family: monospace; }
-    .stock-table .up { color: var(--green); }
-    .stock-table .down { color: var(--red); }
+.pred-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.02)}
+.pred-item+.pred-item{margin-top:6px}
+.preds{display:flex;gap:16px;text-align:center}
+.preds .lbl{font-size:10px;color:#94a3b8}
+.preds .dir{font-size:15px;font-weight:700}
+.preds .pct{font-size:11px;color:#94a3b8}
 
-    .progress-bar {
-      height: 6px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-      max-width: 140px;
-    }
-    .progress-bar .fill {
-      height: 100%;
-      border-radius: 3px;
-      transition: width 0.5s;
-    }
-    .fill.green { background: var(--green); }
-    .fill.red { background: var(--red); }
-    .fill.accent { background: var(--accent); }
-    .fill.orange { background: var(--orange); }
-    .fill.purple { background: var(--purple); }
+.articles{display:flex;flex-direction:column;gap:10px}
+.article{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 18px;cursor:pointer;transition:border .15s}
+.article:hover{border-color:#3b82f6}
+.article .meta{font-size:11px;color:#94a3b8;display:flex;gap:8px;margin-bottom:4px}
+.article .meta .t{padding:1px 7px;border-radius:4px;font-size:10px;font-weight:500}
+.article .meta .t.rpt{background:rgba(168,85,247,.15);color:#a855f7}
+.article .meta .t.mon{background:rgba(59,130,246,.15);color:#3b82f6}
+.article h3{font-size:14px;font-weight:600;margin-bottom:3px}
+.article p{font-size:12px;color:#94a3b8;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.article .tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.article .tags span{font-size:10px;padding:1px 6px;background:rgba(59,130,246,.1);color:#3b82f6;border-radius:4px}
 
-    /* ── Prediction Card ── */
-    .prediction-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.625rem;
-    }
-    .pred-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.625rem 0.75rem;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-    }
-    .pred-item .name-code {
-      display: flex;
-      flex-direction: column;
-    }
-    .pred-item .name-code .name { font-weight: 600; font-size: 0.875rem; }
-    .pred-item .name-code .code { font-size: 0.6875rem; color: var(--text-secondary); }
-    .pred-item .preds {
-      display: flex;
-      gap: 1rem;
-    }
-    .pred-item .pred {
-      text-align: center;
-    }
-    .pred-item .pred .label { font-size: 0.625rem; color: var(--text-secondary); text-transform: uppercase; }
-    .pred-item .pred .dir { font-weight: 700; font-size: 0.9375rem; }
-    .pred-item .pred .prob { font-size: 0.6875rem; color: var(--text-secondary); }
-    .pred-item .pred .dir.down { color: var(--red); }
-    .pred-item .pred .dir.up { color: var(--green); }
+.search{width:100%;padding:10px 14px;border:1px solid #334155;border-radius:8px;font-size:13px;background:#1e293b;color:#f1f5f9;outline:none;font-family:inherit;margin-bottom:12px}
+.search:focus{border-color:#3b82f6}
+.search::placeholder{color:#64748b}
 
-    /* ── Articles ── */
-    .article-list { display: flex; flex-direction: column; gap: 0.875rem; }
-    .article-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    .article-card:hover { border-color: var(--accent); }
-    .article-card .meta {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.375rem;
-    }
-    .article-card .meta .tag {
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 0.6875rem;
-      font-weight: 500;
-    }
-    .article-card .meta .tag.report { background: rgba(168,85,247,0.15); color: var(--purple); }
-    .article-card .meta .tag.monitor { background: rgba(59,130,246,0.15); color: var(--accent); }
-    .article-card h3 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .article-card .summary {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .article-card .tags {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.375rem;
-      flex-wrap: wrap;
-    }
-    .article-card .tags span {
-      font-size: 0.6875rem;
-      padding: 1px 6px;
-      background: rgba(59,130,246,0.1);
-      color: var(--accent);
-      border-radius: 4px;
-    }
+.filters{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.filters button{padding:4px 10px;border-radius:999px;border:1px solid #334155;background:transparent;color:#94a3b8;font-size:11px;cursor:pointer;font-family:inherit;transition:all .1s}
+.filters button.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
 
-    .search-box {
-      width: 100%;
-      padding: 0.625rem 0.875rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.875rem;
-      background: var(--card);
-      color: var(--text);
-      outline: none;
-      font-family: inherit;
-      margin-bottom: 1rem;
-      transition: border-color 0.2s;
-    }
-    .search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-    .search-box::placeholder { color: var(--text-secondary); }
+.sent-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:10px 0}
+.sent-bar div{transition:width .5s}
 
-    .filter-bar {
-      display: flex;
-      gap: 0.375rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-    .filter-chip {
-      padding: 0.25rem 0.625rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: inherit;
-    }
-    .filter-chip:hover { border-color: var(--accent); color: var(--text); }
-    .filter-chip.active { background: var(--accent); color: white; border-color: var(--accent); }
+.fund-row{display:flex;align-items:center;margin-bottom:6px;font-size:12px}
+.fund-row .n{width:65px;color:#94a3b8;text-align:right;padding-right:8px}
+.fund-row .b{flex:1;height:18px;border-radius:4px;overflow:hidden}
+.fund-row .b div{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px;color:#fff;font-size:10px;font-weight:600}
 
-    /* ── Sentiment ── */
-    .sentiment-meter {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .sentiment-meter .bar-bg {
-      flex: 1;
-      height: 10px;
-      background: var(--border);
-      border-radius: 5px;
-      overflow: hidden;
-      display: flex;
-    }
-    .sentiment-meter .bar-bg .seg {
-      height: 100%;
-      transition: width 0.6s;
-    }
-    .sentiment-meter .seg.negative { background: var(--red); border-radius: 5px 0 0 5px; }
-    .sentiment-meter .seg.neutral { background: var(--orange); }
-    .sentiment-meter .seg.positive { background: var(--green); border-radius: 0 5px 5px 0; }
+.modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:88%;max-width:720px;max-height:85vh;background:#1e293b;border:1px solid #334155;border-radius:14px;z-index:201;flex-direction:column;box-shadow:0 25px 80px rgba(0,0,0,.5)}
+.modal.show{display:flex}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;backdrop-filter:blur(6px)}
+.overlay.show{display:block}
+.modal h{padding:16px 20px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:700;flex-shrink:0}
+.modal h button{background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;padding:0 4px}
+.modal .body{padding:16px 20px;overflow-y:auto;line-height:1.7;font-size:13px}
+.modal .body h1{font-size:17px;margin:14px 0 6px}
+.modal .body h2{font-size:15px;margin:14px 0 6px;padding-bottom:3px;border-bottom:1px solid #334155}
+.modal .body h3{font-size:13px;margin:10px 0 4px}
+.modal .body p{margin-bottom:8px}
+.modal .body ul,.modal .body ol{padding-left:20px;margin-bottom:8px}
+.modal .body li{margin-bottom:2px}
+.modal .body blockquote{border-left:3px solid #3b82f6;margin:8px 0;padding:6px 12px;background:rgba(59,130,246,.08);border-radius:0 6px 6px 0}
+.modal .body table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
+.modal .body td,.modal .body th{border:1px solid #334155;padding:4px 6px}
+.modal .body th{background:rgba(255,255,255,.04)}
+.modal .body strong{color:#fff}
+.modal .body code{font-size:11px;background:rgba(255,255,255,.06);padding:2px 5px;border-radius:3px}
+.modal .body hr{border:none;border-top:1px solid #334155;margin:10px 0}
 
-    .tag-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tag-cloud span {
-      padding: 0.25rem 0.625rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      cursor: default;
-      transition: all 0.15s;
-    }
-    .tag-cloud span:hover { filter: brightness(1.3); }
-
-    /* ── Modal ── */
-    .modal-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 200;
-      backdrop-filter: blur(6px);
-    }
-    .modal-overlay.open { display: block; }
-    .modal {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 88%;
-      max-width: 760px;
-      max-height: 85vh;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      z-index: 201;
-      display: none;
-      flex-direction: column;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.5);
-    }
-    .modal.open { display: flex; }
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.125rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .modal-header h2 { font-size: 1.0625rem; font-weight: 700; }
-    .modal-header .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-secondary);
-      padding: 0.25rem;
-      line-height: 1;
-    }
-    .modal-header .close-btn:hover { color: var(--text); }
-    .modal-body {
-      padding: 1.5rem;
-      overflow-y: auto;
-      line-height: 1.75;
-      font-size: 0.9375rem;
-    }
-    .modal-body h1 { font-size: 1.25rem; margin: 1.25rem 0 0.5rem; }
-    .modal-body h2 { font-size: 1.0625rem; margin: 1.25rem 0 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--border); }
-    .modal-body h3 { font-size: 0.9375rem; margin: 1rem 0 0.375rem; }
-    .modal-body p { margin-bottom: 0.625rem; }
-    .modal-body ul, .modal-body ol { padding-left: 1.5rem; margin-bottom: 0.625rem; }
-    .modal-body li { margin-bottom: 0.1875rem; }
-    .modal-body strong { font-weight: 700; color: #fff; }
-    .modal-body table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.8125rem; }
-    .modal-body th, .modal-body td {
-      border: 1px solid var(--border);
-      padding: 0.375rem 0.5rem;
-      text-align: left;
-    }
-    .modal-body th { background: rgba(255,255,255,0.04); font-weight: 600; }
-    .modal-body blockquote {
-      border-left: 3px solid var(--accent);
-      margin: 0.75rem 0;
-      padding: 0.5rem 1rem;
-      background: rgba(59,130,246,0.08);
-      border-radius: 0 8px 8px 0;
-    }
-    .modal-body code {
-      font-size: 0.8125rem;
-      background: rgba(255,255,255,0.06);
-      padding: 0.125rem 0.375rem;
-      border-radius: 3px;
-    }
-    .modal-body hr { border: none; border-top: 1px solid var(--border); margin: 0.75rem 0; }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .card-row, .card-row.three { grid-template-columns: 1fr; }
-      .stat-row { grid-template-columns: repeat(2, 1fr); }
-      .container { padding: 1rem; }
-      .modal { width: 95%; max-height: 90vh; }
-      header { padding: 0.5rem 1rem; }
-      header .logo h1 { font-size: 0.9375rem; }
-      header .logo h1 small { display: none; }
-    }
-  </style>
+@media(max-width:800px){
+  .grid2{grid-template-columns:1fr}
+  .page{padding:12px 14px}
+  .row{grid-template-columns:repeat(2,1fr)}
+  header{padding:10px 14px}
+  header h1{font-size:14px}
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <div class="icon">📊</div>
-      <div>
-        <h1>AI 二级市场 · 智能仪表盘 <small>实时监控 + 预测 + 知识库</small></h1>
-      </div>
+<header>
+  <h1><span style="background:linear-gradient(135deg,#3b82f6,#a855f7);width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px">📊</span> AI 二级市场 · 智能仪表盘</h1>
+  <span class="headertime" id="ht"><span class="badge"></span> 2026-05-28 19:30</span>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('dash')">📊 仪表盘</button>
+  <button class="tab" onclick="showTab('kb')">📚 知识库</button>
+  <button class="tab" onclick="showTab('pred')">🔮 预测</button>
+</div>
+
+<div id="page-dash" class="page show">
+  <div class="row">
+    <div class="card"><div class=label>上证指数</div><div class=val id=shv>3136.58</div><div class="sub red">-0.45%</div></div>
+    <div class="card"><div class=label>深证成指</div><div class=val id=szv>10245.82</div><div class="sub green">+0.28%</div></div>
+    <div class="card"><div class=label>创业板指</div><div class=val id=cyv>2028.36</div><div class="sub green">+0.62%</div></div>
+    <div class="card"><div class=label>科创50</div><div class=val id=kcv>876.41</div><div class="sub red">-0.38%</div></div>
+    <div class="card"><div class=label>两市成交额</div><div class=val>7684亿</div><div class="sub red">缩量 3.2%</div></div>
+    <div class="card"><div class=label>北向资金</div><div class=val class=red>-18.5亿</div><div class="sub red">净流出</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class=label style="margin-bottom:10px">📈 板块资金净流入 TOP5</div>
+      <div id=fundList></div>
     </div>
-    <div class="header-right">
-      <span class="header-time" id="headerTime"><span class="live-dot"></span> 加载中...</span>
-    </div>
-  </header>
-
-  <div class="container">
-    <!-- Navigation -->
-    <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem;">
-      <button class="nav-btn active" data-tab="dashboard">📊 仪表盘</button>
-      <button class="nav-btn" data-tab="articles">📚 知识库</button>
-      <button class="nav-btn" data-tab="predictions">🔮 预测</button>
-    </div>
-
-    <!-- ====== TAB: Dashboard ====== -->
-    <div class="dashboard active" id="tab-dashboard">
-
-      <!-- Ticker -->
-      <div class="ticker-scroll" id="tickerContainer">
-        <div class="ticker-track" id="tickerTrack"></div>
+    <div class="card">
+      <div class=label style="margin-bottom:10px">🔥 市场情绪</div>
+      <div class="sent-bar"><div style="width:32%;background:#22c55e"></div><div style="width:45%;background:#f59e0b"></div><div style="width:23%;background:#ef4444"></div></div>
+      <div style="display:flex;justify-content:space-around;font-size:12px;color:#94a3b8">
+        <span><span style="color:#22c55e">●</span> 乐观 32%</span>
+        <span><span style="color:#f59e0b">●</span> 中性 45%</span>
+        <span><span style="color:#ef4444">●</span> 悲观 23%</span>
       </div>
-
-      <!-- Stat cards -->
-      <div class="stat-row" id="statRow">
-        <div class="stat-card">
-          <div class="label">上证指数</div>
-          <div class="value" id="shValue">--</div>
-          <div class="change" id="shChange"></div>
-        </div>
-        <div class="stat-card">
-          <div class="label">深证成指</div>
-          <div class="value" id="szValue">--</div>
-          <div class="change" id="szChange"></div>
-        </div>
-        <div class="stat-card">
-          <div class="label">创业板指</div>
-          <div class="value" id="cyValue">--</div>
-          <div class="change" id="cyChange"></div>
-        </div>
-        <div class="stat-card">
-          <div class="label">科创50</div>
-          <div class="value" id="kcValue">--</div>
-          <div class="change" id="kcChange"></div>
-        </div>
-        <div class="stat-card">
-          <div class="label">两市成交额</div>
-          <div class="value" id="volumeValue">--</div>
-          <div class="change" id="volumeChange"></div>
-        </div>
-        <div class="stat-card">
-          <div class="label">北向资金</div>
-          <div class="value" id="northValue">--</div>
-          <div class="change" id="northChange"></div>
-        </div>
-      </div>
-
-      <!-- Charts row -->
-      <div class="card-row three">
-        <div class="card">
-          <h3>📈 板块资金净流入 TOP5</h3>
-          <div class="chart-container" id="fundFlowChart"><canvas></canvas></div>
-        </div>
-        <div class="card">
-          <h3>🔥 市场情绪分布</h3>
-          <div class="chart-container" id="sentimentChart"><canvas></canvas></div>
-        </div>
-        <div class="card">
-          <h3>🏷 热点标签云</h3>
-          <div class="tag-cloud" id="tagCloud"></div>
-        </div>
-      </div>
-
-      <!-- Watchlist row -->
-      <div class="card-row">
-        <div class="card">
-          <h3>👁 自选股监控</h3>
-          <table class="stock-table" id="watchlistTable">
-            <thead><tr><th>名称</th><th>代码</th><th>现价</th><th>涨跌幅</th><th>主力净流</th></tr></thead>
-            <tbody id="watchlistBody"></tbody>
-          </table>
-        </div>
-        <div class="card">
-          <h3>🔮 今日AI预测</h3>
-          <div class="prediction-grid" id="predGrid"></div>
-          <div style="margin-top:0.75rem; font-size:0.75rem; color:var(--text-secondary);">
-            ⚡ 基于LSTM+技术指标的T+1/T+5预测
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ====== TAB: Knowledge Base ====== -->
-    <div class="dashboard articles" id="tab-articles">
-      <input type="text" class="search-box" id="searchBox" placeholder="搜索标题、内容、标签..." />
-      <div class="filter-bar" id="filterBar">
-        <button class="filter-chip active" data-type="all">全部</button>
-        <button class="filter-chip" data-type="report">📋 专题报告</button>
-        <button class="filter-chip" data-type="monitor">📡 监控报告</button>
-      </div>
-      <div class="article-list" id="articleList"></div>
-    </div>
-
-    <!-- ====== TAB: Predictions ====== -->
-    <div class="dashboard" id="tab-predictions">
-      <div class="stat-row">
-        <div class="stat-card">
-          <div class="label">模型累计验证</div>
-          <div class="value">3 次</div>
-          <div class="change up">66.7% 方向准确率</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">今日预测</div>
-          <div class="value">3 只</div>
-          <div class="change" style="color:var(--text-secondary);">T+1 / T+5 双周期</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">最佳模型</div>
-          <div class="value">寒武纪 T+5</div>
-          <div class="change up">样本外准确率 60.0%</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">数据更新</div>
-          <div class="value" id="predLastUpdate">2026-05-27</div>
-          <div class="change" style="color:var(--text-secondary);">基于收盘价</div>
-        </div>
-      </div>
-
-      <div class="card-row">
-        <div class="card">
-          <h3>📊 个股预测详情</h3>
-          <table class="stock-table">
-            <thead><tr><th>个股</th><th>代码</th><th>收盘价</th><th>T+1</th><th>T+5</th><th>技术状态</th></tr></thead>
-            <tbody>
-              <tr>
-                <td><strong>三花智控</strong></td>
-                <td><span class="code">sz002050</span></td>
-                <td>¥51.02</td>
-                <td><span class="down">📉 跌 (81.9%)</span></td>
-                <td><span class="down">📉 跌 (80.7%)</span></td>
-                <td>RSI 52 · MACD多头 · 均线多头</td>
-              </tr>
-              <tr>
-                <td><strong>寒武纪</strong></td>
-                <td><span class="code">sh688256</span></td>
-                <td>¥1340.00</td>
-                <td><span class="down">📉 跌 (61.3%)</span></td>
-                <td><span class="down">📉 跌 (80.7%)</span></td>
-                <td>RSI 30 · MACD空头 · 震荡</td>
-              </tr>
-              <tr>
-                <td><strong>蓝色光标</strong></td>
-                <td><span class="code">sz300058</span></td>
-                <td>¥15.77</td>
-                <td><span style="color:var(--text-secondary);">📉 跌 (15.0%)</span></td>
-                <td><span class="down">📉 跌 (86.5%)</span></td>
-                <td>RSI 27 · MACD空头 · 震荡</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <h3>📈 预测准确率趋势</h3>
-          <div class="chart-container tall" id="accChart"><canvas></canvas></div>
-        </div>
-      </div>
+      <div class=label style="margin:14px 0 6px">🏷 热点标签</div>
+      <div class=tagcloud id=tagCloud></div>
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay"></div>
-  <div class="modal" id="modal">
-    <div class="modal-header">
-      <h2 id="modalTitle"></h2>
-      <button class="close-btn" id="modalClose">&times;</button>
+  <div class="grid2">
+    <div class="card">
+      <div class=label style="margin-bottom:10px">👁 自选股监控</div>
+      <table><thead><tr><th>名称</th><th>代码</th><th>现价</th><th>涨跌幅</th><th>主力净流</th></tr></thead>
+      <tbody id=wlBody></tbody></table>
     </div>
-    <div class="modal-body" id="modalBody"></div>
+    <div class="card">
+      <div class=label style="margin-bottom:10px">🔮 今日AI预测</div>
+      <div id=predList></div>
+      <div style="margin-top:10px;font-size:11px;color:#94a3b8">⚡ 基于LSTM+技术指标的T+1/T+5预测</div>
+    </div>
   </div>
+</div>
 
-  <script>
-    // ─── Data ─────────────────────────────────────────────
-    const articlesData = [
-      {
-        id: 'rpt-001',
-        title: '半导体投资分析报告：野村研报解读与标的筛选',
-        type: 'report',
-        tags: ['半导体', '野村证券', '安集科技', '源杰科技', '鼎龙股份', 'CMP', '光芯片'],
-        date: '2026-05-27 19:00',
-        summary: '基于野村证券 Donnie Teng 团队最新研报，梳理 AI 倒逼半导体工艺重构的产业链逻辑，筛选出安集科技、源杰科技、鼎龙股份三只筹码结构优良的标的。',
-        content: `# 半导体投资分析报告\n\n**日期：** 2026-05-27\n**来源：** 野村证券亚太科技团队 Donnie Teng 研报摘要\n\n## 一、野村证券核心判断\n\n半导体行业的增长逻辑，已从"晶体管密度提升"，转向 **"3D晶体管 + 背面供电 + 新材料组合创新"**。AI 不只在拉动 GPU，而是在倒逼芯片制造的底层工艺重写。\n\n### 全产业链时间线\n\n| 时间 | 关键事件 |\n|:---:|---------|\n| 2026年 | GAA晶体管、SoIC混合键合、InP衬底启动小批量供货 |\n| **2027年（拐点）** | **背面供电、玻璃核心基板、晶圆键合NAND集中放量** |\n| 2028年 | DRAM-on-logic规模化，边缘AI+汽车电子成新驱动力 |\n| 2029-2030年 | 高NA EUV量产，金属氧化物光刻胶全面导入 |\n\n### 野村关键论点\n1. **材料环节价值重估**：材料单耗和价值量都在上升\n2. **玻璃基板**：博通有望2027年率先采用\n3. **硅片供需**：12英寸硅片2027年起供需变紧\n4. **台积电本土化采购**：2027年资本开支有望达700亿美元\n\n## 二、优选标的\n\n### 🥇 安集科技（688019）—— CMP抛光液龙头\n- 2026Q1：营收7.24亿（+33%），净利润2.08亿（+23%）\n- 股东户数1.43万户，连续收敛，前十大集中度58%\n- 140家机构持有65.5%，大股东零减持\n- **筹码评分：⭐⭐⭐⭐⭐**\n\n### 🥈 源杰科技（688498）—— 光芯片IDM\n- 2026Q1：营收3.55亿（+321%），净利润1.79亿（+1153%）\n- 毛利率77.8%，户均持股市值459万\n- 股东户数仅1.36万户，机构/大户主导\n- **筹码评分：⭐⭐⭐⭐**\n\n### 🥉 鼎龙股份（300054）—— CMP抛光垫\n- 2026Q1：营收10.2亿，净利润2.51亿\n- 股东户数6.04万户偏多，筹码相对分散\n- **筹码评分：⭐⭐⭐**\n\n## 三、组合建议\n> **安集科技打底 + 源杰科技博弹性**\n\n> ⚠️ 以上分析基于公开信息整理，不构成投资建议。`
-      },
-      {
-        id: 'rpt-002',
-        title: '华海诚科（688535）深度分析：HBM国产化逻辑与筹码困境',
-        type: 'report',
-        tags: ['华海诚科', 'HBM', 'GMC', '先进封装', '减持', 'EMC'],
-        date: '2026-05-27 18:30',
-        summary: 'HBM国产化产业趋势确定，华海诚科GMC进度国内领先。但华天科技清仓减持3个月刚刚开始，筹码结构严重恶化。短期核心矛盾不在产业面而在资金面。',
-        content: `# 华海诚科（688535）深度分析\n\n## 产业逻辑\nHBM国产化 → GMC放量 → 华海诚科受益，这条逻辑链从产业趋势上说是成立的。\n\n## 当前核心矛盾\n股价的定价公式已变成：\n> 股价 = HBM/GMC/国产替代的远期故事 ÷ **筹码结构的即时破坏力**\n\n### 问题在分母：\n1. **华天科技清仓减持**（5月28日-8月27日，340万股/2.40%）\n2. **日均主力净流出数千万至亿级**\n3. **缺乏长线多头承接**——游资+散户为主\n4. **300+倍PE**，远期预期已充分透支\n\n### 关键时间节点\n| 日期 | 事件 |\n|:---:|------|\n| 5月24日 | 华天科技公告清仓减持——分水岭 |\n| 5月28日-8月27日 | 减持执行期（整整3个月） |\n\n## 操作策略\n产业面逻辑硬，但短期筹码矛盾要先解决。更好的入场时机是**华天科技3个月减持期结束后、筹码充分交换、换手率降下来之后**再看。\n\n> ⚠️ 以上分析基于公开信息整理，不构成投资建议。`
-      },
-      {
-        id: 'rpt-003',
-        title: '国产HBM产业链全景解析：从DRAM颗粒到先进封装的"卡脖子"突围战',
-        type: 'report',
-        tags: ['HBM', '长鑫存储', '长电科技', '通富微电', '安集科技', '先进封装', '华为', 'TSV'],
-        date: '2026-05-28 10:45',
-        summary: '全面梳理国产HBM产业链的现状、核心玩家、挑战与前景。从DRAM颗粒制造、先进封装、关键设备、关键材料到EDA/IP，逐环节拆解国产替代进度。',
-        content: `# 国产HBM产业链全景解析\n\n**日期：** 2026-05-28\n\n> 国产HBM产业链正处于一个 **"从0到1，点状突破，链式协同"** 的初级阶段。虽然与国际顶尖水平（SK海力士、三星的HBM3E）存在2-3代的差距，但在国家意志和巨大市场需求的双重驱动下，整个链条正在被强制性地"拉通"和"整合"。\n\n---\n\n## 一、HBM产业链构成及国产玩家地图\n\n### 1️⃣ HBM 存储颗粒 (DRAM Die) 制造\n*HBM金字塔的基石，目前 **最薄弱的环节***\n\n| 公司 | 角色 | 进展 |\n|:---:|:----:|------|\n| **长鑫存储 (CXMT)** | DRAM制造绝对龙头 | DDR4/LPDDR5主力，HBM2已于2025年上半年量产，HBM3样品2025年6月交付客户，目标年底量产验证 |\n| 武汉新芯 (XMC) | 追赶者 | 针对HBM建造月产能3000片的12英寸工厂，聚焦HBM2开发 |\n\n**最新进展：** 中国HBM技术与全球领先水平的代差已从8年降至4年。长鑫存储计划2027年量产HBM3E，跳过HBM2E阶段。TSV产能年底将接近美光水平。\n\n---\n\n### 2️⃣ 先进封装 — **国产链条中最成熟的环节**\n\n| 公司 | 代码 | 技术布局 |\n|:---:|:----:|---------|\n| **长电科技 (JCET)** 💎 | 600584 | XDFOI系列对标CoWoS，2.5D/3D封装最强竞争者 |\n| **通富微电 (TFME)** | 002156 | 深度绑定AMD，Chiplet封装经验丰富，已与长鑫合作开发HBM2样品 |\n| 华天科技 (HT-Tech) | 002185 | 正在布局TSV和3D封装能力，但有华海诚科减持拖累 |\n\n> **通富微电** 是国内首家完成基于TSV技术的3D DRAM封装开发的封测厂，正在兴建南通通富工厂三期 — 将成为国内最先进的2.5D/3D先进封装研发及量产基地。\n\n---\n\n### 3️⃣ 关键设备 — HBM制造的"锅碗瓢盆"\n\n| 环节 | 国产公司 | 状态 |\n|:---:|:--------:|:----:|:---:|\n| **TSV刻蚀** | 北方华创(002371)、**中微公司**(688012) | 成熟，可国产化 |\n| **薄膜沉积** | **北方华创** | PVD/CVD覆盖大部分需求 |\n| **CMP抛光** | **华海清科**(688120) ✅ | 国内CMP设备龙头，晶圆减薄&TSV关键步骤 |\n| **先进封装光刻** | **上海微电子** | 封装光刻机已量产出货，微米级精度可用 |\n| **键合设备 🔴** | 新益昌等追赶中 | 与ASMPT/Besi差距巨大，**最大短板之一** |\n\n**2025E投资主线建议：** DRAM/HBM产业链设备股（精智达），以及持续受益于扩产+国产替代的设备龙头（北方华创、中微公司）。\n\n---\n\n### 4️⃣ 关键材料 — **"明星环节"**\n\n| 公司 | 代码 | 材料 | 重要性 |\n|:---:|:----:|:----:|:------:|\n| **安集科技** 💎 | 688019 | CMP抛光液&清洗剂 | HBM制造**不可或缺**，TSV专用抛光液 |\n| **南大光电** | 300346 | ArF光刻胶 | 追赶中，稳定性和性能仍是挑战 |\n| **上海新阳** | 300236 | 高端光刻胶 | 同南大 |\n| **华特气体** | 688268 | 电子特气 | 已有部分刻蚀/沉积气体供应能力 |\n| **沪硅产业** | 688126 | 硅片 | DRAM/Logic硅片 |\n\n---\n\n### 5️⃣ EDA/IP — "大脑和神经"\n\n| 公司 | 角色 | 与国际巨头差距 |\n|:---:|:----:|:-------------:|\n| **华大九天** (301269) | EDA工具龙头 | 全流程3D设计工具链差距巨大 |\n| **芯原股份** (688521) ⭐ | IP供应 | **已推出HBM3 PHY IP** — 国产IP领域一大亮点 |\n\n---\n\n## 二、产业链的"链主"：华为\n\n一个分散的产业链需要一个强大的"链主"来整合和驱动👇\n\n**华为 →** 定义需求 &rarr; 与长鑫提出DRAM规格 &rarr; 与长电/通富开发封装 &rarr; 联合设备和材料厂攻关 &rarr; **昇腾芯片落地验证**\n\n> 华为是拉动整个国产HBM产业链运转的**火车头**\n\n---\n\n## 三、总结：时间线 & 核心矛盾\n\n| 时间 | 目标 | 关键事件 |\n|:---:|:----:|:--------:|\n| **2025H1** ✅ | HBM2量产 | 长鑫存储HBM2已大规模投产，比原计划提早约2年 |\n| **2025H2** 🔄 | HBM3量产验证 | HBM3样品交付客户，目标年底完成量产验证 |\n| **2027E** 🎯 | HBM3E量产 | 跳过HBM2E，直接追赶HBM3E |\n| **2027-2028** | 良率+成本优化 | 力争国产AI芯片大规模应用 |\n\n### 三大核心挑战\n\n1. **高性能DRAM颗粒"从无到有"** — 依赖长鑫存储，HBM3的量产验证是关键一战\n2. **全链条良率和一致性** — 每个环节都能做样品，但大规模量产+高良率难度指数级上升\n3. **高端键合设备 & EDA** — 对外依赖最严重的两环\n\n### 核心结论\n\n> **短期（1-2年）：** HBM2/2E实现"可用性"突破\n> **中期（3-5年）：** 追赶HBM3/HBM3E，力争国产AI芯片大规模应用\n> **长期：** 国内市场形成完整内循环\n\n📌 **A股受益标的：**\n- **封测：** 长电科技(600584) ⭐ / 通富微电(002156)\n- **设备：** 北方华创(002371) / 中微公司(688012) / 华海清科(688120)\n- **材料：** 安集科技(688019) 💎 / 华特气体(688268)\n- **EDA/IP：** 芯原股份(688521) / 华大九天(301269)\n- **DRAM代工设备测试：** 精智达(688627)\n\n> ⚠️ 以上分析基于公开信息整理，不构成投资建议。`
+<div id="page-kb" class="page">
+  <input class=search id=sbox placeholder="搜索标题、内容、标签..." oninput="searchArt()">
+  <div class=filters id=filterBar>
+    <button class=active onclick="filterArt('all',this)">全部</button>
+    <button onclick="filterArt('report',this)">📋 专题报告</button>
+    <button onclick="filterArt('monitor',this)">📡 监控报告</button>
+  </div>
+  <div class=articles id=artList></div>
+</div>
 
-    // ─── Market Data ── (simulated from real data) ──
-    const marketData = {
-      indices: {
-        sh: { value: 3136.58, change: -0.45, name: '上证指数' },
-        sz: { value: 10245.82, change: 0.28, name: '深证成指' },
-        cy: { value: 2028.36, change: 0.62, name: '创业板指' },
-        kc: { value: 876.41, change: -0.38, name: '科创50' }
-      },
-      volume: { value: 7684, label: '亿', change: -3.2 },
-      northFlow: { value: -18.5, label: '亿', change: null },
-      sectors: [
-        { name: '半导体', flow: 12.4, color: '#3b82f6' },
-        { name: 'AI算力', flow: 8.7, color: '#a855f7' },
-        { name: '机器人', flow: 5.2, color: '#ec4899' },
-        { name: 'CPO光模块', flow: 4.1, color: '#06b6d4' },
-        { name: 'HBM存储', flow: 3.5, color: '#f59e0b' }
-      ],
-      sentiment: { positive: 32, neutral: 45, negative: 23 },
-      tags: [
-        { name: 'AI芯片', weight: 95, color: '#3b82f6' },
-        { name: 'HBM', weight: 88, color: '#f59e0b' },
-        { name: '人形机器人', weight: 82, color: '#ec4899' },
-        { name: 'CPO', weight: 76, color: '#06b6d4' },
-        { name: '算力', weight: 72, color: '#a855f7' },
-        { name: '大模型', weight: 68, color: '#3b82f6' },
-        { name: '存储', weight: 65, color: '#f59e0b' },
-        { name: '自动驾驶', weight: 58, color: '#22c55e' },
-        { name: '半导体设备', weight: 55, color: '#3b82f6' },
-        { name: '光芯片', weight: 52, color: '#06b6d4' },
-        { name: 'Chiplet', weight: 48, color: '#a855f7' },
-        { name: '量子计算', weight: 35, color: '#ec4899' }
-      ],
-      watchlist: [
-        { name: '寒武纪', code: '688256.SH', price: 1340.00, change: -0.17, fundFlow: -2.3, type: 'AI芯片' },
-        { name: '三花智控', code: '002050.SZ', price: 51.02, change: -3.71, fundFlow: -1.8, type: '机器人' },
-        { name: '蓝色光标', code: '300058.SZ', price: 15.77, change: 0.06, fundFlow: 0.3, type: 'AI应用' },
-        { name: '安集科技', code: '688019.SH', price: 186.50, change: 1.82, fundFlow: 0.9, type: '半导体' },
-        { name: '源杰科技', code: '688498.SH', price: 128.30, change: 2.15, fundFlow: 0.7, type: '光芯片' },
-        { name: '华海诚科', code: '688535.SH', price: 68.40, change: -4.82, fundFlow: -5.1, type: 'HBM' }
-      ],
-      ticker: [
-        { name: '上证指数', price: '3136.58', pct: '-0.45%', up: false },
-        { name: '深证成指', price: '10245.82', pct: '+0.28%', up: true },
-        { name: '创业板指', price: '2028.36', pct: '+0.62%', up: true },
-        { name: '科创50', price: '876.41', pct: '-0.38%', up: false },
-        { name: '寒武纪', price: '1340.00', pct: '-0.17%', up: false },
-        { name: '三花智控', price: '51.02', pct: '-3.71%', up: false },
-        { name: '蓝色光标', price: '15.77', pct: '+0.06%', up: true },
-        { name: '安集科技', price: '186.50', pct: '+1.82%', up: true },
-        { name: '源杰科技', price: '128.30', pct: '+2.15%', up: true },
-        { name: '华海诚科', price: '68.40', pct: '-4.82%', up: false },
-        { name: '纳斯达克', price: '18764.89', pct: '+1.12%', up: true },
-        { name: '标普500', price: '5871.53', pct: '+0.83%', up: true }
-      ],
-      predictions: [
-        { name: '三花智控', code: 'sz002050', price: '51.02', t1Dir: '📉', t1Prob: '81.9%', t5Dir: '📉', t5Prob: '80.7%', t1Down: true, t5Down: true, acc: '56.0%' },
-        { name: '寒武纪', code: 'sh688256', price: '1340.00', t1Dir: '📉', t1Prob: '61.3%', t5Dir: '📉', t5Prob: '80.7%', t1Down: true, t5Down: true, acc: '44.8%' },
-        { name: '蓝色光标', code: 'sz300058', price: '15.77', t1Dir: '📉', t1Prob: '15.0%', t5Dir: '📉', t5Prob: '86.5%', t1Down: true, t5Down: true, acc: '49.1%' }
-      ]
-    };
+<div id="page-pred" class="page">
+  <div class="row">
+    <div class="card"><div class=label>模型累计验证</div><div class=val>3 次</div><div class="sub green">66.7% 方向准确率</div></div>
+    <div class="card"><div class=label>今日预测</div><div class=val>3 只</div><div class=sub gray>T+1 / T+5 双周期</div></div>
+    <div class="card"><div class=label>最佳模型</div><div class=val>寒武纪 T+5</div><div class="sub green">样本外 60.0%</div></div>
+    <div class="card"><div class=label>数据更新</div><div class=val>2026-05-27</div><div class=sub gray>基于收盘价</div></div>
+  </div>
+  <div class="card">
+    <div class=label style="margin-bottom:10px">📊 个股预测详情</div>
+    <table><thead><tr><th>个股</th><th>代码</th><th>收盘价</th><th>T+1</th><th>T+5</th><th>技术状态</th></tr></thead>
+    <tbody>
+      <tr><td><strong>三花智控</strong></td><td><span class=code>sz002050</span></td><td>¥51.02</td><td class=red>📉 跌 81.9%</td><td class=red>📉 跌 80.7%</td><td style="font-size:11px;color:#94a3b8">RSI 52 · MACD多头 · 均线多头</td></tr>
+      <tr><td><strong>寒武纪</strong></td><td><span class=code>sh688256</span></td><td>¥1340.00</td><td class=red>📉 跌 61.3%</td><td class=red>📉 跌 80.7%</td><td style="font-size:11px;color:#94a3b8">RSI 30 · MACD空头 · 震荡</td></tr>
+      <tr><td><strong>蓝色光标</strong></td><td><span class=code>sz300058</span></td><td>¥15.77</td><td class=gray>📉 跌 15.0%</td><td class=red>📉 跌 86.5%</td><td style="font-size:11px;color:#94a3b8">RSI 27 · MACD空头 · 震荡</td></tr>
+    </tbody></table>
+  </div>
+  <div style="margin-top:12px;text-align:center;font-size:12px;color:#64748b">* 准确率趋势：5/26→5/27 方向准确率 66.7%（3中2）</div>
+</div>
 
-    // ─── Tickers ──
-    function renderTicker(data) {
-      const doubled = [...data, ...data];
-      const html = doubled.map(item => `
-        <div class="ticker-item">
-          <span class="name">${item.name}</span>
-          <span class="price">${item.price}</span>
-          <span class="pct ${item.up ? 'up' : 'down'}">${item.pct}</span>
-        </div>
-      `).join('');
-      document.getElementById('tickerTrack').innerHTML = html;
-    }
+<div class=overlay id=ov></div>
+<div class=modal id=modal><h><span id=mTitle></span><button onclick="closeModal()">&times;</button></h><div class=body id=mBody></div></div>
 
-    // ─── Stat Cards ──
-    function renderStats(md) {
-      const i = md.indices;
-      document.getElementById('shValue').textContent = i.sh.value.toFixed(2);
-      document.getElementById('shChange').innerHTML = `<span class="${i.sh.change >= 0 ? 'up' : 'down'}">${i.sh.change >= 0 ? '+' : ''}${i.sh.change.toFixed(2)}%</span>`;
-      document.getElementById('szValue').textContent = i.sz.value.toFixed(2);
-      document.getElementById('szChange').innerHTML = `<span class="${i.sz.change >= 0 ? 'up' : 'down'}">${i.sz.change >= 0 ? '+' : ''}${i.sz.change.toFixed(2)}%</span>`;
-      document.getElementById('cyValue').textContent = i.cy.value.toFixed(2);
-      document.getElementById('cyChange').innerHTML = `<span class="${i.cy.change >= 0 ? 'up' : 'down'}">${i.cy.change >= 0 ? '+' : ''}${i.cy.change.toFixed(2)}%</span>`;
-      document.getElementById('kcValue').textContent = i.kc.value.toFixed(2);
-      document.getElementById('kcChange').innerHTML = `<span class="${i.kc.change >= 0 ? 'up' : 'down'}">${i.kc.change >= 0 ? '+' : ''}${i.kc.change.toFixed(2)}%</span>`;
-      document.getElementById('volumeValue').textContent = md.volume.value + md.volume.label;
-      document.getElementById('volumeChange').innerHTML = `<span class="${md.volume.change >= 0 ? 'up' : 'down'}">成交额 ${md.volume.change >= 0 ? '+' : ''}${md.volume.change}%</span>`;
-      document.getElementById('northValue').textContent = (md.northFlow.value >= 0 ? '+' : '') + md.northFlow.value + md.northFlow.label;
-      document.getElementById('northChange').innerHTML = `<span class="${md.northFlow.value >= 0 ? 'up' : 'down'}">${md.northFlow.value >= 0 ? '净流入' : '净流出'}</span>`;
-    }
+<script>
+// ─── Data ──
+const arts = [
+  {id:'rpt-1',title:'半导体投资分析报告：野村研报解读与标的筛选',type:'report',tags:['半导体','野村证券','安集科技','源杰科技','鼎龙股份','CMP','光芯片'],date:'2026-05-27 19:00',summary:'基于野村证券 Donnie Teng 团队最新研报，梳理AI倒逼半导体工艺重构的产业链逻辑。',content:'# 半导体投资分析报告\n\n**日期：** 2026-05-27\n\n## 核心判断\n半导体增长逻辑从"晶体管密度提升"转向 **"3D晶体管+背面供电+新材料组合创新"**。AI倒逼芯片制造底层工艺重写。\n\n### 产业链时间线\n\n| 时间 | 事件 |\n|:---:|------|\n| 2026年 | GAA晶体管、SoIC混合键合、InP衬底小批量 |\n| **2027年** | **背面供电、玻璃核心基板集中放量** |\n| 2028年 | DRAM-on-logic规模化，边缘AI+汽车电子驱动 |\n| 2029-2030年 | 高NA EUV量产，金属氧化物光刻胶导入 |\n\n## 优选标的\n\n### 🥇 安集科技(688019) — CMP抛光液龙头\n- 2026Q1：营收7.24亿(+33%)，净利润2.08亿(+23%)\n- 股东户数1.43万户，连续收敛，前十大集中度58%\n- 140家机构持有65.5%，大股东零减持\n\n### � 源杰科技(688498) — 光芯片IDM\n- 2026Q1：营收3.55亿(+321%)，净利润1.79亿(+1153%)\n- 毛利率77.8%，户均持股市值459万\n- 股东户数仅1.36万户\n\n### 🥉 鼎龙股份(300054) — CMP抛光垫\n- 2026Q1：营收10.2亿，净利润2.51亿\n- 股东户数6.04万户偏多\n\n> ⚠️ 以上分析基于公开信息整理，不构成投资建议。'},
+  {id:'rpt-2',title:'华海诚科(688535)深度分析：HBM国产化逻辑与筹码困境',type:'report',tags:['华海诚科','HBM','GMC','先进封装','减持'],date:'2026-05-27 18:30',summary:'HBM国产化产业趋势确定，但华天科技清仓减持3个月，筹码结构严重恶化。',content:'# 华海诚科(688535)深度分析\n\n## 产业逻辑\nHBM国产化→GMC放量→华海诚科受益，逻辑链成立。\n\n## 核心矛盾\n> 股价 = HBM/国产替代远期故事 ÷ **筹码结构即时破坏力**\n\n### 问题在分母：\n1. **华天科技清仓减持**(5月28日-8月27日，340万股/2.40%)\n2. 日均主力净流出数千万\n3. 缺乏长线多头承接——游资+散户为主\n4. 300+倍PE，远期预期已透支\n\n## 操作策略\n产业面硬，但筹码矛盾要先解决。更好的入场时机是**减持期结束后、换手率降下来之后**。\n\n> ⚠️ 以上分析基于公开信息整理，不构成投资建议。'},
+  {id:'rpt-3',title:'国产HBM产业链全景解析：从DRAM到先进封装的突围战',type:'report',tags:['HBM','长鑫存储','长电科技','通富微电','安集科技','先进封装','华为','TSV'],date:'2026-05-28 10:45',summary:'全面梳理国产HBM产业链现状、核心玩家与挑战。从DRAM颗粒、先进封装、设备、材料到EDA/IP逐环节拆解。',content:'# 国产HBM产业链全景解析\n\n**日期：** 2026-05-28\n\n> 国产HBM产业链处于**"从0到1，点状突破"**的初级阶段。代差已从8年缩至4年。\n\n## 一、HBM存储颗粒\n\n| 公司 | 进展 |\n|:---:|:----:|\n| **长鑫存储(CXMT)** | HBM2已于2025H1量产，HBM3样品交付客户，目标2027年HBM3E |\n| 武汉新芯(XMC) | HBM2开发中，月产能3000片12英寸工厂 |\n\n## 二、先进封装\n\n| 公司 | 技术 |\n|:---:|:----:|\n| **长电科技(600584)** ⭐ | XDFOI对标CoWoS，最强HBM封装竞争者 |\n| **通富微电(002156)** | 绑定AMD，已与长鑫合作HBM2样品 |\n| 华天科技(002185) | TSV/3D封装布局中 |\n\n## 三、关键设备\n\n- **TSV刻蚀：** 北方华创(002371) / 中微公司(688012)\n- **CMP设备：** 华海清科(688120) ✅\n- **封装光刻：** 上海微电子（已量产）\n- **键合设备：** 新益昌追赶中，**最大短板**\n\n## 四、关键材料\n\n- **CMP抛光液：** 安集科技(688019) 💎\n- **光刻胶：** 南大光电(300346) / 上海新阳(300236)\n- **电子特气：** 华特气体(688268)\n\n## 五、EDA/IP\n\n- **EDA工具：** 华大九天(301269)\n- **HBM3 PHY IP：** 芯原股份(688521) ⭐\n\n## 六、链主：华为\n\n华为定义需求→长鑫DRAM→长电/通富封装→设备材料联动→昇腾芯片落地验证\n\n## 七、时间线\n\n| 时间 | 目标 |\n|:---:|:----:|\n| 2025H1 ✅ | HBM2量产 |\n| 2025H2 🔄 | HBM3量产验证 |\n| 2027E 🎯 | HBM3E量产 |\n\n📌 **A股受益标的：** 长电科技、通富微电、北方华创、中微公司、华海清科、安集科技、芯原股份、华大九天\n\n> ⚠️ 以上分析基于公开信息整理，不构成投资建议。'}
+];
 
-    // ─── Fund Flow Chart (hand-drawn) ──
-    function renderFundFlow(sectors) {
-      function draw() {
-        const canvas = document.querySelector('#fundFlowChart canvas');
-        if (!canvas) return;
-        const container = canvas.parentElement;
-        const dpr = window.devicePixelRatio || 1;
-        const w = container.clientWidth || 280;
-        const h = container.clientHeight || 200;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
+const watchlist = [
+  {n:'寒武纪',c:'688256.SH',p:'1340.00',ch:-0.17,ff:-2.3},
+  {n:'三花智控',c:'002050.SZ',p:'51.02',ch:-3.71,ff:-1.8},
+  {n:'蓝色光标',c:'300058.SZ',p:'15.77',ch:0.06,ff:0.3},
+  {n:'安集科技',c:'688019.SH',p:'186.50',ch:1.82,ff:0.9},
+  {n:'源杰科技',c:'688498.SH',p:'128.30',ch:2.15,ff:0.7},
+  {n:'华海诚科',c:'688535.SH',p:'68.40',ch:-4.82,ff:-5.1}
+];
 
-        const barH = 22, gap = 12, leftM = 70;
-        const maxVal = Math.max(...sectors.map(s => s.flow), 1);
-        const chartW = w - leftM - 20;
+const funds = [
+  {n:'半导体',v:12.4,c:'#3b82f6'},
+  {n:'AI算力',v:8.7,c:'#a855f7'},
+  {n:'机器人',v:5.2,c:'#ec4899'},
+  {n:'CPO光模块',v:4.1,c:'#06b6d4'},
+  {n:'HBM存储',v:3.5,c:'#f59e0b'}
+];
 
-        ctx.clearRect(0, 0, w, h);
+const tags = ['AI芯片','HBM','人形机器人','CPO','算力','大模型','存储','自动驾驶','半导体设备','光芯片','Chiplet','量子计算'];
 
-        sectors.forEach((s, i) => {
-          const y = 10 + i * (barH + gap);
-          const bw = (s.flow / maxVal) * chartW;
+const preds = [
+  {n:'三花智控',c:'sz002050',p:'51.02',t1:'81.9%跌',t5:'80.7%跌',a:'56.0%'},
+  {n:'寒武纪',c:'sh688256',p:'1340.00',t1:'61.3%跌',t5:'80.7%跌',a:'44.8%'},
+  {n:'蓝色光标',c:'sz300058',p:'15.77',t1:'15.0%跌',t5:'86.5%跌',a:'49.1%'}
+];
 
-          ctx.fillStyle = '#94a3b8';
-          ctx.font = '10px sans-serif';
-          ctx.textAlign = 'right';
-          ctx.fillText(s.name, leftM - 8, y + barH / 2 + 3.5);
+// ─── Render ──
+function renderFunds() {
+  const maxV = Math.max(...funds.map(f => f.v));
+  document.getElementById('fundList').innerHTML = funds.map(f =>
+    `<div class=fund-row>
+      <span class=n>${f.n}</span>
+      <div class=b style="background:${f.c}22"><div style="width:${f.v/maxV*100}%;background:${f.c}">${f.v.toFixed(1)}亿</div></div>
+    </div>`
+  ).join('');
+}
 
-          const alpha = Math.round(0.7 * 255).toString(16).padStart(2,'0');
-          ctx.fillStyle = s.color + alpha;
-          ctx.fillRect(leftM, y, bw, barH);
+function renderTags() {
+  document.getElementById('tagCloud').innerHTML = tags.map(t => {
+    const colors = ['#3b82f6','#f59e0b','#ec4899','#06b6d4','#a855f7','#22c55e'];
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    return `<span style="background:${c}18;color:${c}">#${t}</span>`;
+  }).join('');
+}
 
-          ctx.fillStyle = '#94a3b8';
-          ctx.font = '10px sans-serif';
-          ctx.textAlign = 'left';
-          ctx.fillText(s.flow.toFixed(1) + '亿', leftM + bw + 6, y + barH / 2 + 3.5);
-        });
-      }
-      draw();
-      setTimeout(draw, 50);
-    }
+function renderWL() {
+  document.getElementById('wlBody').innerHTML = watchlist.map(s =>
+    `<tr>
+      <td><strong>${s.n}</strong></td>
+      <td><span class=code>${s.c}</span></td>
+      <td>¥${s.p}</td>
+      <td class="${s.ch >= 0 ? 'green' : 'red'}">${s.ch >= 0 ? '+' : ''}${s.ch.toFixed(2)}%</td>
+      <td class="${s.ff >= 0 ? 'green' : 'red'}">${s.ff >= 0 ? '+' : ''}${s.ff.toFixed(1)}亿</td>
+    </tr>`
+  ).join('');}
 
-    // ─── Sentiment Chart (hand-drawn donut) ──
-    function renderSentiment(sent) {
-      function draw() {
-        const canvas = document.querySelector('#sentimentChart canvas');
-        if (!canvas) return;
-        const container = canvas.parentElement;
-        const dpr = window.devicePixelRatio || 1;
-        const w = container.clientWidth || 200;
-        const h = container.clientHeight || 200;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
-        ctx.clearRect(0, 0, w, h);
+function renderPreds() {
+  document.getElementById('predList').innerHTML = preds.map(p =>
+    `<div class=pred-item>
+      <div><strong>${p.n}</strong><br><span style="font-size:11px;color:#94a3b8">${p.c} · ACC: ${p.a}</span></div>
+      <div class=preds>
+        <div><div class=lbl>T+1</div><div class="red dir">${p.t1}</div></div>
+        <div><div class=lbl>T+5</div><div class="red dir">${p.t5}</div></div>
+      </div>
+    </div>`
+  ).join('');
+}
 
-        const total = sent.positive + sent.neutral + sent.negative;
-        const cx = w / 2, cy = h * 0.38;
-        const or = Math.min(w, h * 0.75) * 0.35;
-        const ir = or * 0.55;
+function renderArts() {
+  const f = arts.filter(a => {
+    const q = document.getElementById('sbox').value.toLowerCase();
+    if (q && !a.title.toLowerCase().includes(q) && !a.summary.toLowerCase().includes(q) && !a.tags.some(t => t.toLowerCase().includes(q))) return false;
+    if (currentFt && currentFt !== 'all' && a.type !== currentFt) return false;
+    return true;
+  });
+  const sorted = [...f].sort((a,b) => b.date.localeCompare(a.date));
+  document.getElementById('artList').innerHTML = sorted.length === 0
+    ? '<div style="text-align:center;padding:40px;color:#64748b">📭 暂无匹配内容</div>'
+    : sorted.map(a => {
+      const cls = a.type === 'report' ? 'rpt' : 'mon';
+      const lb = a.type === 'report' ? '📋 专题报告' : '📡 监控报告';
+      return `<div class=article onclick="openArt('${a.id}')">
+        <div class=meta><span class="t ${cls}">${lb}</span><span>${a.date}</span></div>
+        <h3>${a.title}</h3>
+        <p>${a.summary}</p>
+        <div class=tags>${a.tags.map(t => `<span>${t}</span>`).join('')}</div>
+      </div>`;
+    }).join('');
+}
 
-        const segs = [
-          { v: sent.positive, c: '#22c55e', l: '乐观' },
-          { v: sent.neutral, c: '#f59e0b', l: '中性' },
-          { v: sent.negative, c: '#ef4444', l: '悲观' }
-        ];
+let currentFt = 'all';
 
-        let sa = -Math.PI / 2;
-        segs.forEach(s => {
-          const sl = (s.v / total) * Math.PI * 2;
-          ctx.beginPath();
-          ctx.arc(cx, cy, or, sa, sa + sl);
-          ctx.arc(cx, cy, ir, sa + sl, sa, true);
-          ctx.closePath();
-          ctx.fillStyle = s.c;
-          ctx.fill();
-          sa += sl;
-        });
+function filterArt(t, btn) {
+  currentFt = t;
+  document.getElementById('filterBar').querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  bt.classList.add('active');
+  renderArts();
+}
 
-        // Center text
-        ctx.fillStyle = '#f1f5f9';
-        ctx.font = 'bold 20px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(total + '%', cx, cy + 6);
+function searchArt() { renderArts(); }
 
-        // Legend
-        const ly = cy + or + 22;
-        ctx.font = '11px sans-serif';
-        segs.forEach((s, i) => {
-          const lx = w * 0.17 + i * (w * 0.28);
-          ctx.fillStyle = s.c;
-          ctx.fillRect(lx - 16, ly - 4, 10, 10);
-          ctx.fillStyle = '#94a3b8';
-          ctx.textAlign = 'center';
-          ctx.fillText(s.l + ' ' + s.v + '%', lx + 5, ly + 5);
-        });
-      }
-      draw();
-      setTimeout(draw, 50);
-    }
+// ─── Modal ──
+function openArt(id) {
+  const a = arts.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('mTitle').textContent = a.title;
+  const body = document.getElementById('mBody');
+  body.innerHTML = a.content
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+    .replace(/^---$/gm, '<hr>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    .replace(/^\|(.+)\|$/gm, m => m.includes('---') ? '' : `<tr>${m.slice(1,-1).split('|').map(c => '<td>'+c.trim()+'</td>').join('')}</tr>`)
+    .split('\n').map(l => {
+      const t = l.trim();
+      if (!t || t.startsWith('<h') || t.startsWith('<blockquote') || t.startsWith('<hr') || t.startsWith('<tr') || t.startsWith('</tr')) return t;
+      return `<p>${t}</p>`;
+    }).join('\n').replace(/(<tr>.*?<\/tr>)/g, '<table>$1</table>');
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('ov').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
 
-    // ─── Tag Cloud ──
-    function renderTagCloud(tags) {
-      const container = document.getElementById('tagCloud');
-      container.innerHTML = tags.map(t => {
-        const size = 0.7 + (t.weight / 100) * 0.7;
-        return `<span style="font-size:${size}rem; background:${t.color}20; color:${t.color};">#${t.name}</span>`;
-      }).join('');
-    }
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+  document.getElementById('ov').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('ov').addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // ─── Watchlist ──
-    function renderWatchlist(wl) {
-      const tbody = document.getElementById('watchlistBody');
-      tbody.innerHTML = wl.map(s => {
-        const changeClass = s.change >= 0 ? 'up' : 'down';
-        const flowClass = s.fundFlow >= 0 ? 'up' : 'down';
-        const flowPct = Math.min(Math.abs(s.fundFlow) / 10 * 100, 100);
-        return `
-          <tr>
-            <td><strong>${s.name}</strong></td>
-            <td><span class="code">${s.code}</span></td>
-            <td>¥${s.price.toFixed(2)}</td>
-            <td class="${changeClass}">${s.change >= 0 ? '+' : ''}${s.change.toFixed(2)}%</td>
-            <td class="${flowClass}">
-              <div style="display:flex;align-items:center;gap:0.5rem;">
-                <span>${s.fundFlow >= 0 ? '+' : ''}${s.fundFlow.toFixed(1)}亿</span>
-                <div class="progress-bar"><div class="fill ${flowClass}" style="width:${flowPct}%"></div></div>
-              </div>
-            </td>
-          </tr>
-        `;
-      }).join('');
-    }
+// ─── Tabs ──
+function showTab(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('show'));
+  document.getElementById('page-'+name).classList.add('show');
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
 
-    // ─── Predictions ──
-    function renderPredGrid(preds) {
-      const grid = document.getElementById('predGrid');
-      grid.innerHTML = preds.map(p => `
-        <div class="pred-item">
-          <div class="name-code">
-            <span class="name">${p.name}</span>
-            <span class="code">${p.code} · ¥${p.price} · ACC: ${p.acc}</span>
-          </div>
-          <div class="preds">
-            <div class="pred">
-              <div class="label">T+1</div>
-              <div class="dir ${p.t1Down ? 'down' : 'up'}">${p.t1Dir} ${p.t1Prob}</div>
-            </div>
-            <div class="pred">
-              <div class="label">T+5</div>
-              <div class="dir ${p.t5Down ? 'down' : 'up'}">${p.t5Dir} ${p.t5Prob}</div>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // ─── Accuracy Trend Chart (hand-drawn line) ──
-    function renderAccChart() {
-      function draw() {
-        const canvas = document.querySelector('#accChart canvas');
-        if (!canvas) return;
-        const container = canvas.parentElement;
-        const dpr = window.devicePixelRatio || 1;
-        const w = container.clientWidth || 300;
-        const h = container.clientHeight || 280;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
-        ctx.clearRect(0, 0, w, h);
-
-        const labels = ['5/26', '5/27'];
-        const data = [66.7, 66.7];
-        const ml = 40, mr = 15, mt = 20, mb = 30;
-        const cw = w - ml - mr;
-        const ch = h - mt - mb;
-
-        // Y grid lines & labels
-        for (let i = 0; i <= 4; i++) {
-          const y = mt + (ch / 4) * i;
-          const val = 100 - i * 25;
-          ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-          ctx.beginPath();
-          ctx.moveTo(ml, y);
-          ctx.lineTo(ml + cw, y);
-          ctx.stroke();
-          ctx.fillStyle = '#94a3b8';
-          ctx.font = '10px sans-serif';
-          ctx.textAlign = 'right';
-          ctx.fillText(val + '%', ml - 6, y + 3.5);
-        }
-
-        // Line
-        ctx.beginPath();
-        ctx.strokeStyle = '#3b82f6';
-        ctx.lineWidth = 2;
-        data.forEach((v, i) => {
-          const x = ml + (cw / Math.max(data.length - 1, 1)) * i;
-          const y = mt + ch - (v / 100) * ch;
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        });
-        ctx.stroke();
-
-        // Area fill
-        const lastIdx = data.length - 1;
-        const lx = ml + (cw / Math.max(lastIdx, 1)) * lastIdx;
-        const ly = mt + ch - (data[lastIdx] / 100) * ch;
-        ctx.lineTo(lx, mt + ch);
-        ctx.lineTo(ml, mt + ch);
-        ctx.closePath();
-        ctx.fillStyle = 'rgba(59,130,246,0.08)';
-        ctx.fill();
-
-        // Points & X labels
-        data.forEach((v, i) => {
-          const x = ml + (cw / Math.max(data.length - 1, 1)) * i;
-          const y = mt + ch - (v / 100) * ch;
-          ctx.beginPath();
-          ctx.arc(x, y, 4, 0, Math.PI * 2);
-          ctx.fillStyle = '#3b82f6';
-          ctx.fill();
-          ctx.fillStyle = '#94a3b8';
-          ctx.font = '10px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(labels[i], x, h - 6);
-        });
-      }
-      draw();
-      setTimeout(draw, 50);
-    }
-
-    // ─── Articles (Knowledge Base) ──
-    let currentType = 'all';
-    let searchQuery = '';
-
-    function filterArticles() {
-      return articlesData.filter(a => {
-        if (currentType !== 'all' && a.type !== currentType) return false;
-        if (searchQuery) {
-          const q = searchQuery.toLowerCase();
-          return a.title.toLowerCase().includes(q) ||
-                 (a.summary || '').toLowerCase().includes(q) ||
-                 a.tags.some(t => t.toLowerCase().includes(q));
-        }
-        return true;
-      });
-    }
-
-    function renderArticles() {
-      const filtered = filterArticles();
-      const sorted = [...filtered].sort((a, b) => b.date.localeCompare(a.date));
-      const list = document.getElementById('articleList');
-
-      if (sorted.length === 0) {
-        list.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-secondary);">📭 暂无匹配内容</div>';
-        return;
-      }
-
-      list.innerHTML = sorted.map(a => {
-        const typeTag = a.type === 'report' ? 'report' : 'monitor';
-        const typeLabel = a.type === 'report' ? '📋 专题报告' : '📡 监控报告';
-        const tagsHtml = a.tags.map(t => `<span>${t}</span>`).join('');
-        return `
-          <div class="article-card" data-id="${a.id}">
-            <div class="meta">
-              <span class="tag ${typeTag}">${typeLabel}</span>
-              <span>${a.date}</span>
-            </div>
-            <h3>${a.title}</h3>
-            <div class="summary">${a.summary}</div>
-            <div class="tags">${tagsHtml}</div>
-          </div>
-        `;
-      }).join('');
-
-      list.querySelectorAll('.article-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const article = articlesData.find(a => a.id === card.dataset.id);
-          if (article) openModal(article);
-        });
-      });
-    }
-
-    // ─── Modal ──
-    function mdToHtml(text) {
-      let html = text
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-      html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => `<pre><code>${code.trim()}</code></pre>`);
-      html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-      html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-      html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-      html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
-      html = html.replace(/^---$/gm, '<hr>');
-      html = html.replace(/^\|(.+)\|$/gm, (match) => {
-        if (match.includes('---')) return '';
-        const cols = match.slice(1, -1).split('|').map(c => c.trim());
-        if (match.startsWith('|:')) return '';
-        return `<tr><td>${cols.join('</td><td>')}</td></tr>`;
-      });
-      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-      html = html.replace(/`(.+?)`/g, '<code>$1</code>');
-
-      const lines = html.split('\n');
-      let result = [], inPre = false, inTable = false;
-      for (const line of lines) {
-        const t = line.trim();
-        if (t.startsWith('<pre>')) { inPre = true; result.push(line); continue; }
-        if (t.startsWith('</pre>')) { inPre = false; result.push(line); continue; }
-        if (inPre) { result.push(line); continue; }
-        if (t.startsWith('<tr')) { inTable = true; result.push(line); continue; }
-        if (t.startsWith('</tr')) { result.push(line); continue; }
-        if (inTable && !t.startsWith('<tr')) { inTable = false; continue; }
-        if (t === '') continue;
-        if (t.startsWith('<h') || t.startsWith('<blockquote') || t.startsWith('<hr') || t.startsWith('</h')) {
-          result.push(t);
-        } else {
-          result.push(`<p>${t}</p>`);
-        }
-      }
-      // Wrap table rows
-      let joined = result.join('\n');
-      joined = joined.replace(/(<tr>.*?<\/tr>)/g, '<table>$1</table>');
-      return joined;
-    }
-
-    function openModal(article) {
-      document.getElementById('modalTitle').textContent = article.title;
-      document.getElementById('modalBody').innerHTML = mdToHtml(article.content);
-      document.getElementById('modalOverlay').classList.add('open');
-      document.getElementById('modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('open');
-      document.getElementById('modal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // ─── Tab Switching ──
-    document.querySelectorAll('[data-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.dashboard').forEach(d => d.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-        // Reflow charts
-        setTimeout(() => {
-          renderFundFlow(marketData.sectors);
-          renderSentiment(marketData.sentiment);
-          renderAccChart();
-        }, 100);
-      });
-    });
-
-    // ─── Init ──
-    function init() {
-      // Time
-      const now = new Date();
-      document.getElementById('headerTime').innerHTML =
-        `<span class="live-dot"></span> ${now.toLocaleDateString('zh-CN', {
-          year: 'numeric', month: 'long', day: 'numeric',
-          hour: '2-digit', minute: '2-digit'
-        })} · 实时`;
-
-      renderTicker(marketData.ticker);
-      renderStats(marketData);
-      renderFundFlow(marketData.sectors);
-      renderSentiment(marketData.sentiment);
-      renderTagCloud(marketData.tags);
-      renderWatchlist(marketData.watchlist);
-      renderPredGrid(marketData.predictions);
-      renderAccChart();
-      renderArticles();
-
-      // Article filters
-      document.querySelectorAll('.filter-chip').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentType = btn.dataset.type;
-          renderArticles();
-        });
-      });
-
-      // Search
-      let searchTimer;
-      document.getElementById('searchBox').addEventListener('input', (e) => {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(() => {
-          searchQuery = e.target.value.trim();
-          renderArticles();
-        }, 300);
-      });
-
-      // Modal
-      document.getElementById('modalClose').addEventListener('click', closeModal);
-      document.getElementById('modalOverlay').addEventListener('click', closeModal);
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-      // Auto-refresh time
-      setInterval(() => {
-        const t = new Date();
-        document.getElementById('headerTime').innerHTML =
-          `<span class="live-dot"></span> ${t.toLocaleDateString('zh-CN', {
-            year: 'numeric', month: 'long', day: 'numeric',
-            hour: '2-digit', minute: '2-digit'
-          })} · 实时`;
-      }, 30000);
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
+// ─── Init
+renderFunds();
+renderTags();
+renderWL();
+renderPreds();
+renderArts();
+</script>
 </body>
 </html>
