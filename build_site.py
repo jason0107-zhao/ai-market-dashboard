@@ -71,29 +71,36 @@ def build():
     with open(INDEX, "r", encoding="utf-8") as f:
         html = f.read()
 
-    # Replace monitors array
+    # Replace monitors array — use str.replace to avoid re.sub escape issues
     monitors_json = json.dumps(monitors, ensure_ascii=False)
-    html = re.sub(
-        r'const monitors = \[.*?\];',
-        f'const monitors = {monitors_json};',
-        html,
-        flags=re.DOTALL
-    )
+    old_tag = 'const monitors = '
+    old_start = html.index(old_tag)
+    old_end = html.index(';', old_start + len(old_tag)) + 1
+    html = html[:old_start] + old_tag + monitors_json + ';' + html[old_end:]
 
     # Replace reports array
     reports_json = json.dumps(reports, ensure_ascii=False)
-    html = re.sub(
-        r'const reports = \[.*?\];',
-        f'const reports = {reports_json};',
-        html,
-        flags=re.DOTALL
-    )
+    old_tag = 'const reports = '
+    old_start = html.index(old_tag)
+    old_end = html.index(';', old_start + len(old_tag)) + 1
+    html = html[:old_start] + old_tag + reports_json + ';' + html[old_end:]
+
+    # Update filter buttons from dates in monitors
+    dates_present = sorted(set(m["date"][:10] for m in monitors), reverse=True)
+    if dates_present:
+        date_buttons = '<button class=active onclick="filterMon(\'all\',event)">全部</button>\n'
+        for d in dates_present:
+            mon_day = d[5:]
+            date_buttons += f'    <button onclick="filterMon(\'{d}\',event)">{mon_day}</button>\n'
+        html = re.sub(
+            r'<div class="filters" id=monFilter>.*?</div>',
+            f'<div class="filters" id=monFilter>\n    {date_buttons}  </div>',
+            html,
+            flags=re.DOTALL
+        )
 
     with open(INDEX, "w", encoding="utf-8") as f:
         f.write(html)
-
-    # Also update filter buttons — find dates present in monitors
-    dates_present = sorted(set(m["date"][:10] for m in monitors), reverse=True)
 
     print(f"  Monitors: {len(monitors)}, Reports: {len(reports)}, Dates: {dates_present[:5]}...")
     return True
