@@ -71,18 +71,23 @@ def build():
     with open(INDEX, "r", encoding="utf-8") as f:
         html = f.read()
 
-    # Replace monitors array — use str.replace to avoid re.sub escape issues
+    # Replace monitors array — find const monitors = [ ... ]; (match closing bracket + semicolon)
     monitors_json = json.dumps(monitors, ensure_ascii=False)
     old_tag = 'const monitors = '
     old_start = html.index(old_tag)
-    old_end = html.index(';', old_start + len(old_tag)) + 1
+    # Find the matching ];  — look for '];' after the opening [
+    search_from = old_start + len(old_tag)
+    # The last ] followed by ; is the end of the monitors array
+    bracket_pos = html.index('];', search_from)
+    old_end = bracket_pos + 2  # include ];
     html = html[:old_start] + old_tag + monitors_json + ';' + html[old_end:]
 
     # Replace reports array
     reports_json = json.dumps(reports, ensure_ascii=False)
     old_tag = 'const reports = '
     old_start = html.index(old_tag)
-    old_end = html.index(';', old_start + len(old_tag)) + 1
+    bracket_pos = html.index('];', old_start + len(old_tag))
+    old_end = bracket_pos + 2
     html = html[:old_start] + old_tag + reports_json + ';' + html[old_end:]
 
     # Update filter buttons from dates in monitors
