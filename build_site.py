@@ -11,8 +11,17 @@ from datetime import datetime
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(REPO_DIR, "data")
 INDEX   = os.path.join(REPO_DIR, "index.html")
-# Use GITHUB_TOKEN env var, or fall back to the remote URL already configured in git
+# Use GITHUB_TOKEN env var, with .env file fallback
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+if not GITHUB_TOKEN:
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("GITHUB_TOKEN="):
+                    GITHUB_TOKEN = line.split("=", 1)[1].strip("\"'")
+                    break
 if GITHUB_TOKEN:
     REPO_URL = f"https://jason0107-zhao:{GITHUB_TOKEN}@github.com/jason0107-zhao/ai-market-dashboard.git"
 else:
