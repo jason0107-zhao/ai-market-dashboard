@@ -118,6 +118,7 @@ tr:hover td{background:rgba(59,130,246,.05)}
   <button class="tab active" onclick="showTab('dash',event)">📊 仪表盘</button>
   <button class="tab" onclick="showTab('monitor',event)"><span class="dot" style="background:#3b82f6"></span>定时监测</button>
   <button class="tab" onclick="showTab('rpt',event)">📋 专题报告</button>
+  <button class="tab" onclick="showTab('portfolio',event)">💼 我的持仓</button>
 </div>
 
 <!-- ═══ DASHBOARD ═══ -->
@@ -166,6 +167,57 @@ tr:hover td{background:rgba(59,130,246,.05)}
 <div id="page-rpt" class="page">
   <div id=rptList style="max-width:800px;margin:0 auto"></div>
 </div>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<div id="page-portfolio" class="page">
+  <div id=pfl-loading style="text-align:center;padding:60px 0;color:#94a3b8">⏳ 正在获取持仓数据...</div>
+  <div id=pfl-wrap style="display:none">
+    <div class="row" id=pflBar></div>
+    <div class="grid3" id=pflMF></div>
+    <div style="text-align:right;margin-bottom:12px">
+      <span style="font-size:11px;color:#94a3b8" id=pflTime></span>
+    </div>
+    <div class="grid" id=pflGrid></div>
+  </div>
+</div>
+<style>
+/* portfolio stock card */
+.pfl-card {
+  background:var(--card); border:1px solid var(--card-border); border-radius:14px;
+  padding:14px; position:relative; transition:all .3s;
+}
+.pfl-card:hover { border-color:rgba(59,130,246,0.25); transform:translateY(-2px); }
+.pfl-rtg {
+  position:absolute; top:10px; right:10px;
+  padding:2px 10px; border-radius:14px; font-size:10px; font-weight:600;
+}
+.pfl-rtg-B { background:rgba(34,197,94,0.12); color:#22c55e; }
+.pfl-rtg-H { background:rgba(245,158,11,0.12); color:#f59e0b; }
+.pfl-rtg-S { background:rgba(239,68,68,0.12); color:#ef4444; }
+.pfl-hd { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+.pfl-exg { font-size:9px; padding:1px 6px; border-radius:3px; font-weight:600; }
+.pfl-sn h2 { font-size:13px; font-weight:600; }
+.pfl-sn .cd { font-size:10px; color:var(--text3); font-family:'JetBrains Mono',monospace; }
+.pfl-pr { display:flex; align-items:baseline; gap:8px; margin-bottom:2px; }
+.pfl-pr .p { font-size:20px; font-weight:700; font-family:'JetBrains Mono',monospace; }
+.pfl-pr .cp { font-size:12px; font-weight:600; }
+.pfl-pl { display:inline-flex; align-items:center; gap:3px; padding:3px 8px; border-radius:5px; font-size:10px; margin-bottom:7px; }
+.pfl-pl.pb { background:rgba(34,197,94,0.10); color:#22c55e; }
+.pfl-pl.lb { background:rgba(239,68,68,0.10); color:#ef4444; }
+.pfl-tech { display:flex; gap:5px; margin-bottom:6px; flex-wrap:wrap; }
+.pfl-tb { flex:1; min-width:42px; text-align:center; padding:4px 2px; border-radius:5px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
+.pfl-tb .tl { font-size:8px; color:var(--text3); margin-bottom:1px; }
+.pfl-tb .tv { font-size:11px; font-weight:600; font-family:'JetBrains Mono',monospace; }
+.pfl-tb .ts { font-size:8px; margin-top:1px; font-weight:500; }
+.pfl-chart { margin:4px 0; height:30px; }
+.pfl-chart svg { width:100%; height:100%; }
+.pfl-mf { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; margin-bottom:6px; }
+.pfl-mfi { text-align:center; padding:3px; border-radius:3px; background:rgba(255,255,255,0.02); }
+.pfl-mfi .ml { font-size:8px; color:var(--text3); }
+.pfl-mfi .mv { font-size:10px; font-weight:600; font-family:'JetBrains Mono',monospace; }
+.pfl-tag { display:flex; flex-wrap:wrap; gap:2px; }
+.pfl-ct { padding:1px 5px; border-radius:3px; font-size:8px; background:rgba(59,130,246,0.08); color:#93c5fd; border:1px solid rgba(59,130,246,0.1); }
+</style>
 
 <div class=overlay id=ov onclick="closeModal()"></div>
 <div class=modal id=modal><div class=mh><span id=mTitle></span><button onclick="closeModal()">&times;</button></div><div class=mb id=mBody></div></div>
@@ -367,6 +419,109 @@ function openReport(id) {
   // Market comment
   document.getElementById('marketComment').innerHTML='<p>'+(l.summary||'暂无数据')+'</p>';
 })()
+
+// ═══ PORTFOLIO ═══
+const pflSecs = ['09988.HK','513300','600030.SH','300058.SZ','688585.SH','159934.SZ','513310.SH','588170.SH','002716.SZ','600362.SH','601288.SH','600036.SH','600021.SH','159819.SZ'];
+let pflData = null;
+async function loadPortfolio() {
+  const wrap = document.getElementById('pfl-wrap');
+  const loading = document.getElementById('pfl-loading');
+  try {
+    const r = await fetch('./data/portfolio.json?t='+Date.now());
+    if (!r.ok) throw new Error('HTTP '+r.status);
+    pflData = await r.json();
+    loading.style.display = 'none';
+    wrap.style.display = 'block';
+    renderPortfolio();
+  } catch(e) {
+    // fallback: use embedded default data
+    pflData = {"time":"2026-05-29 21:45 CST","stocks":[
+      {n:"阿里巴巴-W",c:"09988.HK",e:"港股",ec:"pfl-exg"+(e=>e==='港股'?'H':e==='ETF'?'E':'A')(),cur:"HK$",pr:120.90,ch:-0.74,rt:"B","md":{v:-0.35,s:"多头收敛"},kd:"K52 D48",r6:55.2,rs:"中性偏强",mf:[3.04,2.44,0.60,-6.41],tg:["电商龙头","云计算","AI大模型"],kl:[115,114.5,116,118,117.5,119,120.5,120,121,122,123.5,122,124,125,124.5,126,125.2,125.8,126.5,125,124.5,125.8,126.2,125,124.2,125,125.6,126,120.5,120.9],ma:[119.5,118.0,116.5]},
+      {n:"纳斯达克ETF华夏",c:"513300",e:"A股ETF",ec:"pfl-exgE",cur:"¥",pr:2.75,ch:2.76,rt:"B","md":{v:0.08,s:"多头"},kd:"K66 D60",r6:60.5,rs:"中性偏强",mf:[0.80,0.45,0.35,-0.12],tg:["QDII","纳指100","主力加速流入"],kl:[2.58,2.56,2.60,2.62,2.61,2.63,2.65,2.64,2.66,2.68,2.70,2.68,2.71,2.73,2.72,2.74,2.73,2.75,2.76,2.74,2.73,2.75,2.76,2.74,2.72,2.73,2.74,2.75,2.74,2.75]},
+      {n:"中信证券",c:"600030.SH",e:"A股",ec:"pfl-exgA",cur:"¥",pr:26.63,ch:5.05,rt:"B","md":{v:0.95,s:"多头"},kd:"K72 D66",r6:68.5,rs:"偏强",mf:[2.15,1.20,0.95,-0.58],tg:["券商龙头","H股定增160亿","国际化"],kl:[24.5,24.3,24.8,25.0,24.9,25.2,25.5,25.3,25.6,25.8,26.0,25.8,26.2,26.5,26.3,26.6,26.4,26.8,26.7,26.5,26.3,26.6,26.8,26.5,26.2,26.4,26.6,26.7,26.5,26.6]},
+      {n:"蓝色光标",c:"300058.SZ",e:"A股",ec:"pfl-exgA",cur:"¥",pr:16.70,ch:3.34,rt:"H","md":{v:0.45,s:"多头"},kd:"K60 D56",r6:58.8,rs:"中性",mf:[0.38,0.22,0.16,-0.10],tg:["数字营销","AI广告","换手13.7%"],kl:[15.2,15.0,15.5,15.8,15.7,15.9,16.0,16.2,16.1,16.3,16.5,16.4,16.6,16.8,16.7,16.9,16.8,17.0,17.1,16.9,16.7,16.9,17.0,16.8,16.5,16.6,16.7,16.8,16.6,16.7]},
+      {n:"上纬新材",c:"688585.SH",e:"科创板",ec:"pfl-exgA",cur:"¥",pr:183.04,ch:-3.15,rt:"H","md":{v:-2.35,s:"空头"},kd:"K36 D40",r6:38.5,rs:"偏弱",mf:[-0.12,-0.05,-0.07,0.03],tg:["风电材料","复合材料","高位回撤"],kl:[195,192,190,188,186,185,184,185,186,184,182,180,181,183,185,184,182,180,178,180,182,184,183,181,179,180,182,184,183,183]},
+      {n:"黄金ETF易方达",c:"159934.SZ",e:"ETF",ec:"pfl-exgE",cur:"¥",pr:9.78,ch:2.89,rt:"B","md":{v:0.15,s:"多头"},kd:"K75 D69",r6:65.8,rs:"偏强",mf:[0.70,0.45,0.25,-0.12],tg:["避险资产","金价4500+","主力连入1.92亿"],kl:[9.20,9.18,9.25,9.30,9.28,9.32,9.35,9.33,9.38,9.42,9.45,9.43,9.48,9.52,9.50,9.55,9.53,9.58,9.62,9.60,9.58,9.62,9.65,9.68,9.72,9.75,9.73,9.76,9.74,9.78]},
+      {n:"中韩半导体ETF",c:"513310.SH",e:"ETF",ec:"pfl-exgE",cur:"¥",pr:5.979,ch:-1.50,rt:"H","md":{v:-0.08,s:"空头收敛"},kd:"K43 D46",r6:45.2,rs:"中性偏弱",mf:[0.68,0.42,0.26,-0.52],tg:["QDII","溢价20%+","下午停牌"],kl:[6.35,6.30,6.25,6.20,6.15,6.12,6.10,6.08,6.05,6.02,6.00,5.98,6.02,6.05,6.03,6.00,5.98,5.95,5.98,6.00,6.03,6.05,6.02,5.98,5.95,5.97,6.00,5.98,5.96,5.98]},
+      {n:"科创半导体ETF华夏",c:"588170.SH",e:"ETF",ec:"pfl-exgE",cur:"¥",pr:2.612,ch:-6.06,rt:"S","md":{v:-0.12,s:"空头"},kd:"K19 D25",r6:25.8,rs:"超卖",mf:[0.68,0.45,0.23,-0.42],tg:["科创半导体","今日-6%","趋势偏弱"],kl:[2.95,2.92,2.88,2.85,2.80,2.78,2.75,2.78,2.80,2.76,2.72,2.68,2.70,2.73,2.75,2.72,2.68,2.65,2.62,2.65,2.68,2.70,2.67,2.64,2.62,2.60,2.62,2.63,2.61,2.61]},
+      {n:"湖南白银",c:"002716.SZ",e:"A股",ec:"pfl-exgA",cur:"¥",pr:12.10,ch:-2.69,rt:"S","md":{v:-0.65,s:"空头"},kd:"K18 D23",r6:28.5,rs:"超卖",mf:[-0.08,-0.03,-0.05,0.02],tg:["白银","高位回撤55%","贵金属降温"],kl:[14.5,14.2,13.8,13.5,13.2,13.0,12.8,13.0,12.8,12.5,12.3,12.0,12.2,12.5,12.3,12.0,11.8,11.6,11.8,12.0,12.3,12.1,11.9,11.7,11.9,12.0,12.2,12.1,12.0,12.1]},
+      {n:"江西铜业",c:"600362.SH",e:"A股",ec:"pfl-exgA",cur:"¥",pr:43.50,ch:0.07,rt:"H","md":{v:0.15,s:"多头收敛"},kd:"K49 D46",r6:50.2,rs:"中性",mf:[0.67,0.35,0.32,-0.35],tg:["铜业龙头","主力净入6732万","铜价波动"],kl:[43.0,42.8,43.2,43.5,43.3,43.6,43.8,43.7,44.0,44.2,44.5,44.3,44.0,43.8,43.5,43.6,43.8,43.5,43.2,43.0,43.3,43.5,43.6,43.3,43.1,43.2,43.4,43.6,43.5,43.5]},
+      {n:"农业银行",c:"601288.SH",e:"A股",ec:"pfl-exgA",cur:"¥",pr:6.32,ch:1.77,rt:"B","md":{v:0.05,s:"多头"},kd:"K63 D56",r6:58.5,rs:"中性偏强",mf:[1.85,0.95,0.90,-0.40],tg:["银行","高股息","主力净入1.85亿"],kl:[6.15,6.12,6.18,6.20,6.19,6.22,6.25,6.23,6.26,6.28,6.30,6.28,6.32,6.35,6.33,6.36,6.34,6.37,6.38,6.36,6.34,6.36,6.37,6.35,6.33,6.34,6.35,6.36,6.34,6.32]},
+      {n:"招商银行",c:"600036.SH",e:"A股",ec:"pfl-exgA",cur:"¥",pr:38.01,ch:2.40,rt:"B","md":{v:0.55,s:"多头"},kd:"K66 D60",r6:62.5,rs:"偏强",mf:[8.30,5.20,3.10,-3.50],tg:["银行龙头","主力净入8.3亿","机构目标52"],kl:[36.8,36.6,37.0,37.2,37.1,37.4,37.6,37.5,37.8,38.0,38.2,38.0,38.3,38.5,38.4,38.6,38.5,38.7,38.8,38.6,38.4,38.6,38.7,38.5,38.3,38.4,38.5,38.6,38.4,38.0]},
+      {n:"上海电力",c:"600021.SH",e:"A股",ec:"pfl-exgA",cur:"¥",pr:21.38,ch:0.94,rt:"H","md":{v:0.25,s:"多头收敛"},kd:"K55 D51",r6:52.8,rs:"中性",mf:[0.15,0.08,0.07,-0.05],tg:["电力","央企","创60日新高"],kl:[20.2,20.1,20.3,20.5,20.4,20.6,20.8,20.7,20.9,21.0,21.2,21.1,21.3,21.5,21.4,21.3,21.2,21.4,21.5,21.3,21.1,21.2,21.4,21.3,21.1,21.2,21.3,21.4,21.3,21.4]},
+      {n:"人工智能ETF易方达",c:"159819.SZ",e:"ETF",ec:"pfl-exgE",cur:"¥",pr:2.04,ch:-3.80,rt:"S","md":{v:-0.05,s:"空头"},kd:"K33 D37",r6:35.2,rs:"偏弱",mf:[0.85,0.50,0.35,-0.62],tg:["AI主题","规模250亿","科技回调"],kl:[2.25,2.22,2.18,2.15,2.12,2.10,2.08,2.10,2.12,2.08,2.05,2.02,2.04,2.06,2.08,2.05,2.02,2.00,2.02,2.04,2.05,2.03,2.01,2.00,2.02,2.03,2.04,2.03,2.02,2.04]}
+    ]};
+    loading.style.display = 'none';
+    wrap.style.display = 'block';
+    renderPortfolio();
+  }
+}
+function renderPortfolio() {
+  if (!pflData || !pflData.stocks) return;
+  const s = pflData.stocks;
+  
+  // Summary bar
+  const rtCount = {B:0,H:0,S:0};
+  const upCount = s.filter(x => x.ch >= 0).length;
+  s.forEach(x => rtCount[x.rt] = (rtCount[x.rt]||0)+1);
+  document.getElementById('pflBar').innerHTML = `
+    <div class="ov-card"><div class=lbl>持仓总数</div><div class=val>${s.length}</div><div class=chg style="color:var(--text2)">A股8·港股1·ETF5</div></div>
+    <div class="ov-card"><div class=lbl>建议评级</div><div class=val style="font-size:18px"><span style="color:#22c55e">${rtCount.B||0}增</span> · <span style="color:#f59e0b">${rtCount.H||0}观</span> · <span style="color:#ef4444">${rtCount.S||0}减</span></div><div class=chg style="color:var(--text2)">增持&gt;观望&gt;减持</div></div>
+    <div class="ov-card"><div class=lbl>今日上涨${upCount}只</div><div class=val style="font-size:16px;font-weight:600">${upCount}/${s.length}</div><div class=chg style="color:var(--text2)">上涨占比 ${Math.round(upCount/s.length*100)}%</div></div>
+    <div class="ov-card"><div class=lbl>今日最强</div><div class=val style="font-size:15px;font-weight:600">${s.sort((a,b)=>b.ch-a.ch)[0].n}</div><div class="chg profit">${s.sort((a,b)=>b.ch-a.ch)[0].ch>0?'+':''}${s.sort((a,b)=>b.ch-a.ch)[0].ch}%</div></div>
+    <div class="ov-card"><div class=lbl>今日最弱</div><div class=val style="font-size:15px;font-weight:600">${s.sort((a,b)=>a.ch-b.ch)[0].n}</div><div class="chg loss">${s.sort((a,b)=>a.ch-b.ch)[0].ch>0?'+':''}${s.sort((a,b)=>a.ch-b.ch)[0].ch}%</div></div>
+  `;
+  
+  document.getElementById('pflTime').textContent = '更新于 ' + (pflData.time || '2026-05-29 21:45 CST');
+  
+  // Market flow grid
+  document.getElementById('pflMF').innerHTML = `
+    <div class="card"><div class=lbl style=margin-bottom:8px>🏦 银行/金融 3只</div><div style="font-size:12px;line-height:1.8">中信 +5.05% <span class="profit">↑</span><br>招商 +2.40% <span class="profit">↑</span><br>农业 +1.77% <span class="profit">↑</span><br><span style="color:var(--text3)">全线强势，防御品种</span></div></div>
+    <div class="card"><div class=lbl style=margin-bottom:8px>🤖 科技/AI 5只</div><div style="font-size:12px;line-height:1.8">阿里巴巴 -0.74% <span class="loss">↓</span><br>科创半导体-6.06% <span class="loss">↓↓</span><br>中韩半导体 -1.50% <span class="loss">↓</span><br>人工智能ETF -3.80% <span class="loss">↓</span><br>蓝色光标 +3.34% <span class="profit">↑</span></div></div>
+    <div class="card"><div class=lbl style=margin-bottom:8px>🥇 资源/周期 4只</div><div style="font-size:12px;line-height:1.8">黄金ETF +2.89% <span class="profit">↑</span><br>湖南白银 -2.69% <span class="loss">↓</span><br>江西铜业 +0.07% <span class="profit">↑</span><br>上纬新材 -3.15% <span class="loss">↓</span><br>上海电力 +0.94% <span class="profit">↑</span></div></div>
+  `;
+  
+  // Stock cards
+  const g = document.getElementById('pflGrid');
+  g.innerHTML = s.map(st => {
+    const rt = st.rt;
+    const rc = rt === 'B' ? 'pfl-rtg-B' : rt === 'H' ? 'pfl-rtg-H' : 'pfl-rtg-S';
+    const rtLabels = {B:'增持',H:'观望',S:'减持'};
+    const cc = rt === 'B' ? '#22c55e' : rt === 'H' ? '#f59e0b' : '#ef4444';
+    const mkCl = st.md.s.includes('多头') ? 'ts-b' : 'ts-r';
+    const rsCl = st.rs.includes('超卖') || st.rs.includes('偏强') ? 'ts-b' : st.rs.includes('偏弱') ? 'ts-r' : 'ts-n';
+    const mn = Math.min(...st.kl), mx = Math.max(...st.kl), rg = mx - mn || 1;
+    const w = 200, hh = 30;
+    const pts = st.kl.map((v,i) => `${(i/(st.kl.length-1))*w},${hh-((v-mn)/rg)*hh}`).join(' ');
+    const svg = `<svg viewBox="0 0 ${w} ${hh}"><defs><linearGradient id="g-${st.c.replace(/[.#]/g,'')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${cc}" stop-opacity="0.2"/><stop offset="100%" stop-color="${cc}" stop-opacity="0.01"/></linearGradient></defs><path d="M${pts}" fill="none" stroke="${cc}" stroke-width="1.3" stroke-linecap="round"/><path d="M0,${hh} L${pts} L${pts.split(' ').pop().split(',')[0]},${hh}Z" fill="url(#g-${st.c.replace(/[.#]/g,'')})" opacity="0.25"/></svg>`;
+    return `
+      <div class="pfl-card">
+        <span class="pfl-rtg ${rc}">${rtLabels[rt]}</span>
+        <div class="pfl-hd">
+          <span class="pfl-exg ${st.ec}">${st.e}</span>
+          <div class="pfl-sn"><h2>${st.n}</h2><span class="cd">${st.c}</span></div>
+        </div>
+        <div class="pfl-pr"><span class="p">${st.cur}${st.pr.toFixed(2)}</span><span class="cp ${st.ch>=0?'profit':'loss'}">${st.ch>0?'+':''}${st.ch}%</span></div>
+        <div class="pfl-pl ${st.ch>=0?'pb':'lb'}">${st.ch>=0?'📈 今日上涨':'📉 今日下跌'}</div>
+        <div class="pfl-tech">
+          <div class="pfl-tb"><div class="tl">MACD</div><div class="tv">${st.md.v.toFixed(2)}</div><div class="ts ${mkCl}">${st.md.s}</div></div>
+          <div class="pfl-tb"><div class="tl">KDJ</div><div class="tv" style="font-size:10px">${st.kd}</div></div>
+          <div class="pfl-tb"><div class="tl">RSI6</div><div class="tv">${st.r6.toFixed(1)}</div><div class="ts ${rsCl}">${st.rs}</div></div>
+        </div>
+        <div class="pfl-chart">${svg}</div>
+        <div class="pfl-mf">
+          <div class="pfl-mfi"><div class="ml">主力</div><div class="mv ${st.mf[0]>=0?'profit':'loss'}">${st.mf[0]>=0?'+':''}${st.mf[0].toFixed(2)}</div></div>
+          <div class="pfl-mfi"><div class="ml">超大单</div><div class="mv ${st.mf[1]>=0?'profit':'loss'}">${st.mf[1].toFixed(2)}</div></div>
+          <div class="pfl-mfi"><div class="ml">大单</div><div class="mv ${st.mf[2]>=0?'profit':'loss'}">${st.mf[2].toFixed(2)}</div></div>
+          <div class="pfl-mfi"><div class="ml">中小单</div><div class="mv ${st.mf[3]>=0?'profit':'loss'}">${st.mf[3].toFixed(2)}</div></div>
+        </div>
+        <div class="pfl-tag">${st.tg.map(t => `<span class="pfl-ct">${t}</span>`).join('')}</div>
+      </div>`;
+  }).join('');
+}
+
+// Load portfolio on page ready
+loadPortfolio();
 
 // Init
 renderMonitors();
