@@ -11,8 +11,12 @@ from datetime import datetime
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(REPO_DIR, "data")
 INDEX   = os.path.join(REPO_DIR, "index.html")
-TOKEN   = "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"
-REPO_URL = f"https://jason0107-zhao:{TOKEN}@github.com/jason0107-zhao/ai-market-dashboard.git"
+# Use GITHUB_TOKEN env var, or fall back to the remote URL already configured in git
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+if GITHUB_TOKEN:
+    REPO_URL = f"https://jason0107-zhao:{GITHUB_TOKEN}@github.com/jason0107-zhao/ai-market-dashboard.git"
+else:
+    REPO_URL = None  # use existing remote
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -107,8 +111,9 @@ def git_push(msg=None):
             ["git", "-C", REPO_DIR, "commit", "-m", msg],
             check=True, capture_output=True, timeout=10
         )
+        push_url = REPO_URL if REPO_URL else "origin"
         subprocess.run(
-            ["git", "-C", REPO_DIR, "push", REPO_URL, "main"],
+            ["git", "-C", REPO_DIR, "push", push_url, "main"],
             check=True, capture_output=True, timeout=30
         )
         print(f"  PUSHED: {msg}")
