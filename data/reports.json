@@ -1,0 +1,53 @@
+[
+  {
+    "id": "citic-pe",
+    "title": "中信证券(600030) 近三年PE-TTM走势分析",
+    "icon": "📈",
+    "tags": [
+      "中信证券",
+      "PE-TTM",
+      "估值分析"
+    ],
+    "desc": "基于自建数据库对中信证券近三年PE-TTM走势的深度复盘与当前估值定位分析",
+    "html": "<div class=\"metric-row\">\n  <div class=\"metric-box\"><div class=\"num\">16.72x</div><div class=\"lbs\">当前 PE-TTM</div></div>\n  <div class=\"metric-box\"><div class=\"num\">21.93x</div><div class=\"lbs\">近 3 年均值</div></div>\n  <div class=\"metric-box\"><div class=\"num\">13.33x</div><div class=\"lbs\">近 3 年最低</div></div>\n  <div class=\"metric-box\"><div class=\"num\">35.26x</div><div class=\"lbs\">近 3 年最高</div></div>\n</div>\n\n<h1>中信证券(600030) 近三年 PE-TTM 走势分析</h1>\n\n<div class=\"tagline\">📌 <strong>核心结论：</strong>当前 PE-TTM 16.72 倍，处于近三年偏低分位（约 30% 分位），较均值 21.93 倍折价约 23.7%。对于中长期投资者，具备较高安全边际。</div>\n\n<h2>一、PE-TTM 走势全景回顾</h2>\n<p>PE-TTM（滚动市盈率）= 股价 ÷ 最近 12 个月的实际每股收益。相比静态市盈率，它使用<strong>最新四个季度财务数据</strong>，更真实反映公司当前估值水平。</p>\n\n<h3>走势三阶段</h3>\n<p><strong>第一阶段：估值收缩期（2024 年）</strong><br>受证券行业\"降费让利\"政策预期影响，市场对券商盈利前景产生担忧。叠加成交量萎缩、自营承压，PE 从年初 20 倍区间持续下滑至年末 <strong>14.7 倍</strong>附近，全年估值中枢下移约 26%。</p>\n\n<p><strong>第二阶段：底部震荡期（2025 年初至年中）</strong><br>PE 在 <strong>13.33 ~ 15.5 倍</strong> 区间窄幅波动。市场对券商板块关注度降至低点。期间中信证券多次回购稳定投资者信心。<strong>13.33 倍</strong> 成为本轮调整的估值铁底。</p>\n\n<p><strong>第三阶段：估值修复期（2025 年下半年至今）</strong><br>市场活跃度回升 + 权益市场回暖，券商自营及经纪业务环比改善。PE 从历史底部区域反弹至 16~18 倍区间。当前 16.72 倍较底部反弹约 25.4%，但距均值仍有空间。</p>\n\n<hr>\n\n<h2>二、关键区间分析</h2>\n<table>\n  <tr><th>指标</th><th>数值</th><th>含义</th></tr>\n  <tr><td><strong>最低 PE</strong></td><td>13.33x</td><td>2025 年 7 月——近三年绝对底部，也是压力测试的极限值</td></tr>\n  <tr><td><strong>最高 PE</strong></td><td>35.26x</td><td>2024 年初\"中特估\"行情驱动</td></tr>\n  <tr><td><strong>均值 PE</strong></td><td>21.93x</td><td>近三年估值中枢</td></tr>\n  <tr><td><strong>中位数 PE</strong></td><td>18.77x</td><td>半数时间在此以下</td></tr>\n  <tr><td><strong>当前 PE</strong></td><td>16.72x</td><td>低于均值和中位数，折价约 23.7%</td></tr>\n</table>\n<p><strong>分位数：</strong>当前 16.72 倍处于近三年 PE 序列约 <strong>30% 分位</strong>——即过去三年中约 <strong>70% 的时间估值高于当前</strong>。从历史统计角度看具有明显安全边际。</p>\n\n<hr>\n\n<h2>三、驱动因素</h2>\n<ul>\n  <li><strong>市场周期：</strong>券商估值与日均成交额高度正相关。2024 日均<8000 亿 vs 2025 日均>1.2 万亿</li>\n  <li><strong>行业政策：</strong>\"降费让利\"冲击边际递减；注册制改革深化利好投行</li>\n  <li><strong>自营收益：</strong>权益市场修复是 PE 回升核心推动力</li>\n</ul>\n\n<hr>\n\n<h2>四、估值展望</h2>\n<p>当前已反映大部分不确定性，下行风险有限。若市场活跃度维持，PE 有望向均值 <strong>21.93 倍</strong> 修复，对应约 <strong>31% 上行空间</strong>。</p>\n<p><strong>操作参考：</strong>PE 进入 <strong>15 倍以下</strong> 逐步布局；PE 接近或突破 <strong>22 倍</strong> 时分批兑现。</p>\n\n<blockquote>⚠️ 以上分析仅基于公开数据和历史统计，不构成投资建议。PE 为滞后指标。</blockquote>"
+  },
+  {
+    "id": "hbm-chain",
+    "title": "国产HBM产业链全景解析",
+    "icon": "🔬",
+    "tags": [
+      "HBM",
+      "长鑫存储",
+      "长电科技",
+      "安集科技"
+    ],
+    "desc": "全面梳理国产HBM产业链现状、核心玩家与挑战，从DRAM到先进封装逐环节拆解",
+    "html": "<h1>国产 HBM 产业链全景解析</h1>\n<p><strong>日期：</strong>2026-05-28</p>\n\n<div class=\"tagline\">国产 HBM 产业链目前处于 <strong>\"从 0 到 1，点状突破\"</strong> 的初级阶段。与国际顶尖水平（SK 海力士 HBM3E）存在 2~3 代差距，但代差已从 8 年缩至 4 年。</div>\n\n<h2>一、HBM 存储颗粒</h2>\n<table>\n  <tr><th>公司</th><th>上市</th><th>最新进展</th></tr>\n  <tr><td><strong>长鑫存储 (CXMT)</strong></td><td><span class=\"pill pill-mid\">未上市</span></td><td>HBM2 已于 2025H1 量产，HBM3 样品交付客户，目标 2027 年 HBM3E</td></tr>\n  <tr><td>武汉新芯 (XMC)</td><td><span class=\"pill pill-mid\">未上市</span></td><td>HBM2 开发中，月产能 3000 片 12 英寸工厂</td></tr>\n</table>\n<p>从成熟 DDR5 转向高性能 HBM DRAM，技术跨度大，长鑫的 HBM3 量产验证是关键一战。</p>\n\n<h2>二、先进封装</h2>\n<table>\n  <tr><th>公司</th><th>代码</th><th>技术布局</th><th>推荐</th></tr>\n  <tr><td><strong>长电科技</strong></td><td>600584</td><td>XDFOI 对标 CoWoS，2.5D/3D 封装最强竞争者</td><td>⭐⭐⭐</td></tr>\n  <tr><td><strong>通富微电</strong></td><td>002156</td><td>绑定 AMD，已与长鑫合作 HBM2 样品</td><td>⭐⭐</td></tr>\n  <tr><td>华天科技</td><td>002185</td><td>TSV/3D 封装布局中</td><td>⭐</td></tr>\n</table>\n\n<h2>三、关键设备</h2>\n<ul>\n  <li><strong>TSV 刻蚀：</strong>北方华创 (002371) / 中微公司 (688012) ✅ 可国产化</li>\n  <li><strong>CMP 设备：</strong>华海清科 (688120) ✅ 国内龙头</li>\n  <li><strong>封装光刻：</strong>上海微电子——已量产出货</li>\n  <li><strong>键合设备：</strong>新益昌追赶中——<strong>最大短板之一</strong></li>\n</ul>\n\n<h2>四、关键材料</h2>\n<table>\n  <tr><th>环节</th><th>公司</th><th>代码</th><th>备注</th></tr>\n  <tr><td><strong>CMP 抛光液</strong></td><td>安集科技</td><td>688019</td><td>⭐⭐⭐ 龙头</td></tr>\n  <tr><td>光刻胶</td><td>南大光电</td><td>300346</td><td>ArF 光刻胶国产化</td></tr>\n  <tr><td>光刻胶</td><td>上海新阳</td><td>300236</td><td>KrF/ArF 光刻胶</td></tr>\n  <tr><td>电子特气</td><td>华特气体</td><td>688268</td><td>高纯气体供应商</td></tr>\n</table>\n\n<h2>五、链主：华为海思</h2>\n<p>华为定义需求 → 长鑫提 DRAM 规格 → 长电/通富开发封装 → 联合设备材料厂攻关 → 昇腾芯片落地验证。华为是整个链条的 <strong>火车头</strong>。</p>\n\n<h2>六、时间线</h2>\n<table>\n  <tr><th>时间</th><th>目标</th><th>意义</th></tr>\n  <tr><td><span class=\"pill pill-up\">2025H1 ✅</span></td><td>HBM2 量产</td><td>比预期提早约 2 年，突破意义重大</td></tr>\n  <tr><td><span class=\"pill pill-mid\">2025H2 🔄</span></td><td>HBM3 量产验证</td><td>与主流代差从 8 年缩至 4 年</td></tr>\n  <tr><td><span class=\"pill pill-mid\">2027E 🎯</span></td><td>HBM3E 量产</td><td>跳过 HBM2E 直接上 3E，追赶策略清晰</td></tr>\n</table>\n\n<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>"
+  },
+  {
+    "id": "semi-rpt",
+    "title": "半导体投资分析：安集科技 · 源杰科技精选",
+    "icon": "💎",
+    "tags": [
+      "半导体",
+      "安集科技",
+      "源杰科技",
+      "CMP"
+    ],
+    "desc": "基于野村亚太科技团队研报，梳理AI倒逼半导体工艺重构逻辑，精选筹码优良标的",
+    "html": "<div class=\"metric-row\">\n  <div class=\"metric-box\"><div class=\"num\">+33%</div><div class=\"lbs\">安集 Q1 营收</div></div>\n  <div class=\"metric-box\"><div class=\"num\">+321%</div><div class=\"lbs\">源杰 Q1 营收</div></div>\n  <div class=\"metric-box\"><div class=\"num\">77.8%</div><div class=\"lbs\">源杰毛利率</div></div>\n  <div class=\"metric-box\"><div class=\"num\">65.5%</div><div class=\"lbs\">安集机构持有</div></div>\n</div>\n\n<h1>半导体投资分析报告</h1>\n<p><strong>来源：</strong>野村证券亚太科技团队 · Donnie Teng<br><strong>日期：</strong>2026-05-27</p>\n\n<div class=\"tagline\">半导体行业增长逻辑已从\"晶体管密度提升\"转向 <strong>\"3D 晶体管 + 背面供电 + 新材料组合创新\"</strong>。AI 倒逼芯片制造底层工艺重写。</div>\n\n<h2>一、全产业链时间线</h2>\n<table>\n  <tr><th>时间</th><th>关键事件</th><th>投资方向</th></tr>\n  <tr><td><strong>2026 年</strong></td><td>GAA 晶体管、SoIC 混合键合、InP 衬底小批量</td><td>先进封装、化合物半导体</td></tr>\n  <tr><td><strong><span class=orange>2027 年（拐点）</span></strong></td><td><strong>背面供电、玻璃核心基板、晶圆键合 NAND 集中放量</strong></td><td><strong>材料+设备 配置核心窗口</strong></td></tr>\n  <tr><td>2028 年</td><td>DRAM-on-logic 规模化，边缘 AI + 汽车电子成新驱动力</td><td>异构集成、Chiplet</td></tr>\n  <tr><td>2029-2030</td><td>高 NA EUV 量产，金属氧化物光刻胶全面导入</td><td>光刻胶国产化、EUV 生态</td></tr>\n</table>\n\n<h3>野村关键论点</h3>\n<ol>\n  <li><strong>材料环节价值重估：</strong>工艺复杂度提升使材料单耗和价值量同步上升</li>\n  <li><strong>玻璃基板：</strong>博通有望 2027 年率先采用，国内厂商加速跟进</li>\n  <li><strong>硅片供需：</strong>12 英寸硅片 2027 年起供需由松转紧</li>\n  <li><strong>台积电资本开支：</strong>2027 年有望达 700 亿美元，设备端景气外溢</li>\n</ol>\n\n<hr>\n\n<h2>二、优选标的深度拆解</h2>\n\n<h3>🥇 安集科技 (688019) —— CMP 抛光液龙头</h3>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">2026Q1 营收</div><div class=\"iv\">7.24 亿 <span class=\"pill pill-up\">+33%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">净利润</div><div class=\"iv\">2.08 亿 <span class=\"pill pill-up\">+23%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">股东户数</div><div class=\"iv\">1.43 万户</div></div>\n  <div class=\"info-item\"><div class=\"il\">机构持有</div><div class=\"iv\">65.5%</div></div>\n</div>\n<ul>\n  <li>股东户数连续收敛，从 2025 年末的 1.8 万降至 1.43 万——筹码在不断集中</li>\n  <li>前十大股东集中度 58%，140 家机构持股 65.5%——机构深度锁仓</li>\n  <li>大股东零减持——管理层对股价的认可信号</li>\n  <li><strong>筹码评分：⭐⭐⭐⭐⭐</strong></li>\n</ul>\n\n<h3>🥈 源杰科技 (688498) —— 光芯片 IDM</h3>\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">2026Q1 营收</div><div class=\"iv\">3.55 亿 <span class=\"pill pill-up\">+321%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">净利润</div><div class=\"iv\">1.79 亿 <span class=\"pill pill-up\">+1153%</span></div></div>\n  <div class=\"info-item\"><div class=\"il\">毛利率</div><div class=\"iv\">77.8%</div></div>\n  <div class=\"info-item\"><div class=\"il\">户均市值</div><div class=\"iv\">459 万</div></div>\n</div>\n<ul>\n  <li>营收暴增 321%，利润暴增 1153%——产业趋势爆发初期阶段</li>\n  <li>77.8% 毛利率——技术壁垒极高，IDM 模式带来强定价权</li>\n  <li>户均持股市值 459 万——筹码高度集中在大户和机构手中</li>\n  <li>股东户数仅 1.36 万户——极低，筹码非常干净</li>\n  <li><strong>筹码评分：⭐⭐⭐⭐</strong></li>\n</ul>\n\n<h3>🥉 鼎龙股份 (300054) —— CMP 抛光垫</h3>\n<p>营收 10.2 亿，股东户数 6.04 万户偏多。抛光垫国产替代逻辑正确，但需等待筹码进一步集中。<strong>筹码评分：⭐⭐⭐</strong></p>\n\n<blockquote><strong>组合建议：</strong>安集科技打底 + 源杰科技博弹性，鼎龙股份作为观察标的等待筹码改善。</blockquote>\n<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>"
+  },
+  {
+    "id": "huahai",
+    "title": "华海诚科(688535)深度分析：HBM逻辑与筹码困境",
+    "icon": "⚠️",
+    "tags": [
+      "华海诚科",
+      "HBM",
+      "GMC",
+      "减持"
+    ],
+    "desc": "HBM国产化产业趋势确定，但华天科技清仓减持3个月，核心矛盾在分母",
+    "html": "<h1>华海诚科 (688535) 深度分析</h1>\n\n<div class=\"tagline\">HBM 国产化 → GMC 放量 → 华海诚科受益 —— 这条逻辑链从产业趋势上说成立。但 <strong>产业面的利好做多分子，筹码面的确定性做空分母</strong>。核心矛盾在分母。</div>\n\n<div class=\"info-grid\">\n  <div class=\"info-item\"><div class=\"il\">减持主体</div><div class=\"iv\">华天科技</div></div>\n  <div class=\"info-item\"><div class=\"il\">减持规模</div><div class=\"iv\" style=\"color:#ef4444\">清仓 340 万股 / 2.40%</div></div>\n  <div class=\"info-item\"><div class=\"il\">减持期间</div><div class=\"iv\" style=\"color:#ef4444\">5.28 → 8.27（3 个月）</div></div>\n  <div class=\"info-item\"><div class=\"il\">当前 PE</div><div class=\"iv\">300+ 倍</div></div>\n</div>\n\n<h2>核心矛盾：产业面 vs 筹码面</h2>\n<blockquote>股价 = HBM/GMC/国产替代远期故事 ÷ <strong>筹码结构的即时破坏力</strong></blockquote>\n\n<h3>问题出在分母：</h3>\n<ol>\n  <li><strong>华天科技清仓减持</strong>（340 万股，3 个月窗口）—— 确定性抛压</li>\n  <li><strong>日均主力净流出数千万至亿级</strong>——卖压大于买力</li>\n  <li><strong>缺乏长线多头承接</strong>——以游资 + 散户为主</li>\n  <li><strong>300+ 倍 PE</strong>——远期预期已充分透支</li>\n</ol>\n\n<h2>关键时间线</h2>\n<table>\n  <tr><th>日期</th><th>事件</th><th>影响</th></tr>\n  <tr><td><span class=\"pill pill-down\">5 月 24 日</span></td><td>华天科技公告清仓减持</td><td><strong>分水岭</strong>：产业逻辑不变，筹码逻辑彻底逆转</td></tr>\n  <tr><td><span class=\"pill pill-down\">5.28 → 8.27</span></td><td>减持执行期</td><td>3 个月的确定性抛压窗口</td></tr>\n  <tr><td><span class=\"pill pill-mid\">8.27 后</span></td><td>减持结束</td><td>筹码消化后的重新入场窗口</td></tr>\n</table>\n\n<h2>操作策略</h2>\n<p>产业面逻辑硬，但短期筹码矛盾要先解决。<strong>更好的入场时机：华天科技 3 个月减持期结束后、筹码充分交换、换手率降下来之后</strong>。</p>\n<p>期间持续跟踪：每日换手率、股东户数变化、大宗交易折价率。</p>\n\n<blockquote>⚠️ 以上分析基于公开信息整理，不构成投资建议。</blockquote>"
+  }
+]

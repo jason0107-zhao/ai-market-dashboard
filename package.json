@@ -1,0 +1,10 @@
+{
+  "name": "二级市场研究员 - 知识库",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
