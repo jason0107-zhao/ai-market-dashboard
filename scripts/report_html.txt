@@ -1,0 +1,228 @@
+<div class="metric-row">
+  <div class="metric-box"><div class="num">4068</div><div class="lbs">上证收盘</div></div>
+  <div class="metric-box"><div class="num">+0.43%</div><div class="lbs">沪指涨幅</div></div>
+  <div class="metric-box"><div class="num">+2.66%</div><div class="lbs">创业板指</div></div>
+  <div class="metric-box"><div class="num">2.77万亿</div><div class="lbs">全日成交</div></div>
+  <div class="metric-box"><div class="num">1543</div><div class="lbs">上涨家数</div></div>
+  <div class="metric-box"><div class="num">76.63</div><div class="lbs">白银$</div></div>
+</div>
+
+<h1>AI板块收盘复盘 · 三大指数集体收涨 CPO暴涨 机器人续强</h1>
+<p><strong>时间：</strong>2026-06-02 16:47（A股今日已收盘）</p>
+
+<div class="tagline">📌 <strong>核心基调：</strong>今日A股全天震荡拉升，三大指数集体收涨。沪指涨0.43%，深成指涨1.63%，创业板指涨2.66%领涨全场。盘面呈极端"K型"分化——CPO/光通信/MLCC/机器人/有色金属等科技权重板块强势领涨，但全市场超3800只个股下跌，仅1543只上涨。通信ETF大涨超7%领跑全市场。COMEX白银日内涨超1.8%至76.63美元。</div>
+
+<hr>
+
+<h2>📊 零、COMEX白银期货播报</h2>
+<div class="info-grid">
+  <div class="info-item"><div class="il">COMEX白银期货</div><div class="iv"><strong>76.63 美元/盎司</strong> <span class="pill pill-up">日内 +1.82%</span></div></div>
+  <div class="info-item"><div class="il">现货白银（伦敦银）</div><div class="iv"><strong>76.35 美元/盎司</strong> <span class="pill pill-up">日内 +2.01%</span></div></div>
+  <div class="info-item"><div class="il">沪银主力</div><div class="iv"><strong>约18,100 元/千克</strong></div></div>
+  <div class="info-item"><div class="il">美元指数</div><div class="iv"><strong>约99.14</strong> <span class="pill pill-down">偏弱运行</span></div></div>
+  <div class="info-item"><div class="il">COMEX黄金期货</div><div class="iv"><strong>4,514.8 美元/盎司</strong> <span class="pill pill-down">-1.70%</span></div></div>
+  <div class="info-item"><div class="il">COMEX铜期货</div><div class="iv"><strong>6.5635 美元/磅</strong> <span class="pill pill-up">+2.73%</span></div></div>
+</div>
+
+<p><strong>近期趋势判断：</strong>白银今日强劲反弹，日内涨幅达<strong>1.82%</strong>，从昨日纽约尾盘的75.13美元反弹至76.63美元。盘初一度跌至74.77美元后强势V型反转。白银自5月中旬从89.34美元高位回落后，已在<strong>74-76.6美元</strong>区间形成震荡整理平台，今日反弹力度显示多头在75美元附近获得有效支撑。周线级别底部（71.5美元）确认后，白银有进一步向上挑战78-80美元区间的动能。</p>
+
+<p><strong>驱动因素简析：</strong></p>
+<ul>
+  <li><strong>美元指数偏弱震荡：</strong>美元指数报99.14附近，整体低位徘徊，为贵金属提供计价支撑</li>
+  <li><strong>COMEX白银库存腰斩：</strong>自2025年10月以来库存已腰斩，2026年Q1交割需求达1.65亿盎司</li>
+  <li><strong>工业需求持续：</strong>光伏+AI数据中心+电子元器件需求维持高位，全球白银连续五年供给缺口</li>
+  <li><strong>地缘因素：</strong>美伊谈判进展反复，特朗普称将做"最终决定"</li>
+  <li><strong>机构观点分歧：</strong>美国银行看多（Q4冲击100美元）；瑞银偏谨慎（下调年底目标至80美元）</li>
+</ul>
+
+<hr>
+
+<h2>一、大盘解读</h2>
+
+<div class="info-grid">
+  <div class="info-item"><div class="il">上证指数</div><div class="iv">+0.43%</div></div>
+  <div class="info-item"><div class="il">深证成指</div><div class="iv"><span class="pill pill-up">+1.63%</span></div></div>
+  <div class="info-item"><div class="il">创业板指</div><div class="iv" style="color:#22c55e"><strong>+2.66% 领涨</strong></div></div>
+  <div class="info-item"><div class="il">全日成交</div><div class="iv"><strong>2.77万亿元</strong>（缩量845亿）</div></div>
+  <div class="info-item"><div class="il">涨跌家数</div><div class="iv" style="color:#ef4444"><strong>1543只上涨</strong> / 3876只下跌</div></div>
+  <div class="info-item"><div class="il">涨停</div><div class="iv">96只涨停</div></div>
+</div>
+
+<p><strong>市场特征：</strong>今日市场呈现极致的<strong>"K型"结构</strong>。指数上涨但全市场仅1543只上涨、3876只下跌，是典型的"少数科技权重股带动指数上涨"行情。AI硬件大市值股大涨（CPO/MLCC/光通信），大量中小盘和传统行业个股回调。两市成交额2.77万亿元，缩量845亿元。</p>
+
+<p><strong>今日关键催化事件：</strong></p>
+<ul>
+  <li>🔥 <strong>光通信+算力硬件集体爆发：</strong>CPO暴涨，东山精密（昨日跌停→今日涨停反包）、亨通光电涨停</li>
+  <li>🔥 <strong>MLCC概念延续强势：</strong>高盛称MLCC为AI服务器第三大成本项（仅次于GPU和存储）</li>
+  <li>🔥 <strong>宇树科技IPO过会+英伟达联手：</strong>黄仁勋宣布与宇树联手推出H2+参考设计</li>
+  <li>🔥 <strong>新易盛调研披露：</strong>1.6T光模块预计逐季快速增长</li>
+  <li>🔥 <strong>Lightcounting预测：</strong>2026年以太网光模块市场增长65%</li>
+  <li>🔥 <strong>三星展示HBM5原型：</strong>台北电脑展亮相全球首款AI HBM5</li>
+  <li>🔥 <strong>软银孙正义：</strong>AI革命规模是互联网泡沫时期的50倍</li>
+</ul>
+
+<hr>
+
+<h2>二、AI板块整体市场概览</h2>
+
+<p>今日AI板块呈现<strong>算力硬件全面强势回归</strong>。CPO/光通信/光纤/MLCC方向大涨，与昨日"硬切软"形成鲜明反差。通信ETF涨超7%领跑全市场。</p>
+
+<p><strong>算力硬件强势领涨：</strong></p>
+<ul>
+  <li><strong>光库科技</strong> 涨超14%，<strong>联特科技</strong> 涨超11%</li>
+  <li><strong>新易盛、太辰光</strong> 涨超10%，<strong>中际旭创</strong> 涨超6%</li>
+  <li><strong>东山精密</strong> 昨日跌停→今日涨停反包</li>
+  <li><strong>亨通光电</strong> 涨停（主力净买入超22亿，全市场第一）</li>
+  <li><strong>长飞光纤</strong> 涨停（Q1净利增226%+空芯光纤突破）</li>
+  <li>通信ETF（515880）大涨超7%领跑全市场</li>
+</ul>
+
+<p><strong>MLCC概念延续强势：</strong>高盛分析师指出MLCC已上升为AI服务器<strong>第三大成本项</strong>（仅次于GPU和存储芯片）。AI服务器MLCC搭载量较普通服务器增幅约<strong>3倍以上</strong>，火炬电子、国瓷材料涨停。</p>
+
+<p><strong>AI应用/软件方向回调：</strong>昨日强势的AI应用/软件方向今日普遍回调，"硬切软"轮动仅持续一日即切换回硬件方向。</p>
+
+<hr>
+
+<h2>三、细分领域动态</h2>
+
+<div class="sect-card">
+<div class="sh">🔷 算力板块 <span class="pill pill-up">今日强势回归</span> <span class="pill pill-up">全面走强</span></div>
+<p class="sn"><strong>资金面：</strong>通信设备板块主力净流入<strong>155.23亿元</strong>（全行业第一）。工业金属+58.32亿、元件+45.06亿紧随。亨通光电获主力净买入22亿（全市场第一），工业富联+14.32亿、东山精密+13.08亿、新易盛+7.59亿。半导体继续净流出-41.91亿元。</p>
+<p class="sn"><strong>政策面：</strong>发改委、工信部联合发布《新一代人工智能发展规划(2026-2030)》，明确提出2030年AI核心产业规模超<strong>5万亿元</strong>。"东数西算"2026年投资超2000亿元。</p>
+<p class="sn"><strong>基本面：</strong>① 英伟达RTX Spark发布（1 Petaflop算力+128GB内存）；② 软银斥750亿欧元布局法国5吉瓦AI数据中心；③ 孙正义：AI革命规模是互联网泡沫50倍；④ 新易盛调研：1.6T订单增幅很大；⑤ Lightcounting预测2026年以太网光模块市场增长65%。</p>
+<p class="sn"><strong>情绪面：</strong>算力硬件方向今日情绪高涨，CPO/光通信全面爆发。但"K型"结构显示市场情绪偏向谨慎乐观。机构认为短期内CPO/光模块龙头业绩确定性最强。</p>
+</div>
+
+<div class="sect-card">
+<div class="sh">🔷 存储板块 <span class="pill pill-up">HBM5原型亮相</span> <span class="pill pill-mid">超级周期持续</span></div>
+<p class="sn"><strong>资金面：</strong>存储板块受HBM5原型消息提振走强。半导体板块整体净流出41.91亿，但存储细分方向有资金逆势布局。</p>
+<p class="sn"><strong>政策面：</strong>三星在台北国际电脑展展示全球首款<strong>HBM5内存原型</strong>（2nm基础裸片+1c nm DRAM，16层堆叠，4TB/s带宽）。</p>
+<p class="sn"><strong>基本面：</strong>① 三星展示HBM5原型；② 高盛+瑞银确认存储超级周期（DRAM缺货至2028年Q2）；③ 玻璃基板正成为HBM存储关键材料。</p>
+<p class="sn"><strong>情绪面：</strong>HBM5展示标志着存储技术迭代加速，超级周期的市场共识持续强化。</p>
+</div>
+
+<div class="sect-card">
+<div class="sh">🔷 机器人板块 <span class="pill pill-up">宇树+英伟达联手</span> <span class="pill pill-up">持续催化</span></div>
+<p class="sn"><strong>资金面：</strong><strong>中大力德</strong>涨停，绿的谐波、科达自控等跟涨。机器人ETF易方达涨2.51%，成交1.15亿元。</p>
+<p class="sn"><strong>政策面：</strong>宇树科技6月1日科创板IPO正式过会（73天闪电纪录）。<strong>英伟达CEO黄仁勋宣布与宇树科技联手</strong>，推出新一代人形机器人参考设计H2+（Isaac GR00T系统）。</p>
+<p class="sn"><strong>基本面：</strong>① 宇树2025年人形机器人出货超5500台（全球第一）；② 英伟达+宇树联手发布H2+；③ 特斯拉Optimus Gen3 7-8月启动量产，加州工厂年产100万台规划。浙商证券：6月是配置机器人板块好时机。</p>
+<p class="sn"><strong>情绪面：</strong>"人形机器人第一股"+全球AI芯片巨头战略合作，产业链估值获得系统性提升，市场对"具身智能"前景乐观预期持续升温。</p>
+</div>
+
+<div class="sect-card">
+<div class="sh">🔷 CPO板块 <span class="pill pill-up">今日最强方向</span> <span class="pill pill-up">暴涨领涨全场</span></div>
+<p class="sn"><strong>资金面：</strong>CPO今日<strong>暴涨领涨全场</strong>。通信设备净流入<strong>155.23亿元</strong>（全行业第一）。光库科技+14%、联特科技+11%、新易盛/太辰光+10%、中际旭创+6%。<strong>东山精密</strong>（昨日跌停→涨停反包）、亨通光电、长飞光纤涨停。全市场成交额前五均来自光通信产业链。</p>
+<p class="sn"><strong>政策面：</strong>工信部要求新建智算中心CPO适配≥60%。英伟达与博通双路径推动CPO商用。台积电COUPE on Substrate已量产。</p>
+<p class="sn"><strong>基本面：</strong></p>
+<ul>
+  <li><strong>新易盛调研：</strong>1.6T订单增长很大，逐季快速增长</li>
+  <li><strong>Lightcounting预测：</strong>2026年以太网光模块增长65%，1.6T大规模交付</li>
+  <li>2026年全球1.6T需求约<strong>2700万只</strong>，硅光路线占80%</li>
+  <li>中际旭创800G全球市占率超42%，1.6T唯一批量供货，订单至2028年</li>
+  <li>英伟达2026年Q4启动CPO量产</li>
+  <li>长飞光纤Q1净利增226.4%，空芯光纤全球商用突破</li>
+</ul>
+<p class="sn"><strong>情绪面：</strong>东山精密"跌停→涨停反包"为今日A股最戏剧性一幕。2026年被定义为"CPO商用元年"，机构普遍看好。</p>
+</div>
+
+<hr>
+
+<h2>四、主流净流入板块监控（收盘TOP10）</h2>
+
+<table>
+  <tr><th>#</th><th>板块/行业</th><th>净流入参考</th><th>核心驱动</th><th>驱动类型</th></tr>
+  <tr><td><strong>1</strong></td><td><strong>通信设备</strong></td><td><span class="green"><strong>+155.23亿</strong></span></td><td>CPO爆发+1.6T量产+新易盛调研</td><td><span class="pill pill-up">产业+业绩</span></td></tr>
+  <tr><td><strong>2</strong></td><td><strong>工业金属</strong></td><td><span class="green"><strong>+58.32亿</strong></span></td><td>小金属价格攀升+供给受限</td><td><span class="pill pill-up">供需驱动</span></td></tr>
+  <tr><td><strong>3</strong></td><td><strong>元件/MLCC</strong></td><td><span class="green"><strong>+45.06亿</strong></span></td><td>MLCC涨价+AI服务器3倍需求+高盛报告</td><td><span class="pill pill-up">产业驱动</span></td></tr>
+  <tr><td><strong>4</strong></td><td>有色金属</td><td><span class="green">+20亿+</span></td><td>小金属供给受限+新兴需求</td><td><span class="pill pill-mid">供需驱动</span></td></tr>
+  <tr><td><strong>5</strong></td><td>银行</td><td><span class="green">+10亿+</span></td><td>高股息+防御</td><td><span class="pill pill-mid">防御</span></td></tr>
+  <tr><td><strong>6</strong></td><td>机器人</td><td><span class="green">ETF涨2.51%</span></td><td>宇树+英伟达联手</td><td><span class="pill pill-up">事件</span></td></tr>
+  <tr><td><strong>7</strong></td><td>AI PC</td><td><span class="green">持续流入</span></td><td>RTX Spark+端侧AI</td><td><span class="pill pill-mid">事件</span></td></tr>
+  <tr><td><strong>8</strong></td><td>汽车零部件</td><td><span class="green">小幅流入</span></td><td>机器人供应链共振</td><td><span class="pill pill-mid">产业</span></td></tr>
+  <tr><td><strong>9</strong></td><td>消费电子</td><td><span class="green">小幅流入</span></td><td>AI PC换机周期</td><td><span class="pill pill-mid">产业</span></td></tr>
+  <tr><td><strong>10</strong></td><td>光纤光缆</td><td><span class="green">长飞+亨通涨停</span></td><td>AI算力传输+业绩爆发</td><td><span class="pill pill-up">业绩</span></td></tr>
+</table>
+
+<p><strong>净流出TOP：</strong>半导体(-41.91亿)、电力(-38.26亿)、电网设备(-31.51亿)、光伏(-26.26亿)、化学制药(-18.60亿)</p>
+
+<p><strong>资金流向核心发现：</strong></p>
+<ul>
+  <li><strong>通信设备</strong>（+155亿）为今日绝对资金王者</li>
+  <li><strong>工业金属+元件</strong>（MLCC）合计超100亿</li>
+  <li><strong>AI板块今日：</strong>"软切硬"——昨日软件强势→今日CPO/光通信强势回归</li>
+  <li><strong>半导体</strong>仍是最失血板块（-41.91亿），资金从半导体向CPO/MLCC方向转移</li>
+  <li><strong>AI板块热度：</strong><strong>高</strong>——通信设备+155亿、元件+45亿均为AI方向</li>
+</ul>
+
+<hr>
+
+<h2>五、关键异动个股</h2>
+
+<table>
+  <tr><th>个股</th><th>异动</th><th>逻辑</th><th>关注</th></tr>
+  <tr><td><strong>东山精密</strong></td><td><span class="pill pill-up"><strong>涨停反包</strong></span></td><td>CPO/PCB龙头，昨日因小作文跌停，今日利好催化涨停反包，主力净买入超13亿</td><td>⭐⭐⭐</td></tr>
+  <tr><td><strong>亨通光电</strong></td><td><span class="pill pill-up"><strong>涨停</strong> +22亿</span></td><td>光通信+光纤龙头，受益AI数据中心建设，主力净买入22亿全市场第一</td><td>⭐⭐⭐</td></tr>
+  <tr><td><strong>长飞光纤</strong></td><td><span class="pill pill-up"><strong>涨停</strong></span></td><td>光纤龙头Q1净利增226%，空芯光纤全球商用突破</td><td>⭐⭐⭐</td></tr>
+  <tr><td><strong>光库科技</strong></td><td><span class="pill pill-up">+14%</span></td><td>CPO概念龙头，光芯片核心供应商</td><td>⭐⭐</td></tr>
+  <tr><td><strong>中大力德</strong></td><td><span class="pill pill-up"><strong>涨停</strong></span></td><td>机器人/减速器龙头，宇树IPO+英伟达联手催化</td><td>⭐⭐</td></tr>
+</table>
+
+<hr>
+
+<h2>六、特斯拉机器人概念股解析</h2>
+
+<p><strong>最新产业进展：</strong></p>
+<ul>
+  <li>宇树科技6月1日科创板IPO<strong>正式过会</strong>（73天闪电纪录），拟募资42亿</li>
+  <li><strong>英伟达CEO黄仁勋宣布与宇树联手</strong>，推出H2+参考设计（Isaac GR00T系统）</li>
+  <li>特斯拉Optimus Gen3预计<strong>7-8月量产</strong>，加州工厂年产100万台</li>
+  <li>小鹏IRON机器人目标2026年底量产</li>
+  <li>具身智能市场规模2026年有望突破<strong>万亿元</strong></li>
+</ul>
+
+<table>
+  <tr><th>环节</th><th>核心公司</th><th>受益逻辑</th><th>优先级</th></tr>
+  <tr><td><strong>执行器/总成</strong></td><td>三花智控、拓普集团</td><td>线性/旋转执行器核心供应商</td><td>⭐⭐⭐</td></tr>
+  <tr><td><strong>精密减速器</strong></td><td>绿的谐波、双环传动、中大力德</td><td>谐波/RV减速器，最高壁垒环节。中大力德今日涨停</td><td>⭐⭐⭐</td></tr>
+  <tr><td><strong>伺服电机</strong></td><td>汇川技术、卧龙电驱</td><td>驱控一体方案</td><td>⭐⭐</td></tr>
+  <tr><td><strong>传感器</strong></td><td>柯力传感、奥比中光</td><td>力矩/3D视觉传感器</td><td>⭐⭐</td></tr>
+  <tr><td><strong>灵巧手</strong></td><td>峰岹科技</td><td>电机驱动芯片</td><td>⭐⭐</td></tr>
+  <tr><td><strong>结构件/代工</strong></td><td>工业富联、长盈精密</td><td>整机代工（工业富联+14.32亿）+轻量化结构件</td><td>⭐⭐</td></tr>
+  <tr><td><strong>电池/电源</strong></td><td>珠海冠宇</td><td>机器人电池方案</td><td>⭐</td></tr>
+</table>
+
+<p><strong>机构策略：</strong>浙商证券指出三季度特斯拉量产前<strong>6月是配置机器人板块好时机</strong>。中信证券认为机器人V3版本设计接近定型，核心零部件国产供应商有望率先受益。</p>
+
+<hr>
+
+<h2>七、总结与展望</h2>
+
+<div class="info-grid">
+  <div class="info-item"><div class="il">📌 今日定性</div><div class="iv" style="font-size:14px"><strong>A股今日已收盘</strong>（16:47）。三大指数集体收涨，创业板+2.66%领涨。K型分化——CPO/光通信/MLCC/机器人权重股强势领涨，全市场3876只下跌。AI"软切硬"方向轮动（昨日应用强势→今日硬件爆发）。通信ETF涨超7%，东山精密反包涨停。</div></div>
+  <div class="info-item"><div class="il">👀 今夜/次日关注</div><div class="iv" style="font-size:14px">
+  <strong>1) 🌙 今夜美股AI</strong>——NVIDIA走势直接影响明日A股AI情绪<br>
+  <strong>2) COMPUTEX 2026后续</strong>——英特尔CEO陈立武明日演讲<br>
+  <strong>3) 宇树IPO后续</strong>——注册发行进度<br>
+  <strong>4) 存储方向</strong>——HBM5+超级周期催化<br>
+  <strong>5) CPO持续性</strong>——155亿资金涌入能否持续<br>
+  <strong>6) 白银能否站稳76美元</strong>——若突破下一目标80美元
+  </div></div>
+  <div class="info-item"><div class="il">💡 次日展望</div><div class="iv" style="font-size:14px">
+  <strong>1) CPO/光通信</strong>是当前最强主线，155亿主力资金提供充足支撑<br>
+  <strong>2) 机器人</strong>宇树+英伟达双催化，关注产业链个股<br>
+  <strong>3) 存储</strong>中长期逻辑最强，超级周期+三星HBM5<br>
+  <strong>4) 留意</strong>"K型"结构性行情中多数个股弱势<br>
+  <strong>5) 关注</strong>今夜美股AI板块表现
+  </div></div>
+  <div class="info-item"><div class="il">⚠️ 风险提示</div><div class="iv" style="font-size:14px;color:#f59e0b">
+  ① "K型"极端分化，仅少数权重股上涨，多数个股回调<br>
+  ② 成交额缩量845亿，若持续缩量则上攻动能衰减<br>
+  ③ 半导体方向持续净流出，板块内部轮动加速<br>
+  ④ 6月进入财报真空期+美国通胀数据风险<br>
+  ⑤ <strong>以上基于公开数据，不构成投资建议</strong>
+  </div></div>
+</div>
+
+<hr>
+<blockquote>⚠️ 以上分析基于公开数据和搜索结果整理，不构成投资建议。股市有风险，投资需谨慎。<br>
+📝 报告生成时间：2026-06-02 16:47 | 数据来源：公开市场信息 | 监测周期：1小时</blockquote>
