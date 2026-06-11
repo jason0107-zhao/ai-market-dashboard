@@ -1,0 +1,30 @@
+<h1>AI板块实时监控报告 &amp; COMEX白银期货播报</h1>
+<p><strong>【2026-06-11 11:29】</strong></p>
+<p><strong>⚡ A股正在交易中（午前盘）</strong> — 以下为实时盘中监控</p>
+<hr />
+
+<h2>零、COMEX白银期货播报</h2>
+<ul>
+  <li><strong>最新价格：</strong>COMEX白银期货主力最新报约 <strong>64.24美元/盎司</strong>，日内涨<strong>+1.2%</strong>。现货白银日内涨<strong>1%</strong>报<strong>64.03美元/盎司</strong>，盘中最高触及64.35美元。现货黄金同步涨0.59%报4095.72美元/盎司。</li>
+  <li><strong>日内涨跌幅：</strong>昨日（6月10日）COMEX白银跌超1%收报64.58美元——今日亚盘小幅反弹至64美元上方。沪银主力开盘报<strong>15,266元/千克</strong>（昨收15,622元），日内低开低走，最低15,179元。</li>
+  <li><strong>近期趋势判断：</strong>白银自5月13日近<strong>90美元/盎司</strong>历史高位持续回调至今，累计跌幅超28%，目前在<strong>63-67美元区间震荡整理</strong>。63美元为近期关键支撑，67美元为短期阻力。分析师普遍认为短期在63-67美元来回磨，中期有望回弹至70美元上方。</li>
+  <li><strong>驱动因素简析：</strong>
+    <ul>
+      <li><strong>美元指数：</strong>重新站上100大关，对贵金属形成明显压制</li>
+      <li><strong>美联储政策：</strong>美国CPI年率4.2%符合预期但核心CPI小幅回落，通胀仍偏高。市场对美联储维持高利率预期升温</li>
+      <li><strong>工业需求：</strong>光伏/AI硬件用银需求维持高位，全球白银连续多年供不应求，供需缺口约<strong>6,316吨</strong></li>
+      <li><strong>库存支撑：</strong>COMEX白银库存持续下降，全球主要交易所库存处于近十年低位</li>
+      <li><strong>机构观点：</strong>短期震荡偏弱，但中长期受益于工业需求和供给缺口，63美元附近具有较好性价比</li>
+    </ul>
+  </li>
+</ul>
+<hr />
+
+<h2>一、大盘解读</h2>
+<ul>
+  <li><strong>今日A股三大指数集体低开，盘中震荡回升：</strong>
+    <ul>
+      <li><strong>上证指数：</strong>开盘<strong>3979.71点</strong>（跌0.34%），盘中一度翻红现报<strong>3982.62点</strong>（跌约0.27%）</li>
+      <li><strong>深证成指：</strong>跌0.43%，报<strong>14889.57点</strong></li>
+      <li><strong>创业板指：</strong>跌0.40%，报<strong>3839.19点</strong></li>
+      <li>
